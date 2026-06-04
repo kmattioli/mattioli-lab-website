@@ -1,9 +1,248 @@
-// Make page header alignment consistent with widget page header alignment
-.universal-wrapper h1 {
-  text-align: center;
+// =============================================================================
+//  Mattioli Lab — custom styling layer
+//  Brings the aesthetics of the custom static site into the HugoBlox template.
+//
+//  This file is loaded AFTER the theme's own CSS, so it gets the final say.
+//  To recolor the whole site, edit the palette block right below (and the
+//  `primary` value in `data/themes/mattioli.toml`).
+// =============================================================================
+
+:root {
+  // ---- COLOR PALETTE (the one place to re-skin the site) --------------------
+  //  Triad from the lab's figures: blue (primary), red, gold.
+  --paper:       #faf9f5;   // warm near-white background
+  --paper-panel: #f0ede4;   // slightly deeper panel background
+  --ink:         #1a1a20;   // main text (near-black)
+  --muted:       #5b5a61;   // secondary text
+  --line:        #e4dfd2;   // warm hairline rules
+  --brand:       #1f56a6;   // primary blue
+  --brand-deep:  #16345f;   // deep navy (footer)
+  --brand-tint:  #e3ebf7;   // pale blue (panels)
+  --accent:      #c62a28;   // red
+  --gold:        #cf9f2e;   // gold (fills / larger elements)
+  --gold-deep:   #946410;   // darker gold for small text
+  --gold-tint:   #f4ead0;   // pale gold (pills)
+
+  // ---- TYPE -----------------------------------------------------------------
+  --font-display: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --font-body:    "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  // ---- LAYOUT ---------------------------------------------------------------
+  --radius: 14px;
 }
 
-// Center the CTA shortcode button
-.cta-group {
-  justify-content: center;
+// ---- BASE -------------------------------------------------------------------
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  letter-spacing: -0.003em;
+  -webkit-font-smoothing: antialiased;
 }
+
+::selection { background: var(--brand-tint); color: var(--ink); }
+
+// Display headings — IBM Plex Serif, tightened
+h1, h2, h3,
+.hero-title,
+.section-heading h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+// Italic emphasis reads as the brand color (a nod to the source site)
+.home-section em,
+.hero-lead em { font-style: italic; color: var(--brand); }
+
+// =============================================================================
+//  PAPER GRAIN — a faint multiply texture over every section, content above it
+// =============================================================================
+.home-section {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+
+  // keep real content above the grain
+  > .container,
+  > .container-xl { position: relative; z-index: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+// =============================================================================
+//  SECTION HEADINGS — short gold rule + muted "lede" subtitle
+// =============================================================================
+.section-heading {
+  &::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 0 1rem;
+  }
+  &.text-center::before { margin-left: auto; margin-right: auto; }
+
+  h1 { line-height: 1.05; }
+
+  p {
+    font-family: var(--font-body);
+    color: var(--muted);
+    font-size: 1.075rem;
+  }
+}
+
+// =============================================================================
+//  NAVBAR — translucent paper, blurred, hairline rule, underline-on-hover links
+// =============================================================================
+#navbar-main.navbar {
+  background: color-mix(in srgb, var(--paper) 88%, transparent) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+#navbar-main {
+  .navbar-brand {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .nav-link {
+    font-weight: 500;
+    color: var(--muted);
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0.5rem;
+      right: 0.5rem;
+      bottom: 0.25rem;
+      height: 2px;
+      background: var(--brand);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.28s cubic-bezier(.2, .8, .2, 1);
+    }
+    &:hover, &.active { color: var(--ink); }
+    &:hover::after, &.active::after { transform: scaleX(1); }
+  }
+}
+
+// =============================================================================
+//  BUTTONS — pill shape, brand fill, subtle lift
+// =============================================================================
+.btn {
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0;
+  transition: background-color 0.2s ease, color 0.2s ease,
+              transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--brand);
+  border-color: var(--brand);
+  color: var(--paper);
+
+  &:hover, &:focus {
+    background-color: var(--brand-deep);
+    border-color: var(--brand-deep);
+    color: var(--paper);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -18px rgba(31, 86, 166, 0.65);
+  }
+}
+
+.btn-outline-primary {
+  border-color: var(--ink);
+  color: var(--ink);
+  &:hover { background-color: var(--ink); border-color: var(--ink); color: var(--paper); }
+}
+
+// =============================================================================
+//  CARDS — rounded, warm hairline, lift + brand border on hover
+// =============================================================================
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand);
+    box-shadow: 0 18px 40px -28px rgba(31, 86, 166, 0.45);
+  }
+}
+
+// Tag / category pills — gold, monospaced (the "scientific" signature)
+.badge {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  background-color: var(--gold-tint);
+  color: var(--gold-deep);
+}
+
+// =============================================================================
+//  PEOPLE — soft brand-tinted avatar frame
+// =============================================================================
+.avatar {
+  border: 1px solid var(--line);
+  background: var(--brand-tint);
+}
+
+// =============================================================================
+//  PUBLICATIONS — italic brand venue, monospaced metadata
+// =============================================================================
+.article-metadata,
+.pub-list-item .article-metadata { color: var(--muted); }
+.pub-list-item .article-title a:hover { color: var(--brand); }
+
+// =============================================================================
+//  FOOTER — deep navy, paper text, monospaced fine print
+// =============================================================================
+.site-footer {
+  background: var(--brand-deep);
+  color: color-mix(in srgb, var(--paper) 85%, var(--brand));
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+
+  a { color: color-mix(in srgb, var(--paper) 85%, var(--brand)); }
+  a:hover { color: var(--paper); }
+
+  .powered-by {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+// =============================================================================
+//  Original template tweaks (kept from the starter)
+// =============================================================================
+// Make page header alignment consistent with widget page header alignment
+.universal-wrapper h1 { text-align: center; }
+
+// Center the CTA shortcode button
+.cta-group { justify-content: center; }

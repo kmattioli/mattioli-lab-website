@@ -1,0 +1,11 @@
+<svg viewBox="0 0 400 122" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mattioli Lab">
+  <g transform="translate(16,9) scale(0.8)">
+    <path d="M23 100 L40 6 L60 56 L80 6 L97 100" fill="none" stroke="#1f56a6" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="10" y="98" width="26" height="24" rx="3" fill="#1f56a6"/>
+    <rect x="84" y="98" width="26" height="24" rx="3" fill="#cf9f2e"/>
+    <rect x="47" y="54" width="26" height="24" rx="3" fill="#c62a28"/>
+  </g>
+  <text x="110" y="80" font-family="'IBM Plex Serif', Georgia, serif" font-size="50" font-weight="600">
+    <tspan fill="#1a1a20">attioli</tspan><tspan fill="#1f56a6"> Lab</tspan>
+  </text>
+</svg>

@@ -3,9 +3,9 @@
 
 # Appearance
 appearance:
-  theme_day: minimal      # built-in light theme. Swap for another HugoBlox theme, or ask for a custom blue/gold theme file.
-  theme_night:
-  font: native
+  theme_day: mattioli     # CHANGED — custom warm paper + blue/gold theme (data/themes/mattioli.toml)
+  theme_night:            # left empty: the paper aesthetic is light-only, like the source site
+  font: mattioli          # CHANGED — IBM Plex superfamily (data/fonts/mattioli.toml)
   font_size: L
 
 # SEO
@@ -32,7 +32,7 @@ header:
     align: r
     show_logo: true
     show_language: false
-    show_day_night: true
+    show_day_night: false   # CHANGED — single light "paper" theme (no dark mode), matching the source site
     show_search: true
     highlight_active_link: false
 
