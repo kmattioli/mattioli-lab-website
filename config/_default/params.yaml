@@ -1,25 +1,21 @@
-# SITE SETUP
-# Guide: https://docs.hugoblox.com/tutorial/
-# Documentation: https://docs.hugoblox.com/
-# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+# SITE SETUP — https://docs.hugoblox.com/
+# Only the marked fields were changed from the template defaults.
 
 # Appearance
-
 appearance:
-  theme_day: minimal
+  theme_day: minimal      # built-in light theme. Swap for another HugoBlox theme, or ask for a custom blue/gold theme file.
   theme_night:
   font: native
   font_size: L
 
 # SEO
-
 marketing:
   seo:
     site_type: Organization
     local_business_type: ''
-    org_name: ''
-    description: 'A highly-customizable Hugo research group theme powered by Wowchemy website builder.'
-    twitter: 'GetResearchDev'
+    org_name: 'Mattioli Lab'                                  # CHANGED
+    description: 'The Mattioli Lab decodes alternative RNA isoforms in cancer using high-throughput, isoform-specific functional genomics.'  # CHANGED
+    twitter: ''
   analytics:
     google_analytics: ''
     baidu_tongji: ''
@@ -30,7 +26,6 @@ marketing:
     baidu: ''
 
 # Site header
-
 header:
   navbar:
     enable: true
@@ -42,25 +37,22 @@ header:
     highlight_active_link: false
 
 # Site footer
-
 footer:
   copyright:
-    notice: '© {year} Me. This work is licensed under {license}'
+    notice: '© {year} Mattioli Lab'                            # CHANGED
     license:
-      enable: true
+      enable: false                                           # CHANGED (turn on if you want a CC license shown)
       allow_derivatives: false
       share_alike: true
       allow_commercial: false
 
 # Localization
-
 locale:
   date_format: 'Jan 2, 2006'
   time_format: '3:04 PM'
   address_format: en-us
 
 # Site features
-
 features:
   syntax_highlighter:
     enable: false
@@ -72,7 +64,7 @@ features:
   privacy_pack:
     enable: false
   repository:
-    url: 'https://github.com/<username>/<repository>'
+    url: 'https://github.com/<username>/<repository>'         # CHANGE to your repo (enables "edit this page")
     content_dir: content
     branch: main
   avatar:
@@ -80,30 +72,14 @@ features:
     shape: circle
   comment:
     provider: ''
-    disqus:
-      shortname: ''
-      show_count: true
-    commento:
-      url: ''
-    giscus:
-      repo: ''
-      repo_id: ''
-      category: ''
-      category_id: ''
   search:
     provider: wowchemy
-    algolia:
-      app_id: ''
-      api_key: ''
-      index_name: ''
-      show_logo: false
   map:
     provider: 'mapnik'
     api_key: ''
     zoom: 15
 
 # Extensions
-
 extensions:
   decap_cms:
     branch: main
@@ -112,7 +88,6 @@ extensions:
     enable: true
 
 # Citation style
-
 publications:
   date_format: January 2006
   citation_style: apa

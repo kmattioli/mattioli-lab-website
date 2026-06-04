@@ -1,25 +1,37 @@
 ---
 # Leave the homepage title empty to use the site title
 title:
-date: 2022-10-24
+date: 2026-01-01
 type: landing
 
 sections:
   - block: hero
     content:
       title: |
-        Wowchemy
-        Research Group
+        Mattioli Lab
       image:
-        filename: welcome.jpg
+        filename: welcome.jpg   # replace assets/media/welcome.jpg with your own image
       text: |
         <br>
-        
-        The **Wowchemy Research Group** has been a center of excellence for Artificial Intelligence research, teaching, and practice since its founding in 2016.
-  
+
+        **Decoding alternative isoforms in cancer.**
+
+        We use high-throughput, isoform-specific functional genomics to understand how alternative RNA isoforms drive oncogenic cell states — and whether they can be exploited as diagnostics and therapeutics.
+
+  - block: markdown
+    content:
+      title: What we study
+      subtitle: ''
+      text: |
+        Over 90% of human genes produce multiple mRNA isoforms, many encoding distinct proteins. Their misregulation is pervasive in cancer, yet which individual isoforms drive disease — and how — remains largely unknown. Our lab leverages and develops state-of-the-art tools (long-read RNA-sequencing and RNA-targeting CRISPR) to probe isoform function at scale, beginning with transcription factor isoforms in breast cancer.
+
+        {{% cta cta_link="./research/" cta_text="Explore our research →" %}}
+    design:
+      columns: '1'
+
   - block: collection
     content:
-      title: Latest News
+      title: Latest news
       subtitle:
       text:
       count: 5
@@ -35,36 +47,16 @@ sections:
     design:
       view: card
       columns: '1'
-  
-  - block: markdown
-    content:
-      title:
-      subtitle: ''
-      text:
-    design:
-      columns: '1'
-      background:
-        image: 
-          filename: coders.jpg
-          filters:
-            brightness: 1
-          parallax: false
-          position: center
-          size: cover
-          text_color_light: true
-      spacing:
-        padding: ['20px', '0', '20px', '0']
-      css_class: fullscreen
 
   - block: collection
     content:
-      title: Latest Preprints
-      text: ""
+      title: Selected publications
+      text: ''
       count: 5
       filters:
         folders:
           - publication
-        publication_type: 'article'
+        featured_only: true
     design:
       view: citation
       columns: '1'

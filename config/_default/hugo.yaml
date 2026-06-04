@@ -1,10 +1,8 @@
-# Configuration of Hugo
-# Guide: https://docs.hugoblox.com/tutorial/
-# Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
-# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+# Configuration of Hugo — edit `title` and `baseURL` for your lab.
+# Guide: https://docs.hugoblox.com/
 
-title: Wowchemy Research Group # Website name
-baseURL: 'https://example.com/' # Website URL
+title: Mattioli Lab # Website name
+baseURL: 'https://example.com/' # <-- CHANGE to your URL (e.g. https://kaiamattioli.github.io/ or your lab domain)
 
 ############################
 ## LANGUAGE
