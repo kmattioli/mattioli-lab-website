@@ -33,7 +33,7 @@ header:
     show_logo: true
     show_language: false
     show_day_night: false   # CHANGED — single light "paper" theme (no dark mode), matching the source site
-    show_search: true
+    show_search: false      # CHANGED — hide the search bar in the top menu
     highlight_active_link: false
 
 # Site footer

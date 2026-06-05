@@ -1,6 +1,6 @@
 ---
 title: News
-view: compact
+view: news
 banner:
   caption: ''
   image: ''

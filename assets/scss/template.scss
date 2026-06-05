@@ -187,6 +187,34 @@ h1, h2, h3,
 }
 
 // =============================================================================
+//  LATEST NEWS — "date | headline" rows with hairline rules (from lab-website 5)
+// =============================================================================
+.news-item {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+
+  &:first-child { border-top: 1px solid var(--line); }
+}
+.news-date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--gold-deep);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.news-text {
+  font-size: 1.075rem;
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .news-item { grid-template-columns: 1fr; gap: 0.2rem; }
+}
+
+// =============================================================================
 //  BUTTONS — pill shape, brand fill, subtle lift
 // =============================================================================
 .btn {
