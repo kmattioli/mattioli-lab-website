@@ -1,17 +1,15 @@
-# Mattioli Lab font set
-# The IBM Plex superfamily — a clean, technical, "research" look.
-#   Serif  -> display headings
-#   Sans   -> body text + navigation
-#   Mono   -> small uppercase labels (the "scientific" signature)
-# Loaded from Google Fonts.
+# Mattioli Lab font set — Roboto (matches Kaia's LaTeX resume: roboto, light)
+# Headers are rendered as spaced ALL-CAPS in template.scss to mirror the
+# resume's \textsc / \scshape header style. Roboto Mono for small labels.
 
 name = "Mattioli"
 
 # Google Fonts CSS2 query (appended to https://fonts.googleapis.com/css2?...)
-google_fonts = "family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500"
+# Includes weight 300 (light) to match the resume's light Roboto.
+google_fonts = "family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500"
 
 # Font families
-heading_font = "IBM Plex Serif"
-body_font = "IBM Plex Sans"
-nav_font = "IBM Plex Sans"
-mono_font = "IBM Plex Mono"
+heading_font = "Roboto"
+body_font = "Roboto"
+nav_font = "Roboto"
+mono_font = "Roboto Mono"

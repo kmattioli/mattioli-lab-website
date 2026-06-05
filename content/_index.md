@@ -10,7 +10,7 @@ sections:
       title: |
         Mattioli Lab
       image:
-        filename: welcome.jpg   # replace assets/media/welcome.jpg with your own image
+        filename: hero-splice.svg   # animated RNA-splicing figure (assets/media/hero-splice.svg)
       text: |
         <br>
 
