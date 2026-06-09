@@ -8,7 +8,7 @@
 {{ with $block.content.image.filename }}{{ $img = resources.Get (path.Join "media" .) }}{{ end }}
 
 <div class="ml-feature{{ if $flip }} ml-feature--flip{{ end }}">
-
+  {{ if eq $block.content.figure "header-cells" }}{{ partial "ml-sweep.html" . }}{{ end }}
   <div class="ml-feature__text">
     <div class="ml-shead">
       <span class="ml-shead__rule" aria-hidden="true"></span>

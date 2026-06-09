@@ -346,13 +346,20 @@ a:hover { color: var(--lead-hi); }
 .ml-cta__scatter { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
 .ml-cta__scatter svg { position: absolute; }
 
-// Scattered Miró marks behind section content
+// Miró background flair: scatter marks + faint header sweep (behind content)
 .ml-scatter { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
 .ml-scatter > svg { position: absolute; }
-.themes, .ml-join, .ml-people { position: relative; }
+.ml-sweep {
+  position: absolute; top: 0; left: 0; right: 0; height: clamp(380px, 100%, 620px);
+  pointer-events: none; z-index: 0; overflow: hidden;
+  svg { width: 100%; height: 100%; display: block; }
+}
+.themes, .ml-join, .ml-people, .ml-feature, .ml-pagewrap { position: relative; }
 .themes > .theme,
 .ml-join > .ml-join__text, .ml-join > .ml-join__aside,
-.ml-people > :not(.ml-scatter) { position: relative; z-index: 1; }
+.ml-people > :not(.ml-scatter):not(.ml-sweep),
+.ml-feature > .ml-feature__text, .ml-feature > .ml-feature__media,
+.ml-pagewrap > :not(.ml-sweep) { position: relative; z-index: 1; }
 
 // CTA shortcode links
 .cta a, a.cta-link {
