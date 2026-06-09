@@ -4,10 +4,11 @@ date: 2026-01-01
 type: landing
 
 sections:
-  - block: markdown
+  - block: feature
     content:
       title: How isoforms shape cancer.
       subtitle: Research · Splicing · Gene regulation · Cancer
+      figure: header-cells
       text: |
         Genes are often described as the functional units of the genome, but this is a
         convenient abstraction. In reality, genes are modular collections of sequences
@@ -18,7 +19,8 @@ sections:
         and therapeutics?_ We pursue three connected themes, and focus on **breast
         cancer**, the most common cancer in women worldwide.
     design:
-      columns: '1'
+      flip: false
+      css_class: ml-feature--head
 
   - block: themes
     content:

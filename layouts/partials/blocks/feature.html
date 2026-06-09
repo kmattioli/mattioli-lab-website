@@ -25,6 +25,8 @@
     {{ if eq $block.content.figure "isoform" }}
       {{ partial "figures/isoform.html" . }}
       {{ with $block.content.caption }}<p class="ml-feature__cap">{{ . }}</p>{{ end }}
+    {{ else if eq $block.content.figure "header-cells" }}
+      {{ partial "figures/header-cells.html" . }}
     {{ else if $img }}
       <figure class="ml-figure">
         {{ if eq $img.MediaType.SubType "gif" }}
