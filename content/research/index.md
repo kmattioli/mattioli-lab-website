@@ -25,6 +25,7 @@ sections:
       items:
         - number: 1
           accent: red
+          fig: grn
           title: How do TF isoforms rewire gene regulatory networks?
           text: |
             Isoforms of transcription factors (TFs) are highly diverse in their biochemical
@@ -37,6 +38,7 @@ sections:
           techniques: ORF libraries · Cas13d · Perturb-seq · CUT&RUN / RNA-seq
         - number: 2
           accent: gold
+          fig: drug
           title: How does splicing change throughout drug treatment?
           text: |
             Drug resistance is a persistent challenge in breast cancer. We study how
@@ -48,6 +50,7 @@ sections:
           techniques: Long-read RNA-seq · Single-cell RNA-seq · DNA-seq / ATAC-seq
         - number: 3
           accent: blue
+          fig: tech
           title: Can we develop better ways to perturb isoforms?
           text: |
             Current tools limit how precisely we can perturb individual isoforms. We are
@@ -60,6 +63,8 @@ sections:
   - block: markdown
     content:
       text: |
+        <div class="ml-divider ml-divider--center"><img src="/img/intron-divider.svg" alt="" /></div>
+
         {{% cta cta_link="../publication/" cta_text="See our publications →" %}}
     design:
       columns: '1'

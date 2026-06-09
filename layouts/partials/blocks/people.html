@@ -4,6 +4,7 @@
 {{ $labels := dict "x-twitter" "Twitter" "twitter" "Twitter" "bluesky" "Bluesky" "linkedin" "LinkedIn" "github" "GitHub" "google-scholar" "Scholar" "orcid" "ORCID" "globe" "Website" }}
 
 <div class="ml-people">
+  {{ partial "ml-scatter.html" . }}
   {{ range $group := $block.content.user_groups }}
     {{ $query := where (where site.Pages "Section" "authors") ".Params.user_groups" "intersect" (slice $group) }}
     {{ $query = sort $query "Params.last_name" "asc" }}

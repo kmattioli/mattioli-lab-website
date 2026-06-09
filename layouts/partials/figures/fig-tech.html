@@ -1,0 +1,22 @@
+{{/* Theme 3 — scissors cutting isoforms, repeated + fading = high-throughput (FigTech). */}}
+{{ $unit := `
+  <line x1="4" y1="50" x2="128" y2="50" stroke="var(--ml-ink)" stroke-width="1.8" opacity="0.8"/>
+  <path d="M38 50 Q55 38 72 50" fill="none" stroke="var(--ml-blue)" stroke-width="1.4" opacity="0.75"/>
+  <rect x="8"  y="44.5" width="28" height="11" rx="2.5" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="1.8"/>
+  <rect x="60" y="44.5" width="16" height="11" rx="2.5" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="1.8"/>
+  <rect x="92" y="44.5" width="28" height="11" rx="2.5" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="1.8"/>
+  <g stroke="var(--ml-ink)" stroke-width="1.5" stroke-linecap="round" opacity="0.55">
+    <line x1="86" y1="6" x2="92" y2="2"/><line x1="89" y1="14" x2="96" y2="12"/>
+  </g>
+  <g stroke="var(--ml-ink)" fill="none" stroke-linecap="round">
+    <line x1="59" y1="4" x2="79" y2="40" stroke-width="2.6"/>
+    <line x1="77" y1="4" x2="57" y2="40" stroke-width="2.6"/>
+    <circle cx="59" cy="3" r="6" fill="var(--ml-paper-2)" stroke-width="2.2"/>
+    <circle cx="77" cy="3" r="6" fill="var(--ml-paper-2)" stroke-width="2.2"/>
+    <circle cx="68" cy="26" r="2.4" fill="var(--ml-ink)" stroke="none"/>
+  </g>` }}
+<svg class="ml-fig" viewBox="0 0 160 172" aria-label="Scissors cutting one isoform, repeated and fading to signify high-throughput perturbation">
+  <g transform="translate(14 4)">{{ $unit | safeHTML }}</g>
+  <g transform="translate(30 70) scale(0.78)" opacity="0.5">{{ $unit | safeHTML }}</g>
+  <g transform="translate(44 118) scale(0.6)" opacity="0.26">{{ $unit | safeHTML }}</g>
+</svg>

@@ -1,0 +1,36 @@
+{{/* Theme 1 — TF on DNA driving a downstream gene-regulatory network (FigGRN). */}}
+<svg class="ml-fig" viewBox="0 0 160 158" aria-label="A transcription factor bound to DNA driving an irregular downstream gene network">
+  <!-- TF protein blob -->
+  <ellipse cx="80" cy="28" rx="24" ry="16" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
+  <ellipse cx="96" cy="18" rx="11" ry="10" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="1.8"/>
+  <ellipse cx="64" cy="19" rx="10" ry="10" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="1.8"/>
+  <!-- DNA it sits on -->
+  <g stroke="var(--ml-ink)" fill="none" stroke-width="1.7" opacity="0.55">
+    <path d="M52 50 q6.5 -7 13 0 t13 0 t13 0 t13 0"/>
+    <path d="M52 50 q6.5 7 13 0 t13 0 t13 0 t13 0"/>
+    <line x1="58.5" y1="46.5" x2="58.5" y2="53.5"/><line x1="71.5" y1="46.5" x2="71.5" y2="53.5"/>
+    <line x1="84.5" y1="46.5" x2="84.5" y2="53.5"/><line x1="97.5" y1="46.5" x2="97.5" y2="53.5"/>
+  </g>
+  <!-- downstream network edges (hub at 80,66) -->
+  <g stroke="var(--ml-ink)" fill="none" opacity="0.5">
+    <line x1="80" y1="66" x2="28" y2="104" stroke-width="2.8"/>
+    <line x1="80" y1="66" x2="18" y2="138" stroke-width="1.3"/>
+    <line x1="80" y1="66" x2="62" y2="146" stroke-width="3.4"/>
+    <line x1="80" y1="66" x2="108" y2="144" stroke-width="1.6"/>
+    <line x1="80" y1="66" x2="142" y2="118" stroke-width="2.2"/>
+    <line x1="80" y1="66" x2="128" y2="92" stroke-width="1.2"/>
+  </g>
+  <g stroke="var(--ml-ink)" fill="none" opacity="0.34">
+    <line x1="28" y1="104" x2="18" y2="138" stroke-width="1.2"/>
+    <line x1="62" y1="146" x2="18" y2="138" stroke-width="1.3"/>
+    <line x1="108" y1="144" x2="142" y2="118" stroke-width="1.6"/>
+    <line x1="128" y1="92" x2="142" y2="118" stroke-width="1.1"/>
+  </g>
+  <!-- nodes -->
+  <circle cx="28"  cy="104" r="7"   fill="var(--ml-blue)"  stroke="var(--ml-ink)" stroke-width="1.8"/>
+  <circle cx="18"  cy="138" r="5"   fill="var(--ml-gold)"  stroke="var(--ml-ink)" stroke-width="1.8"/>
+  <circle cx="62"  cy="146" r="8.5" fill="var(--ml-red)"   stroke="var(--ml-ink)" stroke-width="1.8"/>
+  <circle cx="108" cy="144" r="6"   fill="#2E7D52"         stroke="var(--ml-ink)" stroke-width="1.8"/>
+  <circle cx="142" cy="118" r="6.5" fill="var(--ml-red)"   stroke="var(--ml-ink)" stroke-width="1.8"/>
+  <circle cx="128" cy="92"  r="5"   fill="var(--ml-gold)"  stroke="var(--ml-ink)" stroke-width="1.8"/>
+</svg>

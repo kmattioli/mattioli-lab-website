@@ -334,6 +334,14 @@ a:hover { color: var(--lead-hi); }
 .ml-cta__scatter { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
 .ml-cta__scatter svg { position: absolute; }
 
+// Scattered Miró marks behind section content
+.ml-scatter { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.ml-scatter > svg { position: absolute; }
+.themes, .ml-join, .ml-people { position: relative; }
+.themes > .theme,
+.ml-join > .ml-join__text, .ml-join > .ml-join__aside,
+.ml-people > :not(.ml-scatter) { position: relative; z-index: 1; }
+
 // CTA shortcode links
 .cta a, a.cta-link {
   font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.08em;
@@ -454,7 +462,19 @@ a:hover { color: var(--lead-hi); }
   margin-top: 16px; font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--ml-ink-mute);
   span { text-transform: uppercase; letter-spacing: 0.1em; }
 }
-@media (max-width: 560px) { .theme { grid-template-columns: 1fr; gap: 12px; } }
+.theme--illus { grid-template-columns: 64px 1fr minmax(132px, 168px); }
+.theme__fig { display: flex; align-items: center; justify-content: center; align-self: center; padding-left: 6px; }
+.ml-fig { width: 100%; height: auto; max-width: 168px; display: block; overflow: visible; }
+@media (max-width: 860px) {
+  .theme--illus { grid-template-columns: 64px 1fr; }
+  .theme--illus .theme__fig { grid-column: 2; justify-content: flex-start; margin-top: 6px; padding-left: 0; }
+  .ml-fig { max-width: 150px; }
+}
+@media (max-width: 560px) { .theme, .theme--illus { grid-template-columns: 1fr; gap: 12px; } }
+
+// Intron-divider strand (between sections)
+.ml-divider { display: flex; margin: 0 0 28px; img { width: 100%; max-width: 460px; height: auto; opacity: 0.9; } }
+.ml-divider--center { justify-content: center; margin-bottom: 22px; }
 
 // =============================================================================
 //  PUBLICATIONS — DS "year | title + authors" rows

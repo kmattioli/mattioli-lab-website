@@ -2,14 +2,16 @@
 {{ $page := .wcPage }}
 {{ $block := .wcBlock }}
 <div class="themes">
+  {{ partial "ml-scatter.html" . }}
   {{ range $block.content.items }}
-    <div class="theme">
+    <div class="theme{{ if .fig }} theme--illus{{ end }}">
       <div class="theme__num theme__num--{{ .accent | default `red` }}">{{ .number }}</div>
       <div class="theme__body">
         {{ with .title }}<h3 class="theme__title">{{ . | markdownify }}</h3>{{ end }}
         {{ with .text }}<div class="theme__text">{{ . | $page.RenderString }}</div>{{ end }}
         {{ with .techniques }}<p class="theme__tech"><span>Techniques</span> · {{ . | markdownify }}</p>{{ end }}
       </div>
+      {{ with .fig }}<div class="theme__fig">{{ partial (printf "figures/fig-%s.html" .) $page }}</div>{{ end }}
     </div>
   {{ end }}
 </div>
