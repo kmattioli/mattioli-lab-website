@@ -83,7 +83,7 @@ sections:
       view: citation
       columns: '1'
 
-  - block: markdown
+  - block: cta
     content:
       title: We are a brand new lab, and we are recruiting!
       subtitle: Join us
@@ -91,9 +91,10 @@ sections:
         We are building an interdisciplinary, supportive team spanning wet-lab and
         computational work in downtown Denver. If splicing, gene regulation, genomics,
         or cancer biology excite you, get in touch.
-
-        {{% cta cta_link="./contact/" cta_text="Get in touch →" %}}
-        {{% cta cta_link="./people/" cta_text="Meet the team →" %}}
-    design:
-      columns: '1'
+      cta:
+        url: ./contact/
+        label: Get in touch →
+      cta_alt:
+        url: ./people/
+        label: Meet the team
 ---

@@ -7,9 +7,8 @@
 name = "Mattioli Lab"
 
 [light]
-  # Primary action = the red "lead" exon (buttons, accents). Links are recolored
-  # to blue in template.scss to match the design system.
-  primary = "#C0392B"
+  # Primary action = the blue "lead" exon (buttons, accents), per the prototype.
+  primary = "#2A6FB0"
 
   # Navbar (further styled as a glass bar in template.scss)
   menu_primary = "#F6F4EF"   # warm paper

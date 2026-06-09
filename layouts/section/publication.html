@@ -1,0 +1,12 @@
+{{/* Mattioli Lab publications archive — clean DS list (no filter/search bar). */}}
+{{- define "main" -}}
+{{ partial "page_header.html" . }}
+<div class="universal-wrapper">
+  {{ with .Content }}<div class="article-style ml-page-lede">{{ . }}</div>{{ end }}
+  <div class="pub-list">
+    {{ range $index, $item := .Pages.ByDate.Reverse }}
+      {{ partial "functions/render_view" (dict "page" $ "item" . "view" ($.Params.view | default "citation") "index" $index) }}
+    {{ end }}
+  </div>
+</div>
+{{- end -}}

@@ -27,9 +27,9 @@
   --ml-night: #0C0E12;   --ml-night-2: #151922;
   --ml-night-line: rgba(255,255,255,0.14);
 
-  // ---- Semantic ------------------------------------------------------------
-  --lead: var(--ml-red);          --lead-hi: var(--ml-red-hi);
-  --support: var(--ml-blue);      --support-hi: var(--ml-blue-hi);
+  // ---- Semantic (blue-led accent, per the prototype) -----------------------
+  --lead: var(--ml-blue);         --lead-hi: var(--ml-blue-hi);
+  --support: var(--ml-red);       --support-hi: var(--ml-red-hi);
   --text-strong: var(--ml-ink);   --text-body: var(--ml-ink-soft);
   --text-muted: var(--ml-ink-mute);
   --surface-card: var(--ml-paper-2);
@@ -72,8 +72,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
 }
 
-a { color: var(--ml-blue); }
-a:hover { color: var(--ml-blue-hi); }
+a { color: var(--support); }            // links = support (red in blue-led mode)
+a:hover { color: var(--support-hi); }
 
 ::selection { background: var(--ml-gold); color: var(--ml-ink); }
 
@@ -306,6 +306,33 @@ a:hover { color: var(--ml-blue-hi); }
   background: transparent; color: var(--ml-ink); border-color: var(--ml-ink); box-shadow: none;
   &:hover { background: rgba(27,26,23,0.06); color: var(--ml-ink); filter: none; }
 }
+.btn-outline-light {
+  background: transparent; color: #fff; border-color: rgba(255,255,255,0.8); box-shadow: none;
+  &:hover { background: rgba(255,255,255,0.08); color: #fff; filter: none; }
+}
+
+// =============================================================================
+//  CTA — dark "Join us" field with scattered Miró marks
+// =============================================================================
+.ml-cta {
+  position: relative; overflow: hidden;
+  background: var(--ml-night); color: #F3EFE4;
+  border-top: var(--line-w) solid var(--ml-ink); border-bottom: var(--line-w) solid var(--ml-ink);
+  padding: clamp(56px, 8vw, 100px) 0;
+}
+.ml-cta__inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 28px; text-align: center; }
+.ml-cta__kicker {
+  font-family: var(--font-mono); font-weight: 600; text-transform: uppercase; letter-spacing: 0.22em;
+  font-size: 13px; color: rgba(243,239,228,0.6); margin: 0 0 16px;
+}
+.ml-cta__title {
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 4.6vw, 48px);
+  letter-spacing: -0.02em; line-height: 1.04; color: #fff; margin: 0; text-wrap: balance;
+}
+.ml-cta__lede { margin-top: 18px; font-size: 18px; line-height: 1.6; color: rgba(243,239,228,0.82); }
+.ml-cta__btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 26px; }
+.ml-cta__scatter { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.ml-cta__scatter svg { position: absolute; }
 
 // CTA shortcode links
 .cta a, a.cta-link {
@@ -371,14 +398,31 @@ a:hover { color: var(--ml-blue-hi); }
 }
 
 // =============================================================================
-//  PUBLICATIONS — DS citation rows
+//  PUBLICATIONS — DS "year | title + authors" rows
 // =============================================================================
-.article-metadata, .pub-list-item .article-metadata { color: var(--ml-ink-soft); }
-.article-title, .pub-list-item .article-title {
-  font-family: var(--font-display); font-weight: 700; color: var(--ml-ink);
+.pub-row {
+  display: grid; grid-template-columns: 78px 1fr; gap: clamp(14px, 3vw, 34px);
+  padding: 26px 4px; border-top: 1px solid var(--stroke-hair); align-items: start;
+  &:last-child { border-bottom: 1px solid var(--stroke-hair); }
 }
-.article-title a:hover { color: var(--support); }
-.article-metadata .author-highlighted, .pub-list-item b { color: var(--ml-ink); font-weight: 700; }
+.pub-row__year {
+  font-family: var(--font-mono); font-weight: 600; font-size: 13px; letter-spacing: 0.04em;
+  color: var(--ml-ink-mute); padding-top: 4px;
+}
+.pub-row__title {
+  font-family: var(--font-display); font-weight: 700; font-size: 22px; line-height: 1.22;
+  color: var(--ml-ink); margin: 0 0 7px;
+  a { color: inherit; }
+  a:hover { color: var(--support); text-decoration: none; }
+}
+.pub-row__authors {
+  font-size: 14px; color: var(--ml-ink-soft); line-height: 1.6; margin: 0;
+  // the highlighted (lab) author renders bold
+  .author-highlighted, strong, b { color: var(--ml-ink); font-weight: 700; }
+  a { color: inherit; }
+}
+.pub-row__venue, .pub-row__authors em { font-style: italic; }
+@media (max-width: 560px) { .pub-row { grid-template-columns: 1fr; gap: 6px; } }
 
 // =============================================================================
 //  PEOPLE — ink-outlined portrait, mono role, gold-dot facts
