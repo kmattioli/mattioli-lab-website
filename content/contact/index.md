@@ -4,10 +4,11 @@ date: 2026-01-01
 type: landing
 
 sections:
-  - block: markdown
+  - block: openings
     content:
       title: Get in touch
       subtitle: Join us
+      hiring: true
       text: |
         Interested in _joining the lab_? We're brand new and recruiting at multiple
         levels. If you're interested, reach out to Kaia directly. Kaia is committed to
@@ -18,40 +19,22 @@ sections:
         experimental-computational biologists.
 
         **Email:** [kaia.mattioli@ucdenver.edu](mailto:kaia.mattioli@ucdenver.edu)
-    design:
-      columns: '1'
-
-  - block: markdown
-    content:
-      title: Current openings
-      subtitle: Now hiring
-      text: |
+      opening: |
         We are currently recruiting a **Professional Research Assistant** with experience
         in molecular biology. This is a unique opportunity to help start a lab from the
         ground up! Junior and senior candidates are both welcome to apply. Reach out to
         Kaia with your resume.
-
-        _Position based at: University of Colorado Denver._
-    design:
-      columns: '1'
 
   - block: markdown
     content:
       title: Who we're recruiting
       subtitle: Open roles
       text: |
-        **Undergraduate researchers.** We welcome curious undergraduates looking for
-        hands-on experience in genomics and molecular biology. Positions are available for
-        course credit, work-study, or summer research. Email Kaia a short note about your
-        interests and availability.
-
-        **PhD & rotation students.** We are recruiting both wet-lab and dry-lab graduate
-        students at the Masters and PhD levels. Email Kaia to discuss fit, current
-        projects, and how to apply.
-
-        **Postdoctoral fellows.** If you are interested in doing a postdoc in the lab, send
-        a CV, a brief statement of research interests, and contact information for three
-        references to Kaia.
+        <div class="ml-roles">
+          <div class="ml-role"><h3>Undergraduate researchers</h3><p>We welcome curious undergraduates looking for hands-on experience in genomics and molecular biology. Positions are available for course credit, work-study, or summer research. Email Kaia a short note about your interests and availability.</p></div>
+          <div class="ml-role"><h3>PhD &amp; rotation students</h3><p>We are recruiting both wet-lab and dry-lab graduate students at the Masters and PhD levels. Email Kaia to discuss fit, current projects, and how to apply.</p></div>
+          <div class="ml-role"><h3>Postdoctoral fellows</h3><p>If you are interested in doing a postdoc in the lab, send a CV, a brief statement of research interests, and contact information for three references to Kaia.</p></div>
+        </div>
     design:
       columns: '1'
 
