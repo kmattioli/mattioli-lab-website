@@ -2,12 +2,11 @@
      GIF, served unresized so it keeps animating) behind a glass lockup card. */}}
 {{ $page := .wcPage }}
 {{ $block := .wcBlock }}
-{{ $art := "" }}
-{{ with $block.content.image.filename }}{{ $art = resources.Get (path.Join "media" .) }}{{ end }}
 {{ $cu := resources.Get "media/cu-denver-mark.png" }}
 
 <div class="ml-hero">
-  {{ with $art }}<img class="ml-hero__art" src="{{ .RelPermalink }}" alt="" aria-hidden="true" />{{ end }}
+  {{/* live "splice constellation" canvas — crisp + full-width (see /js/hero-miro.js) */}}
+  <canvas id="ml-hero-canvas" class="ml-hero__art" aria-hidden="true"></canvas>
   <div class="ml-hero__veil" aria-hidden="true"></div>
 
   <div class="ml-hero__inner">
@@ -38,3 +37,4 @@
     </div>
   </div>
 </div>
+<script defer src="{{ `js/hero-miro.js` | relLangURL }}"></script>
