@@ -348,7 +348,8 @@ a:hover { color: var(--lead-hi); }
 
 // Miró background flair: scatter marks + faint header sweep (behind content)
 .ml-scatter { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-.ml-scatter > svg { position: absolute; }
+.ml-scatter > svg, .ml-scatter > span { position: absolute; }
+.ml-scatter > span > svg { display: block; }
 .ml-sweep {
   position: absolute; top: 0; left: 0; right: 0; height: clamp(380px, 100%, 620px);
   pointer-events: none; z-index: 0; overflow: hidden;
@@ -359,7 +360,7 @@ a:hover { color: var(--lead-hi); }
 .ml-join > .ml-join__text, .ml-join > .ml-join__aside,
 .ml-people > :not(.ml-scatter):not(.ml-sweep),
 .ml-feature > .ml-feature__text, .ml-feature > .ml-feature__media,
-.ml-pagewrap > :not(.ml-sweep) { position: relative; z-index: 1; }
+.ml-pagewrap > :not(.ml-sweep):not(.ml-scatter) { position: relative; z-index: 1; }
 
 // CTA shortcode links
 .cta a, a.cta-link {

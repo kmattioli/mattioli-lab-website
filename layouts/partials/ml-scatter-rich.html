@@ -1,0 +1,28 @@
+{{/* Richer Miró scatter (header cluster + page-edge marks) for the
+     Publications / News / Join-us pages — asterisks, crosses, dots, protein
+     blobs in the lab palette. Ported from the MiroScatter sets in the prototype. */}}
+<div class="ml-scatter ml-scatter--rich" aria-hidden="true">
+
+  <!-- protein blobs -->
+  <span style="top:21%;right:17%"><svg width="52" height="52" viewBox="0 0 64 64"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2.4"/><circle cx="40" cy="26" r="9" fill="var(--ml-red)" stroke="var(--ml-ink)" stroke-width="2"/><circle cx="24" cy="38" r="3" fill="var(--ml-ink)"/></svg></span>
+  <span style="top:48%;left:2%;opacity:0.5"><svg width="44" height="44" viewBox="0 0 64 64"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2.4"/><circle cx="40" cy="26" r="9" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2"/><circle cx="24" cy="38" r="3" fill="var(--ml-ink)"/></svg></span>
+  <span style="top:71%;right:3%;opacity:0.5"><svg width="38" height="38" viewBox="0 0 64 64"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2.4"/><circle cx="40" cy="26" r="9" fill="var(--ml-red)" stroke="var(--ml-ink)" stroke-width="2"/></svg></span>
+
+  <!-- asterisks -->
+  <span style="top:34%;right:7%"><svg width="30" height="30" viewBox="-15 -15 30 30"><g transform="rotate(23)" stroke="var(--ml-red)" stroke-width="2.4" stroke-linecap="round"><line x1="-13" y1="0" x2="13" y2="0"/><line x1="-9.2" y1="-9.2" x2="9.2" y2="9.2"/><line x1="0" y1="-13" x2="0" y2="13"/><line x1="9.2" y1="-9.2" x2="-9.2" y2="9.2"/></g><circle r="2.2" fill="var(--ml-red)"/></svg></span>
+  <span style="top:11%;right:4%;opacity:0.9"><svg width="26" height="26" viewBox="-13 -13 26 26"><g transform="rotate(17)" stroke="var(--ml-gold)" stroke-width="2.4" stroke-linecap="round"><line x1="-10" y1="0" x2="10" y2="0"/><line x1="-8.1" y1="-5.9" x2="8.1" y2="5.9"/><line x1="-3.1" y1="-9.5" x2="3.1" y2="9.5"/><line x1="3.1" y1="-9.5" x2="-3.1" y2="9.5"/><line x1="8.1" y1="-5.9" x2="-8.1" y2="5.9"/></g><circle r="2.2" fill="var(--ml-gold)"/></svg></span>
+  <span style="top:5%;right:3%;opacity:0.9"><svg width="28" height="28" viewBox="-14 -14 28 28"><g transform="rotate(29)" stroke="var(--ml-gold)" stroke-width="2.4" stroke-linecap="round"><line x1="-12" y1="0" x2="12" y2="0"/><line x1="-8.5" y1="-8.5" x2="8.5" y2="8.5"/><line x1="0" y1="-12" x2="0" y2="12"/><line x1="8.5" y1="-8.5" x2="-8.5" y2="8.5"/></g><circle r="2.2" fill="var(--ml-gold)"/></svg></span>
+  <span style="top:62%;right:3%;opacity:0.8"><svg width="24" height="24" viewBox="-12 -12 24 24"><g transform="rotate(40)" stroke="var(--ml-red)" stroke-width="2.4" stroke-linecap="round"><line x1="-9" y1="0" x2="9" y2="0"/><line x1="-4.5" y1="-7.8" x2="4.5" y2="7.8"/><line x1="4.5" y1="-7.8" x2="-4.5" y2="7.8"/></g><circle r="2.2" fill="var(--ml-red)"/></svg></span>
+  <span style="top:27%;left:3%;opacity:0.8"><svg width="22" height="22" viewBox="-11 -11 22 22"><g transform="rotate(23)" stroke="var(--ml-gold)" stroke-width="2.4" stroke-linecap="round"><line x1="-8" y1="0" x2="8" y2="0"/><line x1="-6.5" y1="-4.7" x2="6.5" y2="4.7"/><line x1="-2.5" y1="-7.6" x2="2.5" y2="7.6"/><line x1="2.5" y1="-7.6" x2="-2.5" y2="7.6"/><line x1="6.5" y1="-4.7" x2="-6.5" y2="4.7"/></g><circle r="2" fill="var(--ml-gold)"/></svg></span>
+
+  <!-- crosses -->
+  <span style="top:74%;right:5%"><svg width="22" height="22" viewBox="-11 -11 22 22"><g transform="rotate(11)" stroke="var(--ml-ink)" stroke-width="2.4" stroke-linecap="round"><line x1="-6.4" y1="-6.4" x2="6.4" y2="6.4"/><line x1="-6.4" y1="6.4" x2="6.4" y2="-6.4"/></g></svg></span>
+  <span style="top:33%;right:2%;opacity:0.85"><svg width="22" height="22" viewBox="-11 -11 22 22"><g transform="rotate(11)" stroke="var(--ml-blue)" stroke-width="2.4" stroke-linecap="round"><line x1="-6.4" y1="-6.4" x2="6.4" y2="6.4"/><line x1="-6.4" y1="6.4" x2="6.4" y2="-6.4"/></g></svg></span>
+  <span style="top:88%;left:3%;opacity:0.7"><svg width="20" height="20" viewBox="-10 -10 20 20"><g transform="rotate(29)" stroke="var(--ml-gold)" stroke-width="2.2" stroke-linecap="round"><line x1="-5.7" y1="-5.7" x2="5.7" y2="5.7"/><line x1="-5.7" y1="5.7" x2="5.7" y2="-5.7"/></g></svg></span>
+
+  <!-- dots -->
+  <span style="top:62%;right:13%"><svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="3.4" fill="var(--ml-blue)"/></svg></span>
+  <span style="top:20%;left:2%;opacity:0.8"><svg width="11" height="11" viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="3" fill="var(--ml-red)"/></svg></span>
+  <span style="top:90%;right:4%;opacity:0.8"><svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="3.3" fill="var(--ml-gold)"/></svg></span>
+  <span style="top:44%;left:1.5%;opacity:0.75"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="2.8" fill="var(--ml-blue)"/></svg></span>
+</div>
