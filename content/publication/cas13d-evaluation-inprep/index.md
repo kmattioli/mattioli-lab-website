@@ -18,7 +18,7 @@ tags:
 - CRISPR
 - Isoforms
 - Method
-featured: true
+featured: false
 doi: ""
 url_source: ""
 url_pdf: ""

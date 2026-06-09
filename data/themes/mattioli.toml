@@ -1,24 +1,22 @@
-# Mattioli Lab color theme
-# A warm "paper" light theme with a blue / red / gold triad pulled from the
-# lab's figures. This file controls the PRIMARY accent color, the navbar colors,
-# and the alternating background bands on the homepage. Everything else (cards,
-# buttons, footer, type details) lives in `assets/scss/template.scss`.
-#
-# To re-skin the whole site, change `primary` here and the palette block at the
-# top of template.scss.
+# Mattioli Lab — Miró color scheme
+# Flat primary inks (red lead / gold accent / blue support) drawn with a
+# near-black ink outline on a warm painterly cream ground. Most of the look is
+# carried by assets/scss/template.scss; this sets the HugoBlox primary + menu +
+# alternating section bands.
 
-name = "Mattioli"
+name = "Mattioli Lab"
 
 [light]
-  # Primary accent — used for links, buttons, and active states
-  primary = "#1f56a6"        # brand blue
+  # Primary action = the red "lead" exon (buttons, accents). Links are recolored
+  # to blue in template.scss to match the design system.
+  primary = "#C0392B"
 
-  # Navbar
-  menu_primary = "#faf9f5"   # warm paper background
-  menu_text = "#5b5a61"      # muted secondary text
-  menu_text_active = "#1f56a6"
-  menu_title = "#1a1a20"     # near-black ink
+  # Navbar (further styled as a glass bar in template.scss)
+  menu_primary = "#F6F4EF"   # warm paper
+  menu_text = "#3A3F4A"      # ink soft
+  menu_text_active = "#1B1A17" # ink
+  menu_title = "#1B1A17"
 
-  # Homepage alternating section bands
-  home_section_odd = "#faf9f5"   # paper
-  home_section_even = "#f0ede4"  # slightly deeper panel
+  # Alternating homepage section bands
+  home_section_odd = "#F1EAD7"   # cream ground
+  home_section_even = "#E9E0C8"  # cream deep (recessed well)

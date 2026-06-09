@@ -46,6 +46,9 @@ taxonomies:
   author: authors
 markup:
   _merge: deep
+  goldmark:
+    renderer:
+      unsafe: true   # allow raw HTML in Markdown (taglines, figures, motifs)
 related:
   threshold: 80
   includeNewer: true

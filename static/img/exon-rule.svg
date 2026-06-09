@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -4 260 21" width="260" height="21" aria-hidden="true">
+  <!-- intron baseline -->
+  <line x1="0" y1="9" x2="260" y2="9" stroke="#1B1A17" stroke-width="2"/>
+  <!-- chevrons along the strand -->
+  <path d="M10 5 L14 9 L10 13 M38 5 L42 9 L38 13 M66 5 L70 9 L66 13 M94 5 L98 9 L94 13"
+        stroke="#1B1A17" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <!-- splice arcs ending in dots -->
+  <path d="M60 9 Q96 -8 132 9" fill="none" stroke="#1B1A17" stroke-width="1.5"/>
+  <circle cx="96" cy="1" r="2.6" fill="#1B1A17"/>
+  <path d="M140 9 Q156 -7 176 9" fill="none" stroke="#1B1A17" stroke-width="1.5"/>
+  <circle cx="156" cy="0" r="2.6" fill="#1B1A17"/>
+  <!-- exon boxes: red lead, gold, blue support -->
+  <rect x="48"  y="3" width="20" height="12" rx="2" fill="#C0392B" stroke="#1B1A17" stroke-width="2"/>
+  <rect x="124" y="3" width="20" height="12" rx="2" fill="#E6A817" stroke="#1B1A17" stroke-width="2"/>
+  <rect x="168" y="3" width="20" height="12" rx="2" fill="#2A6FB0" stroke="#1B1A17" stroke-width="2"/>
+</svg>

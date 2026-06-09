@@ -14,6 +14,5 @@ main:
   - name: News
     url: post/
     weight: 40
-  - name: Contact
-    url: contact/
-    weight: 50
+  # "Contact" is folded into the "Join us" CTA button (rendered in the navbar
+  # partial), per the design. The page still lives at /contact/.
