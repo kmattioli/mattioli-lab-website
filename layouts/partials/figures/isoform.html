@@ -1,0 +1,63 @@
+{{/* "One gene, two isoforms" figure (Miró ink-outline), ported from
+     design-reference/site/isoform-fig.jsx (IsoFigColumns). Inlined so it picks
+     up the page's IBM Plex Mono + DS color variables. */}}
+<svg class="ml-isofig" viewBox="0 0 384 232" role="img"
+     aria-label="One gene, two isoforms: a cassette exon is kept (isoform A) or skipped (isoform B), yielding proteins with different domains and DNA-binding motifs">
+  <style>
+    .ml-isofig text { font-family: var(--font-mono, monospace); }
+    .ml-isofig .lbl { font-size: 12px; letter-spacing: 0.5px; font-weight: 500; fill: var(--ml-ink); }
+    .ml-isofig .tag { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; fill: var(--ml-ink-mute); }
+    .ml-isofig .seq { font-size: 13px; letter-spacing: 2.5px; font-weight: 600; fill: var(--ml-ink); }
+    .ml-isofig .cap { font-size: 12.5px; letter-spacing: 0.5px; font-weight: 600; fill: var(--ml-ink); }
+    .ml-isofig .ink { stroke: var(--ml-ink); }
+  </style>
+
+  <line x1="192" y1="28" x2="192" y2="210" stroke="var(--ml-ink)" stroke-width="1" stroke-dasharray="3 5" opacity="0.4"/>
+
+  <!-- ===== Column A — cassette exon kept ===== -->
+  <text class="tag" x="100" y="22" text-anchor="middle">all exons</text>
+  <g>
+    <line x1="40" y1="46" x2="160" y2="46" class="ink" stroke-width="2" opacity="0.8"/>
+    <path d="M48 42.6 L51.4 46 L48 49.4 M67 42.6 L70.4 46 L67 49.4 M86 42.6 L89.4 46 L86 49.4 M105 42.6 L108.4 46 L105 49.4 M124 42.6 L127.4 46 L124 49.4 M143 42.6 L146.4 46 L143 49.4" class="ink" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.32"/>
+    <path d="M72 46 Q80 30.3 88 46" fill="none" stroke="var(--ml-blue)" stroke-width="1.8"/>
+    <path d="M106 46 Q114 30.3 122 46" fill="none" stroke="var(--ml-blue)" stroke-width="1.8"/>
+    <rect x="42"  y="39" width="30" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
+    <rect x="88"  y="39" width="18" height="14" rx="3" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2"/>
+    <rect x="122" y="39" width="30" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+  </g>
+  <g class="ink" stroke-width="1.8" fill="var(--ml-ink)"><line x1="100" y1="64" x2="100" y2="82"/><path d="M100 85 l-3.5 -5.5 h7 z"/></g>
+  <text class="lbl" x="100" y="100" text-anchor="middle">isoform A</text>
+  <!-- protein A (with gold domain) on DNA -->
+  <g stroke="var(--ml-ink)" stroke-width="1.6" fill="none" opacity="0.38">
+    <path d="M66 165 q8.5 -7 17 0 t17 0 t17 0 t17 0"/>
+    <path d="M66 165 q8.5 7 17 0 t17 0 t17 0 t17 0"/>
+  </g>
+  <ellipse cx="100" cy="140" rx="27" ry="18" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2.2"/>
+  <ellipse cx="119" cy="128" rx="13" ry="12" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+  <ellipse cx="81"  cy="129" rx="12.5" ry="12" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2"/>
+  <text class="seq" x="100" y="184" text-anchor="middle">TG<tspan fill="var(--ml-blue)">A</tspan>CGT</text>
+
+  <!-- ===== Column B — cassette exon skipped ===== -->
+  <text class="tag" x="284" y="22" text-anchor="middle">exon skipped</text>
+  <g>
+    <line x1="224" y1="46" x2="344" y2="46" class="ink" stroke-width="2" opacity="0.8"/>
+    <path d="M232 42.6 L235.4 46 L232 49.4 M251 42.6 L254.4 46 L251 49.4 M270 42.6 L273.4 46 L270 49.4 M289 42.6 L292.4 46 L289 49.4 M308 42.6 L311.4 46 L308 49.4 M327 42.6 L330.4 46 L327 49.4" class="ink" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.32"/>
+    <path d="M256 46 Q285 16 314 46" fill="none" stroke="var(--ml-red)" stroke-width="1.8"/>
+    <rect x="226" y="39" width="30" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
+    <rect x="272" y="39" width="18" height="14" rx="3" fill="none" stroke="var(--ml-gold)" stroke-width="1.6" stroke-dasharray="3 3" opacity="0.55"/>
+    <rect x="314" y="39" width="30" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+  </g>
+  <g class="ink" stroke-width="1.8" fill="var(--ml-ink)"><line x1="284" y1="64" x2="284" y2="82"/><path d="M284 85 l-3.5 -5.5 h7 z"/></g>
+  <text class="lbl" x="284" y="100" text-anchor="middle">isoform B</text>
+  <!-- protein B (gold domain absent) on DNA -->
+  <g stroke="var(--ml-ink)" stroke-width="1.6" fill="none" opacity="0.38">
+    <path d="M250 165 q8.5 -7 17 0 t17 0 t17 0 t17 0"/>
+    <path d="M250 165 q8.5 7 17 0 t17 0 t17 0 t17 0"/>
+  </g>
+  <ellipse cx="284" cy="140" rx="27" ry="18" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2.2"/>
+  <ellipse cx="303" cy="128" rx="13" ry="12" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+  <ellipse cx="265" cy="129" rx="12.5" ry="12" fill="none" stroke="var(--ml-ink)" stroke-width="1.3" stroke-dasharray="3 3" opacity="0.4"/>
+  <text class="seq" x="284" y="184" text-anchor="middle">TG<tspan fill="var(--ml-red)">C</tspan>CGT</text>
+
+  <text class="cap" x="192" y="222" text-anchor="middle">&#916; molecular property</text>
+</svg>

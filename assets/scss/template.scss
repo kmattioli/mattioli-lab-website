@@ -100,6 +100,8 @@ a:hover { color: var(--ml-blue-hi); }
 .section-heading {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;   // left-aligned headers (DS), even when HugoBlox adds .text-center
+  text-align: left;
   margin-bottom: clamp(28px, 4vw, 44px);
 
   // exon-strand rule above the title
@@ -111,8 +113,7 @@ a:hover { color: var(--ml-blue-hi); }
     margin-bottom: 14px;
     background: url("/img/exon-rule.svg") left center / contain no-repeat;
   }
-  &.text-center { align-items: center; }
-  &.text-center::before { /* keep rule visible, left of center block */ }
+  &.text-center { align-items: flex-start; text-align: left; }
 
   h1 {
     order: 0;
@@ -182,7 +183,38 @@ a:hover { color: var(--ml-blue-hi); }
 .ml-hero__lede { font-size: 16px; line-height: 1.55; color: var(--ml-ink-soft); max-width: 52ch; margin: 0; }
 .ml-hero__cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
 
-// Figure (Where we're located, and elsewhere)
+// Two-column feature block (alternating text / figure)
+.ml-feature {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center;
+}
+.ml-feature--flip .ml-feature__text { order: 2; }
+.ml-feature--flip .ml-feature__media { order: 1; }
+.ml-feature__text, .ml-feature__media { min-width: 0; }
+.ml-shead__rule {
+  display: block; width: 220px; max-width: 100%; height: 17px; margin-bottom: 14px;
+  background: url("/img/exon-rule.svg") left center / contain no-repeat;
+}
+.ml-shead__kicker { @extend %kicker; font-size: 13px; margin: 0 0 14px; }
+.ml-shead__title {
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 3.6vw, 40px);
+  letter-spacing: -0.02em; line-height: 1.04; color: var(--ml-ink); margin: 0;
+}
+.ml-feature__body {
+  margin-top: 18px; font-size: 18px; line-height: 1.55; color: var(--ml-ink-soft);
+  p { margin: 0 0 16px; }
+}
+.ml-feature__cta { margin-top: 4px; }
+.ml-feature__cap {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--ml-ink-mute); margin-top: 14px; text-align: center;
+}
+.ml-isofig { width: 100%; max-width: 480px; height: auto; display: block; margin: 0 auto; }
+@media (max-width: 820px) {
+  .ml-feature { grid-template-columns: 1fr; gap: 28px; }
+  .ml-feature--flip .ml-feature__text, .ml-feature--flip .ml-feature__media { order: initial; }
+}
+
+// Figure (image frame)
 .ml-figure {
   margin: 0 0 22px; border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md);
   overflow: hidden; box-shadow: var(--shadow-sm); background: var(--surface-card);

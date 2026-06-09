@@ -21,10 +21,12 @@ sections:
         url: ./contact/
         label: Join us
 
-  - block: markdown
+  - block: feature
     content:
       title: What we study
       subtitle: Welcome · 01
+      figure: isoform
+      caption: Fig. 1 — a cassette exon is kept (isoform A) or skipped (isoform B), yielding two proteins with different domains and DNA-binding specificity.
       text: |
         Over 90% of human genes produce multiple mRNA _isoforms_, many encoding
         distinct proteins. Their misregulation is pervasive in cancer, yet which
@@ -33,28 +35,27 @@ sections:
         function at scale**, focusing on regulatory genes like transcription factors.
         Our long-term goal is to understand how transcriptomic misregulation drives
         **breast cancer**.
-
-        {{% cta cta_link="./research/" cta_text="Explore our research →" %}}
+      cta:
+        url: ./research/
+        label: Explore our research →
     design:
-      columns: '1'
+      flip: false
 
-  - block: markdown
+  - block: feature
     content:
       title: Where we're located
       subtitle: Location · 02
+      image:
+        filename: denver-campus.jpg
+      caption: University of Colorado Denver · Auraria Campus in downtown Denver, CO
       text: |
-        <figure class="ml-figure">
-          <img src="/img/denver-campus.jpg" alt="University of Colorado Denver — Auraria Campus in downtown Denver" loading="lazy" />
-          <figcaption>University of Colorado Denver · Auraria Campus in downtown Denver, CO</figcaption>
-        </figure>
-
         The lab is located on the **University of Colorado Denver**
         [Auraria Campus](https://aurariacampus.edu/), right in the heart of downtown
         Denver. We are steps from some of the city's best restaurants, museums, parks,
         and the South Platte River. You can see the Rockies from our lab! It's a
         vibrant, walkable setting for science, and an amazing city to call home.
     design:
-      columns: '1'
+      flip: true
 
   - block: collection
     content:

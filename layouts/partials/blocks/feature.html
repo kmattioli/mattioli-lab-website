@@ -1,0 +1,41 @@
+{{/* Mattioli Lab two-column feature block — text (with its own exon-strand
+     section header) on one side, a figure/photo on the other. `design.flip`
+     swaps the sides (text-right / media-left). */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $flip := $block.design.flip | default false }}
+{{ $img := "" }}
+{{ with $block.content.image.filename }}{{ $img = resources.Get (path.Join "media" .) }}{{ end }}
+
+<div class="ml-feature{{ if $flip }} ml-feature--flip{{ end }}">
+
+  <div class="ml-feature__text">
+    <div class="ml-shead">
+      <span class="ml-shead__rule" aria-hidden="true"></span>
+      {{ with $block.content.subtitle }}<p class="ml-shead__kicker">{{ . }}</p>{{ end }}
+      {{ with $block.content.title }}<h2 class="ml-shead__title">{{ . | markdownify }}</h2>{{ end }}
+    </div>
+    {{ with $block.content.text }}<div class="ml-feature__body">{{ . | $page.RenderString | emojify }}</div>{{ end }}
+    {{ with $block.content.cta }}
+      <p class="ml-feature__cta"><a class="btn btn-primary" href="{{ .url | relLangURL }}">{{ .label }}</a></p>
+    {{ end }}
+  </div>
+
+  <div class="ml-feature__media">
+    {{ if eq $block.content.figure "isoform" }}
+      {{ partial "figures/isoform.html" . }}
+      {{ with $block.content.caption }}<p class="ml-feature__cap">{{ . }}</p>{{ end }}
+    {{ else if $img }}
+      <figure class="ml-figure">
+        {{ if eq $img.MediaType.SubType "gif" }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ $block.content.caption }}" loading="lazy">
+        {{ else }}
+          {{ $r := $img.Fit "1200x900 webp q88" }}
+          <img src="{{ $r.RelPermalink }}" width="{{ $r.Width }}" height="{{ $r.Height }}" alt="{{ $block.content.caption }}" loading="lazy">
+        {{ end }}
+        {{ with $block.content.caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+      </figure>
+    {{ end }}
+  </div>
+
+</div>
