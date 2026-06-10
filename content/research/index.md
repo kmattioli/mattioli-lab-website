@@ -4,50 +4,70 @@ date: 2026-01-01
 type: landing
 
 sections:
-  - block: markdown
+  - block: feature
     content:
-      title: Research
-      subtitle: ''
+      title: How isoforms shape cancer.
+      subtitle: Research · Splicing · Gene regulation · Cancer
+      figure: header-cells
       text: |
-        Alternative transcription initiation, splicing, and polyadenylation let most human genes produce multiple isoforms — a critical yet under-appreciated layer of regulation whose misregulation can cause disease. This is nowhere clearer than in cancer. Our central question: **how do isoforms contribute to cancer, and can they be exploited as diagnostics and therapeutics?** We pursue three connected themes.
+        Genes are often described as the functional units of the genome, but this is a
+        convenient abstraction. In reality, genes are modular collections of sequences
+        that are assembled in myriad ways to produce distinct isoforms. In cancer, RNA
+        processing goes awry, leading to widespread misexpression of isoforms. In our lab,
+        we develop and apply high-throughput genomic approaches to address the question:
+        _how do isoforms contribute to cancer, and can they be exploited as diagnostics
+        and therapeutics?_ We pursue three connected themes, and focus on **breast
+        cancer**, the most common cancer in women worldwide.
     design:
-      columns: '1'
+      flip: false
+      css_class: ml-feature--head
+
+  - block: themes
+    content:
+      items:
+        - number: 1
+          accent: red
+          fig: grn
+          title: How do TF isoforms rewire gene regulatory networks?
+          text: |
+            Isoforms of transcription factors (TFs) are highly diverse in their biochemical
+            and molecular functions. But what effect do TF isoforms have on gene regulation
+            in cancer cells? We screen TF isoforms in models of healthy mammary cells and
+            breast cancer subtypes, linking isoform-specific perturbations to phenotypic
+            read-outs and following up on individual isoforms mechanistically. The goal is
+            to determine, causally, how individual TF isoforms reshape gene expression
+            programs and oncogenic cell states.
+          techniques: ORF libraries · Cas13d · Perturb-seq · CUT&RUN / RNA-seq
+        - number: 2
+          accent: gold
+          fig: drug
+          title: How does splicing change throughout drug treatment?
+          text: |
+            Drug resistance is a persistent challenge in breast cancer. We study how
+            alternative splicing and related processes become rewired in cancer cells over
+            time as they are exposed to both cytotoxic and targeted drugs using in vitro
+            models. The goal is to further understand mechanisms of drug resistance and to,
+            hopefully, find ways in which aberrant splicing can be exploited as a potential
+            vulnerability in drug-resistant cells.
+          techniques: Long-read RNA-seq · Single-cell RNA-seq · DNA-seq / ATAC-seq
+        - number: 3
+          accent: blue
+          fig: tech
+          title: Can we develop better ways to perturb isoforms?
+          text: |
+            Current tools limit how precisely we can perturb individual isoforms. We are
+            engineering new approaches to do high-throughput isoform perturbations, including
+            improved RNA-targeting CRISPR/Cas systems, more principled guide RNA design
+            models, and cleaner isoform over-expression approaches. We believe that better
+            tools will enable us to move further "beyond the gene".
+          techniques: Cas13d · Perturb-seq · ORF libraries · [insert your idea here!]
 
   - block: markdown
     content:
-      title: '1 · How TF isoforms rewire gene regulatory networks in breast cancer'
       text: |
-        We perturb transcription factor isoforms at high throughput in models of healthy mammary cells and breast cancer subtypes, linking isoform-specific RNA-targeting CRISPR (Cas13d) knockdowns to single-cell readouts (Perturb-seq) and following up on individual isoforms mechanistically. The goal is to determine, causally, how individual TF isoforms reshape gene-expression programs and oncogenic cell states.
+        <div class="ml-divider ml-divider--center"><img src="/img/intron-divider.svg" alt="" /></div>
 
-        *Approaches: long-read RNA-seq · Cas13d · Perturb-seq · ChIP-seq / GRO-seq*
-    design:
-      columns: '1'
-
-  - block: markdown
-    content:
-      title: '2 · Isoform-level signatures of drug resistance at single-cell resolution'
-      text: |
-        Drug resistance is a persistent challenge in breast cancer. Building on single-cell long-read RNA-sequencing, we ask whether stochastic alternative splicing — like stochastic transcription — can seed "pre-resistant" cell states, and whether such splicing events become fixed through mutation or epigenetic rewiring. We begin with PARP-inhibitor resistance in BRCA1-mutant models.
-
-        *Approaches: single-cell & bulk long-read RNA-seq · drug-tolerant persister models · DNA-seq / ATAC-seq*
-    design:
-      columns: '1'
-
-  - block: markdown
-    content:
-      title: '3 · Better technologies for isoform-specific perturbation'
-      text: |
-        Current tools limit how precisely we can perturb individual isoforms. We are improving Cas13d guide-RNA design by training models on direct RNA-abundance outcomes, engineering guide scaffolds that reach mature cytoplasmic mRNA, and building tunable isoform "add-back" systems to test sufficiency — providing much-needed tools for programmable isoform control.
-
-        *Approaches: deep learning for gRNA design · RNA scaffold engineering · paired knockout + ORF add-back*
-    design:
-      columns: '1'
-
-  - block: markdown
-    content:
-      title:
-      text: |
-        {{% cta cta_link="./publication/" cta_text="See our publications →" %}}
+        {{% cta cta_link="../publication/" cta_text="See our publications →" %}}
     design:
       columns: '1'
 ---

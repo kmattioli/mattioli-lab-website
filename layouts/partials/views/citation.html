@@ -1,0 +1,17 @@
+{{/* Mattioli Lab custom citation view — DS "year | title + authors · venue" row.
+     Reuses HugoBlox's author renderer (highlights the site author in bold). */}}
+{{ $item := .item }}
+<div class="pub-row">
+  <div class="pub-row__year">{{ $item.Date.Format "2006" }}</div>
+  <div class="pub-row__body">
+    <h3 class="pub-row__title"><a href="{{ $item.RelPermalink }}">{{ $item.Title }}</a></h3>
+    <p class="pub-row__authors">
+      {{ partial "page_metadata_authors" $item }}
+      {{ with $item.Params.publication }} · <span class="pub-row__venue">{{ . | markdownify }}</span>{{ end }}
+    </p>
+    {{/* "Read →" link shown on the Publications archive only (not the home selected-pubs list). */}}
+    {{ with .page.Type }}{{ if eq . "publication" }}
+      {{ with $item.Params.url_source }}<a class="pub-row__read" href="{{ . }}" target="_blank" rel="noopener">Read →</a>{{ end }}
+    {{ end }}{{ end }}
+  </div>
+</div>

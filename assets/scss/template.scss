@@ -1,315 +1,695 @@
 // =============================================================================
-//  Mattioli Lab — custom styling layer
-//  Brings the aesthetics of the custom static site into the HugoBlox template.
+//  Mattioli Lab — Miró design system, ported onto HugoBlox
+//  A brand inspired by Joan Miró: flat saturated primary inks (red lead / gold
+//  accent / blue support) drawn with a near-black ink outline on a warm
+//  painterly cream ground. Type: Archivo (display) + IBM Plex Mono (labels).
 //
-//  This file is loaded AFTER the theme's own CSS, so it gets the final say.
-//  To recolor the whole site, edit the palette block right below (and the
-//  `primary` value in `data/themes/mattioli.toml`).
+//  Source of truth: design_handoff_mattioli_lab/DESIGN_SYSTEM.md
 // =============================================================================
 
 :root {
-  // ---- COLOR PALETTE (the one place to re-skin the site) --------------------
-  //  Triad from the lab's figures: blue (primary), red, gold.
-  --paper:       #faf9f5;   // warm near-white background
-  --paper-panel: #f0ede4;   // slightly deeper panel background
-  --ink:         #1a1a20;   // main text (near-black)
-  --muted:       #5b5a61;   // secondary text
-  --line:        #e4dfd2;   // warm hairline rules
-  --brand:       #1f56a6;   // primary blue
-  --brand-deep:  #16345f;   // deep navy (footer)
-  --brand-tint:  #e3ebf7;   // pale blue (panels)
-  --accent:      #c62a28;   // red
-  --gold:        #cf9f2e;   // gold (fills / larger elements)
-  --gold-deep:   #946410;   // darker gold for small text
-  --gold-tint:   #f4ead0;   // pale gold (pills)
+  // ---- Brand inks ----------------------------------------------------------
+  --ml-red: #C0392B;     --ml-red-hi: #E0594B;
+  --ml-gold: #E6A817;    --ml-gold-hi: #F4C040;
+  --ml-blue: #2A6FB0;    --ml-blue-hi: #4E97D8;
 
-  // ---- TYPE (all sans-serif) ------------------------------------------------
-  //  To try a different pairing, swap the family names below (and keep
-  //  data/fonts/mattioli.toml in sync). Loaded options: Montserrat, Roboto, Lato.
-  --font-display: "Roboto", system-ui, -apple-system, sans-serif;  // headings
-  --font-body:    "Roboto", system-ui, -apple-system, sans-serif;  // body + nav
-  --font-mono:    "Roboto Mono", ui-monospace, "SFMono-Regular", monospace; // labels
+  // ---- Ink (outline + text) ------------------------------------------------
+  --ml-ink: #1B1A17;     --ml-ink-900: #15171C;
+  --ml-ink-soft: #3A3F4A;
+  --ml-ink-mute: #6A6E78;
 
-  // ---- LAYOUT ---------------------------------------------------------------
-  --radius: 14px;
+  // ---- Paper / ground ------------------------------------------------------
+  --ml-cream: #F1EAD7;   --ml-cream-deep: #E9E0C8;
+  --ml-paper: #F6F4EF;   --ml-paper-2: #FFFFFF;
+  --ml-line: #D9CFB2;
+
+  // ---- Dark field ----------------------------------------------------------
+  --ml-night: #0C0E12;   --ml-night-2: #151922;
+  --ml-night-line: rgba(255,255,255,0.14);
+
+  // ---- Semantic (blue-led accent, per the prototype) -----------------------
+  --lead: var(--ml-blue);         --lead-hi: var(--ml-blue-hi);
+  --support: var(--ml-red);       --support-hi: var(--ml-red-hi);
+  --text-strong: var(--ml-ink);   --text-body: var(--ml-ink-soft);
+  --text-muted: var(--ml-ink-mute);
+  --surface-card: var(--ml-paper-2);
+  --stroke-hair: var(--ml-line);
+
+  // ---- Type ----------------------------------------------------------------
+  --font-display: "Archivo", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  // ---- Geometry / motion ---------------------------------------------------
+  --line-w: 2px;  --line-w-bold: 3px;
+  --radius-xs: 3px; --radius-sm: 5px; --radius-md: 6px; --radius-pill: 999px;
+  --shadow-xs: 0 1px 2px rgba(20,22,28,0.08);
+  --shadow-sm: 0 6px 16px rgba(20,22,28,0.14);
+  --shadow-md: 0 12px 30px rgba(20,22,28,0.16);
+  --shadow-lg: 0 18px 50px rgba(20,22,28,0.16);
+  --ease-out: cubic-bezier(0.22,1,0.36,1);
+  --dur-fast: 120ms; --dur-base: 220ms;
 }
 
-// ---- BASE -------------------------------------------------------------------
-html { scroll-behavior: smooth; }
-
+// =============================================================================
+//  BASE — painterly cream ground, ink headings, blue links
+// =============================================================================
 body {
-  background-color: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body);
-  letter-spacing: -0.003em;
+  background-color: var(--ml-cream);
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(217,207,178,0.45), transparent 38%),
+    radial-gradient(circle at 82% 78%, rgba(217,207,178,0.35), transparent 42%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  color: var(--ml-ink-soft);
+  font-family: var(--font-display);
   -webkit-font-smoothing: antialiased;
 }
 
-::selection { background: var(--brand-tint); color: var(--ink); }
-
-// All headings use the display family (Roboto)
-h1, h2, h3,
-.hero-title,
-.section-heading h1 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--ink);
+  color: var(--ml-ink);
+  letter-spacing: -0.02em;
+  font-weight: 800;
 }
 
-// Resume-style headers in light Roboto, mirroring \textsc / \scshape on Kaia's CV
-// (\usepackage[sfdefault,light]{roboto}). `font-variant: small-caps` reproduces
-// the small-caps effect: letters that are actually capitalized render at full
-// cap-height while the rest become smaller caps — exactly like \scshape.
-// Scoped to the hero title + section titles so long content headings stay readable.
-.hero-title,
-.section-heading h1 {
-  font-variant: small-caps;
-  letter-spacing: 0.04em;
-  font-weight: 300;
-}
+a { color: var(--lead); }               // links = blue; emphasis/roles use red (support)
+a:hover { color: var(--lead-hi); }
 
-// Italic emphasis reads as the brand color (a nod to the source site)
-.home-section em,
-.hero-lead em { font-style: italic; color: var(--brand); }
+::selection { background: var(--ml-gold); color: var(--ml-ink); }
 
-// =============================================================================
-//  PAPER GRAIN — a faint multiply texture over every section, content above it
-// =============================================================================
-.home-section {
-  position: relative;
+// content emphasis
+.home-section em, .article-style em, .prose em { font-style: italic; color: var(--support); }
+.home-section strong, .article-style strong { color: var(--ml-ink); font-weight: 700; }
 
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.5;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
-  }
-
-  // keep real content above the grain
-  > .container,
-  > .container-xl { position: relative; z-index: 1; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+// The signature mono "lab caption"
+%kicker {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--ml-ink-mute);
 }
 
 // =============================================================================
-//  SECTION HEADINGS — short gold rule + muted "lede" subtitle
+//  SECTIONS — cream / cream-deep bands with roomy rhythm
 // =============================================================================
+.home-section { padding-block: clamp(56px, 8vw, 104px); position: relative; }
+
+// Section heading: exon-strand rule, mono kicker (subtitle), Archivo-800 title.
+// The block `subtitle` is reordered above the `title` to read as the kicker.
 .section-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   // left-aligned headers (DS), even when HugoBlox adds .text-center
+  text-align: left;
+  margin-bottom: clamp(28px, 4vw, 44px);
+
+  // exon-strand rule above the title
   &::before {
     content: "";
-    display: block;
-    width: 30px;
-    height: 2px;
-    background: var(--gold);
-    margin: 0 0 1rem;
+    order: -2;
+    width: 220px;
+    height: 17px;
+    margin-bottom: 14px;
+    background: url("/img/exon-rule.svg") left center / contain no-repeat;
   }
-  &.text-center::before { margin-left: auto; margin-right: auto; }
+  &.text-center { align-items: flex-start; text-align: left; }
 
-  h1 { line-height: 1.05; }
-
+  h1 {
+    order: 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(30px, 4.4vw, 36px);
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+    color: var(--ml-ink);
+    margin: 0;
+  }
+  // subtitle → kicker
   p {
-    font-family: var(--font-body);
-    color: var(--muted);
-    font-size: 1.075rem;
+    order: -1;
+    @extend %kicker;
+    font-size: 13px;
+    margin: 0 0 14px;
   }
 }
 
 // =============================================================================
-//  NAVBAR — translucent paper, blurred, hairline rule, underline-on-hover links
+//  HERO — full-bleed cream splice field + glass lockup card
+// =============================================================================
+.ml-hero {
+  position: relative; overflow: hidden;
+  border-bottom: var(--line-w) solid var(--ml-ink);
+  background: var(--ml-cream);
+  // Box kept a touch taller than the artwork's 2:1 ratio so `contain` fits to
+  // full width and the whole composition (blobs on top → 5 transcript rows) shows.
+  min-height: clamp(480px, 54vw, 860px);
+  display: flex;
+}
+// Full-bleed hero: the theme wraps every block in a Bootstrap `.container`, and
+// its `{{ with $cfg.use_container }}` ignores a `false` value — so neutralise the
+// container here. The inner card stays centered via `.ml-hero__inner`.
+.wg-hero.home-section { padding-block: 0; }
+.wg-hero > .container { max-width: none; padding-left: 0; padding-right: 0; }
+.ml-hero__art {
+  position: absolute; inset: 0; display: block;
+  width: 100% !important; height: 100% !important;  // override the canvas's inline px size
+  // `contain` (not cover) so the full 1600×800 artwork is visible — the top
+  // protein blobs and the bottom transcript row are no longer cropped. The
+  // canvas bakes its own cream ground, so any letterbox margin is seamless.
+  object-fit: contain; object-position: center;
+}
+.ml-hero__veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 72% at 50% 50%, rgba(241,234,215,0.72), rgba(241,234,215,0.18) 76%, transparent);
+}
+.ml-hero__inner {
+  position: relative; z-index: 2; width: 100%;
+  max-width: 1200px; margin: 0 auto; padding: clamp(48px,8vw,96px) 28px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ml-hero__card {
+  background: rgba(255,255,255,0.82); backdrop-filter: blur(3px);
+  border: var(--line-w-bold) solid var(--ml-ink); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg); padding: clamp(22px,3vw,34px) clamp(20px,3vw,40px);
+  max-width: 680px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.ml-hero__brandrow { display: flex; align-items: center; justify-content: center; gap: clamp(14px,2.4vw,22px); flex-wrap: wrap; }
+.ml-hero__lockup { display: inline-flex; align-items: center; }
+.ml-hero__mark { height: 46px; width: auto; flex: none; }
+.ml-hero__word {
+  font-family: var(--font-display); font-weight: 800; font-size: 34px; letter-spacing: -0.02em;
+  line-height: 0.9; color: var(--ml-ink); margin-left: -0.10em; transform: translateY(-0.04em);
+  b { color: var(--lead); }
+}
+.ml-hero__bar { width: 1.5px; height: 44px; background: var(--stroke-hair); }
+.ml-hero__cu { display: block; height: 44px; width: auto; }
+.ml-hero__tagline {
+  font-family: var(--font-mono); font-weight: 600; font-size: 13px; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--ml-ink-soft); margin: 6px 0 0;
+}
+.ml-hero__headline {
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em;
+  font-size: clamp(26px,3.6vw,40px); line-height: 1.04; color: var(--ml-ink); max-width: 18ch; margin: 0;
+  em { font-style: normal; color: var(--lead); }
+}
+.ml-hero__lede { font-size: 15px; line-height: 1.5; color: var(--ml-ink-soft); max-width: 62ch; margin: 0; }
+.ml-hero__cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+
+// Two-column feature block (alternating text / figure)
+.ml-feature {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center;
+}
+.ml-feature--flip .ml-feature__text { order: 2; }
+.ml-feature--flip .ml-feature__media { order: 1; }
+.ml-feature__text, .ml-feature__media { min-width: 0; }
+.ml-shead__rule {
+  display: block; width: 220px; max-width: 100%; height: 17px; margin-bottom: 14px;
+  background: url("/img/exon-rule.svg") left center / contain no-repeat;
+}
+.ml-shead__kicker { @extend %kicker; font-size: 13px; margin: 0 0 14px; }
+.ml-shead__title {
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 3.6vw, 40px);
+  letter-spacing: -0.02em; line-height: 1.04; color: var(--ml-ink); margin: 0;
+}
+.ml-feature__body {
+  margin-top: 18px; font-size: 18px; line-height: 1.55; color: var(--ml-ink-soft);
+  p { margin: 0 0 16px; }
+}
+.ml-feature__cta { margin-top: 4px; }
+.ml-feature__cap {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--ml-ink-mute); margin-top: 14px; text-align: center;
+}
+.ml-isofig { width: 100%; max-width: 480px; height: auto; display: block; margin: 0 auto; }
+.ml-headerfig { width: 100%; max-width: 400px; height: auto; display: block; margin: 0 auto; overflow: visible; }
+
+// Research page-header variant: no exon rule, larger title, roomier lede
+.ml-feature--head .ml-shead__rule { display: none; }
+.ml-feature--head .ml-shead__kicker::before {
+  content: ""; display: inline-block; width: 16px; height: 13px; margin-right: 9px; vertical-align: -1px;
+  border-radius: var(--radius-xs); border: 1.5px solid var(--ml-ink); background: var(--lead);
+}
+.ml-feature--head .ml-shead__title { font-size: clamp(34px, 5vw, 52px); line-height: 0.98; }
+.ml-feature--head .ml-feature__body { font-size: 19px; max-width: 52ch; }
+
+@media (max-width: 820px) {
+  .ml-feature { grid-template-columns: 1fr; gap: 28px; }
+  .ml-feature--flip .ml-feature__text, .ml-feature--flip .ml-feature__media { order: initial; }
+  .ml-headerfig { max-width: 320px; }
+}
+
+// Figure (image frame)
+.ml-figure {
+  margin: 0 0 22px; border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md);
+  overflow: hidden; box-shadow: var(--shadow-sm); background: var(--surface-card);
+  img { display: block; width: 100%; height: auto; }
+  figcaption {
+    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--ml-ink-mute); padding: 10px 14px; border-top: 1px solid var(--stroke-hair);
+  }
+}
+
+// =============================================================================
+//  NAVBAR — glass paper bar, ink hairline, mono links, underline on hover
 // =============================================================================
 #navbar-main.navbar {
-  background: color-mix(in srgb, var(--paper) 88%, transparent) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
+  background: rgba(246,244,239,0.86) !important;
+  backdrop-filter: blur(3px);
+  border-bottom: var(--line-w) solid var(--ml-ink);
+  // Let the bar breathe across wide screens, matching the full-bleed hero.
+  .container-xl { max-width: 1600px; }
 }
-
 #navbar-main {
-  .navbar-brand {
-    font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-  }
-
-  // Logo wordmark. The theme sizes logos with `height: -webkit-fill-available`,
-  // which collapses to 0 for an SVG (no intrinsic height), hiding it. Pin a
-  // definite height so the "Mattioli Lab" mark renders reliably.
-  .navbar-brand img {
-    height: 66px;
-    max-height: 66px;
-    width: auto;
-    max-width: none;
+  // brand lockup: splice-M glyph + Archivo wordmark
+  .ml-brand { display: flex; align-items: center; gap: 0; padding-block: 4px; }
+  .ml-brand__mark { height: 34px; width: auto; display: block; flex: none; }
+  .ml-brand__word {
+    font-family: var(--font-display); font-weight: 800; font-size: 24px;
+    letter-spacing: -0.02em; line-height: 0.9; color: var(--ml-ink);
+    margin-left: -0.10em; transform: translateY(-0.04em); white-space: nowrap;
+    b { color: var(--lead); font-weight: 800; margin-left: 0.16em; }
   }
 
   .nav-link {
-    font-weight: 500;
-    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ml-ink-soft);
     position: relative;
 
     &::after {
-      content: "";
-      position: absolute;
-      left: 0.5rem;
-      right: 0.5rem;
-      bottom: 0.25rem;
-      height: 2px;
-      background: var(--brand);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.28s cubic-bezier(.2, .8, .2, 1);
+      content: ""; position: absolute; left: 0.6rem; right: 0.6rem; bottom: 0.3rem;
+      height: 2px; background: var(--lead); transform: scaleX(0); transform-origin: left;
+      transition: transform var(--dur-base) var(--ease-out);
     }
-    &:hover, &.active { color: var(--ink); }
+    &:hover, &.active { color: var(--ml-ink); }
     &:hover::after, &.active::after { transform: scaleX(1); }
   }
-}
 
-// =============================================================================
-//  HERO — size the animated splicing figure in its column
-// =============================================================================
-.hero-media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // Sit the CTA evenly off the last text link
+  .ml-nav__cta { margin-left: 10px; }
 
-  img {
-    width: 100%;
-    max-width: 480px;
-    height: auto;
+  // "Join us" CTA — last menu item rendered as a button, uppercased like the nav
+  .nav-cta .nav-link, .nav-link.nav-cta {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--lead);
+    border: var(--line-w) solid var(--ml-ink);
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    box-shadow: var(--shadow-xs);
+    transition: transform var(--dur-fast) var(--ease-out), filter var(--dur-fast) var(--ease-out);
+    &::after { display: none; }
+    &:hover { color: #fff; transform: translateY(-2px); filter: brightness(1.07); }
   }
 }
 
 // =============================================================================
-//  LATEST NEWS — "date | headline" rows with hairline rules (from lab-website 5)
-// =============================================================================
-.news-item {
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: clamp(1rem, 3vw, 2rem);
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--line);
-  align-items: baseline;
-
-  &:first-child { border-top: 1px solid var(--line); }
-}
-.news-date {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--gold-deep);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-.news-text {
-  font-size: 1.075rem;
-  color: var(--ink);
-}
-@media (max-width: 640px) {
-  .news-item { grid-template-columns: 1fr; gap: 0.2rem; }
-}
-
-// =============================================================================
-//  BUTTONS — pill shape, brand fill, subtle lift
+//  BUTTONS — ink outline, small radius, lift-on-hover
 // =============================================================================
 .btn {
-  border-radius: 999px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  letter-spacing: 0;
-  transition: background-color 0.2s ease, color 0.2s ease,
-              transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-sm);
+  border: var(--line-w) solid transparent;
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--dur-fast) var(--ease-out), filter var(--dur-fast) var(--ease-out);
 }
-
+.btn:hover { transform: translateY(-2px); filter: brightness(1.07); }
+.btn:active { transform: translateY(0); filter: brightness(0.94); }
 .btn-primary {
-  background-color: var(--brand);
-  border-color: var(--brand);
-  color: var(--paper);
-
-  &:hover, &:focus {
-    background-color: var(--brand-deep);
-    border-color: var(--brand-deep);
-    color: var(--paper);
-    transform: translateY(-2px);
-    box-shadow: 0 14px 30px -18px rgba(31, 86, 166, 0.65);
-  }
+  background: var(--lead); border-color: var(--ml-ink); color: #fff;
+  &:hover, &:focus { background: var(--lead); border-color: var(--ml-ink); color: #fff; }
 }
-
 .btn-outline-primary {
-  border-color: var(--ink);
-  color: var(--ink);
-  &:hover { background-color: var(--ink); border-color: var(--ink); color: var(--paper); }
+  background: transparent; color: var(--ml-ink); border-color: var(--ml-ink); box-shadow: none;
+  &:hover { background: rgba(27,26,23,0.06); color: var(--ml-ink); filter: none; }
+}
+.btn-outline-light {
+  background: transparent; color: #fff; border-color: rgba(255,255,255,0.8); box-shadow: none;
+  &:hover { background: rgba(255,255,255,0.08); color: #fff; filter: none; }
 }
 
 // =============================================================================
-//  CARDS — rounded, warm hairline, lift + brand border on hover
+//  CTA — dark "Join us" field with scattered Miró marks
+// =============================================================================
+.ml-cta {
+  position: relative; overflow: hidden;
+  background: var(--ml-night); color: #F3EFE4;
+  border-top: var(--line-w) solid var(--ml-ink); border-bottom: var(--line-w) solid var(--ml-ink);
+  padding: clamp(56px, 8vw, 100px) 0;
+}
+// Full-bleed CTA night field (same theme container caveat as the hero).
+.wg-cta.home-section { padding-block: 0; }
+.wg-cta > .container { max-width: none; padding-left: 0; padding-right: 0; }
+.ml-cta__inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 28px; text-align: center; }
+.ml-cta__kicker {
+  font-family: var(--font-mono); font-weight: 600; text-transform: uppercase; letter-spacing: 0.22em;
+  font-size: 13px; color: rgba(243,239,228,0.6); margin: 0 0 16px;
+}
+.ml-cta__title {
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 4.6vw, 48px);
+  letter-spacing: -0.02em; line-height: 1.04; color: #fff; margin: 0; text-wrap: balance;
+}
+.ml-cta__lede { margin-top: 18px; font-size: 18px; line-height: 1.6; color: rgba(243,239,228,0.82); }
+.ml-cta__btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 26px; }
+.ml-cta__scatter { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.ml-cta__scatter svg { position: absolute; }
+
+// Miró background flair: scatter marks + faint header sweep (behind content)
+.ml-scatter { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.ml-scatter > svg, .ml-scatter > span { position: absolute; }
+.ml-scatter > span > svg { display: block; }
+.ml-sweep {
+  position: absolute; top: 0; left: 0; right: 0; height: clamp(380px, 100%, 620px);
+  pointer-events: none; z-index: 0; overflow: hidden;
+  svg { width: 100%; height: 100%; display: block; }
+}
+// People header: sweep sits behind the heading + lede (section is position:relative)
+.ml-sweep-head { position: relative; overflow: hidden;
+  .section-heading, [class*="col-"] { position: relative; z-index: 1; }
+}
+
+.themes, .ml-join, .ml-people, .ml-feature, .ml-pagewrap { position: relative; }
+.themes > .theme,
+.ml-join > .ml-join__text, .ml-join > .ml-join__aside,
+.ml-people > :not(.ml-scatter):not(.ml-sweep),
+.ml-feature > .ml-feature__text, .ml-feature > .ml-feature__media,
+.ml-pagewrap > :not(.ml-sweep):not(.ml-scatter) { position: relative; z-index: 1; }
+
+// CTA shortcode links
+.cta a, a.cta-link {
+  font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--support);
+}
+
+// =============================================================================
+//  CARDS — ink outline, small radius, soft lift
 // =============================================================================
 .card {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--paper);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-
-  &:hover {
-    transform: translateY(-3px);
-    border-color: var(--brand);
-    box-shadow: 0 18px 40px -28px rgba(31, 86, 166, 0.45);
-  }
+  background: var(--surface-card);
+  border: var(--line-w) solid var(--ml-ink);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  &:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 }
 
-// Tag / category pills — gold, monospaced (the "scientific" signature)
+// Tags / chips
 .badge {
-  font-family: var(--font-mono);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  border-radius: 999px;
-  background-color: var(--gold-tint);
-  color: var(--gold-deep);
+  font-family: var(--font-mono); font-weight: 600; font-size: 10.5px;
+  letter-spacing: 0.08em; text-transform: uppercase; border-radius: var(--radius-xs);
+  border: 1.5px solid currentColor; background: rgba(192,57,43,0.10); color: var(--ml-red);
 }
 
 // =============================================================================
-//  PEOPLE — soft brand-tinted avatar frame
+//  NEWS — date | headline rows on hairlines (our custom `news` view)
 // =============================================================================
-.avatar {
-  border: 1px solid var(--line);
-  background: var(--brand-tint);
+.news-item {
+  grid-template-columns: 150px 1fr auto;
+  gap: clamp(12px, 3vw, 32px);
+  align-items: baseline;
+  padding: 20px 4px;
+  border-bottom: 1px solid var(--stroke-hair);
+  &:first-child { border-top: 1px solid var(--stroke-hair); }
+}
+.news-date {
+  font-family: var(--font-mono); font-size: 12.5px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; color: #9a6f0c;
+}
+.news-text {
+  font-family: var(--font-display); font-weight: 600; font-size: 18px;
+  color: var(--ml-ink); line-height: 1.3;
+}
+.news-tag {
+  font-family: var(--font-mono); font-weight: 600; font-size: 10.5px; letter-spacing: 0.08em;
+  text-transform: uppercase; line-height: 1; padding: 4px 9px; border-radius: var(--radius-xs);
+  border: 1.5px solid currentColor; white-space: nowrap; justify-self: end;
+  &--lab   { color: var(--ml-red);  background: rgba(192,57,43,0.10); }
+  &--paper { color: var(--ml-blue); background: rgba(42,111,176,0.12); }
+  &--talk  { color: #9a6f0c;        background: rgba(230,168,23,0.16); }
+}
+@media (max-width: 560px) {
+  .news-item { grid-template-columns: 1fr; gap: 4px; }
+  .news-tag { justify-self: start; }
 }
 
 // =============================================================================
-//  PUBLICATIONS — italic brand venue, monospaced metadata
+//  CONTACT / JOIN US — prose + "Current openings" card
 // =============================================================================
-.article-metadata,
-.pub-list-item .article-metadata { color: var(--muted); }
-.pub-list-item .article-title a:hover { color: var(--brand); }
+.ml-join { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(28px, 5vw, 56px); align-items: start; }
+.ml-opening {
+  border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md);
+  background: var(--ml-paper-2); overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.ml-opening__accent { height: 6px; background: var(--support); }
+.ml-opening__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 22px 0; }
+.ml-opening__label {
+  font-family: var(--font-mono); font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em;
+  font-size: 12px; color: var(--ml-ink-soft); display: inline-flex; align-items: center; gap: 9px;
+}
+.ml-opening__chip { width: 16px; height: 13px; border-radius: var(--radius-xs); border: 1.5px solid var(--ml-ink); background: var(--support); }
+.ml-opening__badge {
+  font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #fff; background: var(--support); border-radius: var(--radius-pill); padding: 5px 11px;
+  display: inline-flex; align-items: center; gap: 6px;
+  &::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; }
+}
+.ml-opening__body { padding: 16px 22px; font-size: 15px; line-height: 1.55; color: var(--ml-ink-soft); p { margin: 0; } }
+.ml-opening__foot { display: flex; align-items: center; gap: 14px; padding: 14px 22px 18px; border-top: 1px solid var(--stroke-hair); }
+.ml-opening__based { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ml-ink-mute); }
+.ml-opening__cu { height: 28px; width: auto; display: block; }
+@media (max-width: 820px) { .ml-join { grid-template-columns: 1fr; } }
+
+// Recruiting roles
+.ml-roles { display: grid; gap: 18px; }
+.ml-role { border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md); background: var(--ml-paper-2); padding: 22px 24px; }
+.ml-role h3 { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ml-ink); margin: 0 0 8px; }
+.ml-role p { font-size: 15px; line-height: 1.55; color: var(--ml-ink-soft); margin: 0; }
 
 // =============================================================================
-//  FOOTER — deep navy, paper text, monospaced fine print
+//  RESEARCH — numbered colored theme plates
 // =============================================================================
-.site-footer {
-  background: var(--brand-deep);
-  color: color-mix(in srgb, var(--paper) 85%, var(--brand));
-  padding-block: clamp(2.5rem, 6vw, 4rem);
+.theme {
+  display: grid; grid-template-columns: 64px 1fr; gap: clamp(20px, 4vw, 40px); align-items: start;
+  & + .theme { margin-top: clamp(36px,5vw,60px); padding-top: clamp(36px,5vw,60px); border-top: 1px solid var(--stroke-hair); }
+}
+.theme__num {
+  width: 64px; height: 64px; border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-xs);
+  display: flex; align-items: center; justify-content: center; color: #fff;
+  font-family: var(--font-mono); font-weight: 700; font-size: 24px; box-shadow: var(--shadow-xs);
+  &--red  { background: var(--ml-red); }
+  &--gold { background: var(--ml-gold); color: var(--ml-ink); }
+  &--blue { background: var(--ml-blue); }
+}
+.theme__title {
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(21px,2.6vw,28px);
+  letter-spacing: -0.01em; line-height: 1.12; color: var(--ml-ink); margin: 0 0 14px;
+}
+.theme__text { font-size: 18px; line-height: 1.55; color: var(--ml-ink-soft); max-width: 68ch; p { margin: 0 0 14px; } }
+.theme__tech {
+  margin-top: 16px; font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--ml-ink-mute);
+  span { text-transform: uppercase; letter-spacing: 0.1em; }
+}
+.theme--illus { grid-template-columns: 64px 1fr minmax(132px, 168px); }
+.theme__fig { display: flex; align-items: center; justify-content: center; align-self: center; padding-left: 6px; }
+.ml-fig { width: 100%; height: auto; max-width: 168px; display: block; overflow: visible; }
+@media (max-width: 860px) {
+  .theme--illus { grid-template-columns: 64px 1fr; }
+  .theme--illus .theme__fig { grid-column: 2; justify-content: flex-start; margin-top: 6px; padding-left: 0; }
+  .ml-fig { max-width: 150px; }
+}
+@media (max-width: 560px) { .theme, .theme--illus { grid-template-columns: 1fr; gap: 12px; } }
 
-  a { color: color-mix(in srgb, var(--paper) 85%, var(--brand)); }
-  a:hover { color: var(--paper); }
+// Intron-divider strand (between sections)
+.ml-divider { display: flex; margin: 0 0 28px; img { width: 100%; max-width: 460px; height: auto; opacity: 0.9; } }
+.ml-divider--center { justify-content: center; margin-bottom: 22px; }
 
-  .powered-by {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
+// =============================================================================
+//  PUBLICATIONS — DS "year | title + authors" rows
+// =============================================================================
+.pub-row {
+  display: grid; grid-template-columns: 78px 1fr; gap: clamp(14px, 3vw, 34px);
+  padding: 26px 4px; border-top: 1px solid var(--stroke-hair); align-items: start;
+  &:last-child { border-bottom: 1px solid var(--stroke-hair); }
+}
+.pub-row__year {
+  font-family: var(--font-mono); font-weight: 600; font-size: 13px; letter-spacing: 0.04em;
+  color: var(--ml-ink-mute); padding-top: 4px;
+}
+.pub-row__title {
+  font-family: var(--font-display); font-weight: 700; font-size: 22px; line-height: 1.22;
+  color: var(--ml-ink); margin: 0 0 7px;
+  a { color: inherit; }
+  a:hover { color: var(--support); text-decoration: none; }
+}
+.pub-row__authors {
+  font-size: 14px; color: var(--ml-ink-soft); line-height: 1.6; margin: 0;
+  // the highlighted (lab) author renders bold
+  .author-highlighted, strong, b { color: var(--ml-ink); font-weight: 700; }
+  a { color: inherit; }
+}
+.pub-row__venue, .pub-row__authors em { font-style: italic; }
+@media (max-width: 560px) { .pub-row { grid-template-columns: 1fr; gap: 6px; } }
+
+// =============================================================================
+//  PEOPLE — two-column PI bio (portrait + mono contacts | name/role/bio)
+// =============================================================================
+.ml-people__group {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ml-ink-mute); font-weight: 600; margin: clamp(28px,4vw,44px) 0 18px;
+}
+.pi {
+  display: grid; grid-template-columns: 220px 1fr; gap: clamp(24px, 5vw, 48px); align-items: start;
+  & + .pi { margin-top: 48px; }
+}
+.pi__portrait {
+  width: 100%; aspect-ratio: 1; border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md);
+  background: var(--ml-cream-deep); overflow: hidden; box-shadow: var(--shadow-sm);
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+}
+.pi__contact { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+.pi__contactline { font-family: var(--font-mono); font-size: 13px; color: var(--ml-ink-soft); margin: 0; word-break: break-word; }
+.pi__social { display: flex; flex-wrap: wrap; gap: 14px; margin: 0; }
+.pi__social a { font-family: var(--font-mono); font-size: 13px; }
+.pi__name { font-family: var(--font-display); font-weight: 800; font-size: clamp(28px,3.4vw,36px); letter-spacing: -0.02em; color: var(--ml-ink); margin: 0; }
+.pi__role { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--support); font-weight: 600; margin: 8px 0 0; }
+.pi__org { color: var(--ml-ink-mute); font-size: 14px; margin: 2px 0 0; a { color: inherit; } }
+.pi__bio { margin-top: 18px; font-size: 16px; line-height: 1.55; color: var(--ml-ink-soft); p { margin: 0 0 14px; } }
+
+.ml-joincard {
+  display: grid; grid-template-columns: 120px 1fr; gap: 28px; align-items: center;
+  border: 1.5px dashed var(--stroke-hair); border-radius: var(--radius-md); padding: 24px; max-width: 560px;
+}
+.ml-joincard__q {
+  width: 120px; height: 120px; border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md);
+  background: var(--ml-cream-deep); display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 44px; color: var(--ml-ink-mute);
+}
+.ml-joincard__title { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ml-ink); margin: 0 0 4px; }
+.ml-joincard__sub { color: var(--ml-ink-mute); font-size: 14px; margin: 0 0 14px; }
+
+@media (max-width: 760px) {
+  .pi { grid-template-columns: 1fr; }
+  .pi__portrait { max-width: 220px; }
+}
+
+// =============================================================================
+//  PAGE HEADERS (interior pages) + prose
+// =============================================================================
+.universal-wrapper h1, .article-header h1 {
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; color: var(--ml-ink);
+}
+.article-style p { color: var(--ml-ink-soft); line-height: 1.55; }
+
+// List-page header (Publications, News) — phead: mono kicker chip → big title.
+// The theme's page_header emits `<div class="universal-wrapper pt-3"><h1>…</h1>
+// <p class="page-subtitle">…</p></div>` only on node/list pages, so this scopes
+// cleanly to the archive headers (single article headers use `.article-container`).
+.universal-wrapper.pt-3 {
+  display: flex; flex-direction: column; align-items: flex-start;
+  padding-top: clamp(40px, 6vw, 72px) !important;
+
+  h1 {
+    order: 0; margin: 0;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(38px, 6vw, 64px); line-height: 0.98; letter-spacing: -0.02em;
+    color: var(--ml-ink);
+  }
+  .page-subtitle {
+    order: -1; margin: 0 0 16px;
+    @extend %kicker; font-size: 13px;
   }
 }
 
-// =============================================================================
-//  Original template tweaks (kept from the starter)
-// =============================================================================
-// Make page header alignment consistent with widget page header alignment
-.universal-wrapper h1 { text-align: center; }
+// Roomy interior lede (the paragraph under the archive title)
+.ml-page-lede p {
+  margin: 18px 0 0; max-width: 62ch;
+  font-size: var(--type-body-size, 18px); font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.55; color: var(--ml-ink-soft);
+}
+.ml-page-lede strong { color: var(--ml-ink); font-weight: 700; }
 
-// Center the CTA shortcode button
+// "Read →" external link on Publications rows
+.pub-row__read {
+  display: inline-block; margin-top: 12px;
+  font-family: var(--font-mono); font-weight: 600; font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--support);
+  &:hover { color: var(--support-hi); text-decoration: none; }
+}
+
+// Home "All news →" / "All publications →" archive link (collection block)
+.see-all {
+  margin-top: 22px;
+  a {
+    font-family: var(--font-mono); font-weight: 600; font-size: 12.5px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--support);
+    &:hover { color: var(--support-hi); text-decoration: none; }
+  }
+  i { display: none; }   // the literal "→" in the label carries the arrow
+}
+
+// Campus photo on the contact page sits centered with a sensible max width
+.ml-figure--campus { max-width: 560px; margin-inline: auto; }
+
+// =============================================================================
+//  FOOTER — night field, exon strand, CU Denver mark, Miró credit
+// =============================================================================
+// The theme wraps the footer in a `.container`; let the night field reach the edges.
+.page-footer > .container { max-width: none; padding-left: 0; padding-right: 0; }
+
+.site-footer.ml-footer {
+  background: var(--ml-night);
+  color: rgba(243,239,228,0.85);
+  border-top: var(--line-w) solid var(--ml-ink);
+  padding-block: 0;
+  margin-top: auto;
+
+  a { color: rgba(243,239,228,0.85); }
+  a:hover { color: #fff; }
+
+  .footer__strand { display: block; width: 100%; height: 16px; }
+
+  .footer__in {
+    max-width: 1200px; margin: 0 auto; padding: 48px 28px 40px;
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 36px;
+  }
+  .footer__brandcol { text-align: left; }
+  .footer__word { display: inline-flex; align-items: center; font-size: 28px; line-height: 0.9; }
+  .footer__mark { height: 38px; width: auto; flex: none; }
+  .footer__wordtext {
+    font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em;
+    color: #fff; margin-left: -0.10em; transform: translateY(-0.04em); white-space: nowrap;
+    b { color: var(--ml-red-hi); }
+  }
+  .footer__blurb { margin-top: 16px; color: rgba(243,239,228,0.7); font-size: 14px; max-width: 34ch; line-height: 1.6; }
+  .footer__cu { margin-top: 22px; img { display: block; height: 34px; width: auto; } }
+
+  .footer__col h4 {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(243,239,228,0.55); margin-bottom: 14px; font-weight: 600;
+  }
+  .footer__col a { display: block; font-size: 14px; padding: 4px 0; }
+
+  .footer__bar { border-top: 1px solid var(--ml-night-line); }
+  .footer__bar-in {
+    max-width: 1200px; margin: 0 auto; padding: 18px 28px;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; color: rgba(243,239,228,0.6);
+    a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  }
+
+  @media (max-width: 760px) { .footer__in { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .footer__in { grid-template-columns: 1fr; } }
+}
+
+// keep the original starter tweaks
 .cta-group { justify-content: center; }

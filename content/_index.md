@@ -1,5 +1,5 @@
 ---
-# Leave the homepage title empty to use the site title
+# Mattioli Lab — home page. Each section is a HugoBlox page-builder block.
 title:
 date: 2026-01-01
 type: landing
@@ -7,43 +7,59 @@ type: landing
 sections:
   - block: hero
     content:
-      title: |
-        Mattioli Lab
-      image:
-        filename: hero-splice.svg   # animated RNA-splicing figure (assets/media/hero-splice.svg)
+      title: Decoding alternative _isoforms_ in cancer.
       text: |
-        <br>
+        We use high-throughput functional genomics to understand how aberrant RNA
+        processing and gene regulation drive oncogenic cell states.
 
-        **Decoding alternative isoforms in cancer.**
-
-        We use high-throughput, isoform-specific functional genomics to understand how alternative RNA isoforms drive oncogenic cell states — and whether they can be exploited as diagnostics and therapeutics.
-
-  - block: markdown
+  - block: feature
     content:
       title: What we study
-      subtitle: ''
+      subtitle: Welcome
+      figure: isoform
+      caption: Fig. 1 — a cassette exon is kept (isoform A) or skipped (isoform B), yielding two proteins with different domains and DNA-binding specificity.
       text: |
-        Over 90% of human genes produce multiple mRNA isoforms, many encoding distinct proteins. Their misregulation is pervasive in cancer, yet which individual isoforms drive disease — and how — remains largely unknown. Our lab leverages and develops state-of-the-art tools (long-read RNA-sequencing and RNA-targeting CRISPR) to probe isoform function at scale, beginning with transcription factor isoforms in breast cancer.
-
-        {{% cta cta_link="./research/" cta_text="Explore our research →" %}}
+        Over 90% of human genes produce multiple mRNA _isoforms_, many encoding
+        distinct proteins. Their misregulation is pervasive in cancer, yet which
+        individual isoforms drive disease — and how — remains largely unknown. We
+        leverage and develop high-throughput approaches to interrogate **isoform
+        function at scale**, focusing on regulatory genes like transcription factors.
+        Our long-term goal is to understand how transcriptomic misregulation drives
+        **breast cancer**.
+      cta:
+        url: ./research/
+        label: Explore our research →
     design:
-      columns: '1'
+      flip: false
+
+  - block: feature
+    content:
+      title: Where we're located
+      subtitle: Location
+      image:
+        filename: denver-campus.jpg
+      caption: University of Colorado Denver · Auraria Campus in downtown Denver, CO
+      text: |
+        The lab is located on the **University of Colorado Denver**
+        [Auraria Campus](https://aurariacampus.edu/), right in the heart of downtown
+        Denver. We are steps from some of the city's best restaurants, museums, parks,
+        and the South Platte River. You can see the Rockies from our lab! It's a
+        vibrant, walkable setting for science, and an amazing city to call home.
+    design:
+      flip: true
 
   - block: collection
     content:
       title: Latest news
-      subtitle:
-      text:
-      count: 5
+      subtitle: News
+      count: 4
       filters:
-        author: ''
-        category: ''
-        exclude_featured: false
-        publication_type: ''
-        tag: ''
-      offset: 0
+        folders:
+          - post
       order: desc
-      page_type: post
+      archive:
+        enable: true
+        text: All news →
     design:
       view: news
       columns: '1'
@@ -51,22 +67,31 @@ sections:
   - block: collection
     content:
       title: Selected publications
-      text: ''
-      count: 5
+      subtitle: Publications
+      count: 3
       filters:
         folders:
           - publication
         featured_only: true
+      archive:
+        enable: true
+        text: All publications →
     design:
       view: citation
       columns: '1'
 
-  - block: markdown
+  - block: cta
     content:
-      title:
-      subtitle:
+      title: We are a brand new lab, and we are recruiting!
+      subtitle: Join us
       text: |
-        {{% cta cta_link="./people/" cta_text="Meet the team →" %}}
-    design:
-      columns: '1'
+        We are building an interdisciplinary, supportive team spanning wet-lab and
+        computational work in downtown Denver. If splicing, gene regulation, genomics,
+        or cancer biology excite you, get in touch.
+      cta:
+        url: ./contact/
+        label: Get in touch →
+      cta_alt:
+        url: ./people/
+        label: Meet the team
 ---

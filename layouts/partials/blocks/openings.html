@@ -1,0 +1,31 @@
+{{/* Mattioli Lab "Join us" — prose + a "Current openings" card with CU Denver. */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $cu := resources.Get "media/cu-denver-mark.png" }}
+
+<div class="ml-join">
+  {{ partial "ml-scatter-rich.html" . }}
+  <div class="ml-join__text">
+    <div class="ml-shead">
+      <span class="ml-shead__rule" aria-hidden="true"></span>
+      {{ with $block.content.subtitle }}<p class="ml-shead__kicker">{{ . }}</p>{{ end }}
+      {{ with $block.content.title }}<h2 class="ml-shead__title">{{ . | markdownify }}</h2>{{ end }}
+    </div>
+    {{ with $block.content.text }}<div class="ml-feature__body">{{ . | $page.RenderString | emojify }}</div>{{ end }}
+  </div>
+
+  <div class="ml-join__aside">
+    <div class="ml-opening">
+      <div class="ml-opening__accent"></div>
+      <div class="ml-opening__head">
+        <span class="ml-opening__label"><span class="ml-opening__chip"></span>Current openings</span>
+        {{ if $block.content.hiring }}<span class="ml-opening__badge">Now hiring</span>{{ end }}
+      </div>
+      {{ with $block.content.opening }}<div class="ml-opening__body">{{ . | $page.RenderString }}</div>{{ end }}
+      <div class="ml-opening__foot">
+        <span class="ml-opening__based">Position based at</span>
+        {{ with $cu }}<img src="{{ .RelPermalink }}" alt="University of Colorado Denver" class="ml-opening__cu" loading="lazy">{{ end }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+{{/* Research header schematic — a normal cell and a cancer cell, each magnified
+     to a call-out lens showing a different isoform (HeaderCellCallouts). */}}
+<svg class="ml-headerfig" viewBox="0 0 392 300"
+     aria-label="A normal cell and a cancer cell, each magnified to a call-out showing a different isoform">
+  <style>
+    .ml-headerfig .tag { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; }
+  </style>
+
+  <!-- faint Miró asterisks -->
+  <g opacity="0.2">
+    <g transform="translate(166 36)" stroke="var(--ml-gold)" stroke-width="2.4" stroke-linecap="round">
+      <line x1="-13" y1="0" x2="13" y2="0"/><line x1="-9.2" y1="-9.2" x2="9.2" y2="9.2"/>
+      <line x1="0" y1="-13" x2="0" y2="13"/><line x1="9.2" y1="-9.2" x2="-9.2" y2="9.2"/>
+    </g>
+    <g transform="translate(120 150)" stroke="var(--ml-ink)" stroke-width="2.4" stroke-linecap="round">
+      <line x1="-9" y1="0" x2="9" y2="0"/><line x1="-4.5" y1="-7.8" x2="4.5" y2="7.8"/><line x1="4.5" y1="-7.8" x2="-4.5" y2="7.8"/>
+    </g>
+    <g transform="translate(332 156)" stroke="var(--ml-red)" stroke-width="2.4" stroke-linecap="round">
+      <line x1="-10" y1="0" x2="10" y2="0"/><line x1="-7.1" y1="-7.1" x2="7.1" y2="7.1"/>
+      <line x1="0" y1="-10" x2="0" y2="10"/><line x1="7.1" y1="-7.1" x2="-7.1" y2="7.1"/>
+    </g>
+  </g>
+
+  <!-- magnifier leaders -->
+  <g stroke="var(--ml-ink)" stroke-width="1.3" stroke-dasharray="3 4" opacity="0.5" fill="none">
+    <line x1="64" y1="72" x2="207" y2="43"/><line x1="64" y1="72" x2="207" y2="93"/>
+    <line x1="90" y1="210" x2="210" y2="184"/><line x1="90" y1="210" x2="210" y2="240"/>
+  </g>
+
+  <!-- normal cell -->
+  <circle cx="64" cy="72" r="27" fill="#d4e2f1" stroke="var(--ml-ink)" stroke-width="2.2"/>
+  <circle cx="64" cy="72" r="11" fill="#9dbfe4" stroke="var(--ml-ink)" stroke-width="1.5"/>
+  <text class="tag" x="64" y="116" text-anchor="middle" fill="var(--ml-blue)">normal</text>
+
+  <!-- cancer cell -->
+  <path d="M34 250 C40 232 44 222 52 212 C58 196 66 182 80 184 C92 186 98 188 104 186 C112 180 120 176 126 184 C136 194 136 200 132 208 C130 222 126 228 118 232 C108 238 102 234 98 238 C95 246 94 252 88 252 C76 252 66 248 60 244 C50 250 42 252 34 250 Z" fill="#df8189" stroke="var(--ml-ink)" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M62 210 C64 199 82 194 96 198 C110 201 122 207 117 216 C112 226 101 229 94 224 C90 221 86 220 82 224 C75 230 65 227 62 220 C59 216 60 213 62 210 Z" fill="#9e3146" stroke="var(--ml-ink)" stroke-width="1.6" stroke-linejoin="round"/>
+  <text class="tag" x="80" y="286" text-anchor="middle" fill="var(--ml-red)">tumor</text>
+
+  <!-- call-out A (normal -> full isoform) -->
+  <circle cx="248" cy="68" r="50" fill="#f6f1e6" stroke="var(--ml-ink)" stroke-width="2.2"/>
+  <line x1="210" y1="64" x2="286" y2="64" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
+  <path d="M228 64 Q235 46 242 64" fill="none" stroke="var(--ml-blue)" stroke-width="2"/>
+  <path d="M254 64 Q260 46 266 64" fill="none" stroke="var(--ml-blue)" stroke-width="2"/>
+  <rect x="210" y="57.5" width="16" height="13" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2.2"/>
+  <rect x="242" y="57.5" width="12" height="13" rx="3" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2.2"/>
+  <rect x="266" y="57.5" width="20" height="13" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2.2"/>
+  <text class="tag" x="248" y="132" text-anchor="middle" fill="var(--ml-ink-mute)">isoform A</text>
+
+  <!-- call-out B (cancer -> cassette skipped) -->
+  <circle cx="256" cy="212" r="56" fill="#f6f1e6" stroke="var(--ml-ink)" stroke-width="2.2"/>
+  <line x1="218" y1="208" x2="294" y2="208" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
+  <path d="M236 208 Q256 186 276 208" fill="none" stroke="var(--ml-red)" stroke-width="1.8"/>
+  <rect x="250" y="202" width="14" height="12" rx="2" fill="none" stroke="var(--ml-ink)" stroke-width="1.3" stroke-dasharray="3 3" opacity="0.5"/>
+  <rect x="218" y="201.5" width="18" height="13" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2.2"/>
+  <rect x="274" y="201.5" width="20" height="13" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2.2"/>
+  <text class="tag" x="256" y="282" text-anchor="middle" fill="var(--ml-ink-mute)">isoform B</text>
+</svg>

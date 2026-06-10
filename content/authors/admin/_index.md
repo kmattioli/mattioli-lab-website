@@ -1,71 +1,55 @@
 ---
-# Display name
+# Kaia Mattioli — PI / highlighted author.
 title: Kaia Mattioli
+# Abbreviated form used in publication author lists (Hugo's .LinkTitle); the People
+# heading shows `title` + `degree` ("Kaia Mattioli, Ph.D.").
+linktitle: Mattioli K
+degree: Ph.D.
 
-# Full Name (for SEO)
 first_name: Kaia
 last_name: Mattioli
 
-# Is this the primary user of the site?
+# Makes this the highlighted author in publication lists ("Mattioli K" bold).
 superuser: true
+highlight_name: true
 
-# Role/position  -- CONFIRM your exact title/department
 role: Assistant Professor
 
-# Organizations/Affiliations
 organizations:
-  - name: University of Colorado
-    url: ''
+  - name: Department of Integrative Biology, University of Colorado Denver
+    url: 'https://clas.ucdenver.edu/integrative-biology/'
 
-# Short bio (displayed in user profile at end of posts)
-bio: I study how alternative RNA isoforms shape oncogenic cell states, using high-throughput, isoform-specific functional genomics.
-
-interests:
-  - Alternative splicing & RNA isoforms
-  - Functional genomics
-  - Gene regulation & transcription factors
-  - Breast cancer
-  - RNA-targeting CRISPR (Cas13d)
-
-education:
-  courses:
-    - course: PhD in Biomedical Sciences
-      institution: Harvard University
-      year: 2019
-    - course: BS in Biological Sciences
-      institution: Stanford University
-      year: 2011
-
-# Social/Academic Networking
-# Icons: https://docs.hugoblox.com/getting-started/page-builder/#icons
+# Social / academic links
 social:
   - icon: envelope
     icon_pack: fas
-    link: 'mailto:kaia.mattioli@gmail.com'   # swap for your institutional email when you have it
-  - icon: globe
-    icon_pack: fas
-    link: 'https://kaiamattioli.com'
-  # - icon: google-scholar
-  #   icon_pack: ai
-  #   link: https://scholar.google.com/citations?user=YOUR_ID   # uncomment & fill in
-  # - icon: orcid
-  #   icon_pack: ai
-  #   link: https://orcid.org/0000-0000-0000-0000               # uncomment & fill in
-  # - icon: cv
-  #   icon_pack: ai
-  #   link: uploads/cv.pdf   # copy your CV to static/uploads/cv.pdf and uncomment
+    link: 'mailto:kaia.mattioli@ucdenver.edu'
+  - icon: x-twitter
+    icon_pack: fab
+    link: 'https://twitter.com/kaia_mattioli'
+  - icon: bluesky
+    icon_pack: fab
+    link: 'https://bsky.app/profile/kaiamattioli.bsky.social'
+  - icon: linkedin
+    icon_pack: fab
+    link: 'https://www.linkedin.com/in/kaia-mattioli'
 
-# Enter email to display Gravatar (if Gravatar enabled in Config)
-email: ''
+email: 'kaia.mattioli@ucdenver.edu'
 
-# Highlight the author in author lists?
-highlight_name: true
-
-# Organizational groups (drives the People page ordering)
+# People-page grouping
 user_groups:
   - Principal Investigators
 ---
 
-Kaia Mattioli is the principal investigator of the Mattioli Lab at the University of Colorado, where her group studies how alternative RNA isoforms contribute to cancer. She earned her PhD at Harvard University with John Rinn, studying the regulation, evolution, and function of non-coding *cis* elements, and completed her postdoctoral training at Brigham and Women's Hospital with Martha Bulyk, where she discovered widespread functional differences between transcription factor isoforms and developed long-read and RNA-targeting CRISPR approaches to study them. Her independent program — supported by an NIH NHGRI K99/R00 award — combines experimental and computational methods to decode the roles of individual isoforms in breast cancer and to build improved tools for isoform-specific perturbation.
-
-The lab is committed to rigorous, collaborative science and to mentoring the next generation of researchers. <!-- Edit freely. Personal-motivation details (e.g. the BRCA2+ diagnosis from your research statement) are intentionally left out of the public bio — add them only if you choose to. -->
+Kaia is an incoming Assistant Professor in the
+[Department of Integrative Biology](https://clas.ucdenver.edu/integrative-biology/) at the
+[University of Colorado Denver](https://www.ucdenver.edu/). She earned her PhD at Harvard
+University in the [Biological and Biomedical Sciences Program](https://bbsphd.hms.harvard.edu/),
+where she used high-throughput methods to study the function of long non-coding RNAs with
+[John Rinn](https://www.lncrna.io/) and [Marta Melé](https://www.bsc.es/mele-marta). She then
+joined [Martha Bulyk](https://thebrain.bwh.harvard.edu/)'s lab across the Charles River at
+Brigham and Women's Hospital and Harvard Medical School, where she studied alternative
+isoforms of transcription factors. She is interdisciplinary by nature, with expertise in both
+computational and experimental biology. Kaia has a long-standing goal of making science and
+academia more inclusive environments, and as such aims for her lab to be a welcoming and
+supportive place to train the next generation of scientists.

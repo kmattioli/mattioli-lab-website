@@ -1,0 +1,20 @@
+{{/* Faint full-bleed splice-arc sweep + asterisks behind a page header
+     (HeaderSweep from header-art.jsx). Subtle background flair. */}}
+<div class="ml-sweep" aria-hidden="true">
+  <svg viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice">
+    <path d="M-20 300 Q 360 110 720 250 Q 1010 320 1240 150" fill="none" stroke="var(--ml-blue)" stroke-width="2.4" opacity="0.16"/>
+    <path d="M-40 150 Q 260 300 640 190" fill="none" stroke="var(--ml-red)" stroke-width="2" opacity="0.1"/>
+    <g opacity="0.16">
+      <g transform="translate(250 90)" stroke="var(--ml-red)" stroke-width="2.4" stroke-linecap="round">
+        <line x1="-18" y1="0" x2="18" y2="0"/><line x1="-12.7" y1="-12.7" x2="12.7" y2="12.7"/><line x1="0" y1="-18" x2="0" y2="18"/><line x1="12.7" y1="-12.7" x2="-12.7" y2="12.7"/>
+      </g>
+      <g transform="translate(560 250)" stroke="var(--ml-ink)" stroke-width="2.4" stroke-linecap="round">
+        <line x1="-13" y1="0" x2="13" y2="0"/><line x1="-6.5" y1="-11.3" x2="6.5" y2="11.3"/><line x1="6.5" y1="-11.3" x2="-6.5" y2="11.3"/>
+      </g>
+      <g transform="translate(90 150)" stroke="var(--ml-gold)" stroke-width="2.4" stroke-linecap="round">
+        <line x1="-12" y1="0" x2="12" y2="0"/><line x1="-8.5" y1="-8.5" x2="8.5" y2="8.5"/><line x1="0" y1="-12" x2="0" y2="12"/><line x1="8.5" y1="-8.5" x2="-8.5" y2="8.5"/>
+      </g>
+    </g>
+    <circle cx="150" cy="280" r="4.5" fill="var(--ml-gold)" opacity="0.35"/>
+  </svg>
+</div>

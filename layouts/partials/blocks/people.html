@@ -1,0 +1,56 @@
+{{/* Mattioli Lab people block — DS two-column PI bios + lab-member placeholder. */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $labels := dict "x-twitter" "Twitter" "twitter" "Twitter" "bluesky" "Bluesky" "linkedin" "LinkedIn" "github" "GitHub" "google-scholar" "Scholar" "orcid" "ORCID" "globe" "Website" }}
+
+<div class="ml-people">
+  {{ partial "ml-scatter.html" . }}
+  {{ range $group := $block.content.user_groups }}
+    {{ $query := where (where site.Pages "Section" "authors") ".Params.user_groups" "intersect" (slice $group) }}
+    {{ $query = sort $query "Params.last_name" "asc" }}
+
+    {{ if or $query (in (slice "Lab Members" "Alumni") $group) }}
+      <h3 class="ml-people__group">{{ $group }}</h3>
+
+      {{ range $query }}
+        {{ $avatar := (.Resources.ByType "image").GetMatch "*avatar*" }}
+        <div class="pi">
+          <div class="pi__left">
+            <div class="pi__portrait">
+              {{ with $avatar }}{{ $img := .Fill "440x440 Center" }}<img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $.Title }}" loading="lazy">{{ end }}
+            </div>
+            <div class="pi__contact">
+              {{ with .Params.email }}
+                {{ $parts := split . "@" }}
+                {{ $disp := printf "%s [at] %s" (index $parts 0) (replace (index $parts 1) "." " [dot] ") }}
+                <p class="pi__contactline">Email: <a href="mailto:{{ . }}">{{ $disp }}</a></p>
+              {{ end }}
+              <p class="pi__social">
+                {{ range .Params.social }}
+                  {{ if ne .icon "envelope" }}<a href="{{ .link }}" target="_blank" rel="noopener">{{ index $labels .icon | default (.icon | strings.Title) }}</a>{{ end }}
+                {{ end }}
+              </p>
+            </div>
+          </div>
+          <div class="pi__body">
+            <h2 class="pi__name">{{ .Title }}{{ with .Params.degree }}, {{ . }}{{ end }}</h2>
+            {{ with .Params.role }}<p class="pi__role">{{ . }}</p>{{ end }}
+            {{ range .Params.organizations }}<p class="pi__org">{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ if .url }}</a>{{ end }}</p>{{ end }}
+            <div class="pi__bio">{{ .Content }}</div>
+          </div>
+        </div>
+      {{ end }}
+
+      {{ if and (in (slice "Lab Members" "Alumni") $group) (not $query) }}
+        <div class="ml-joincard">
+          <div class="ml-joincard__q" aria-hidden="true">?</div>
+          <div class="ml-joincard__body">
+            <p class="ml-joincard__title">This could be you!</p>
+            <p class="ml-joincard__sub">We're recruiting at all levels.</p>
+            <a class="btn btn-primary btn-sm" href="{{ `contact/` | relLangURL }}">Join the lab →</a>
+          </div>
+        </div>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+</div>

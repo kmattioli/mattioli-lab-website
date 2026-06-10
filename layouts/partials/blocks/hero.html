@@ -1,0 +1,42 @@
+{{/* Mattioli Lab custom hero — full-bleed cream splice-field artwork (animated
+     GIF, served unresized so it keeps animating) behind a glass lockup card. */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $cu := resources.Get "media/cu-denver-mark.png" }}
+
+<div class="ml-hero">
+  {{/* live "splice constellation" canvas — crisp + full-width (see /js/hero-miro.js) */}}
+  <canvas id="ml-hero-canvas" class="ml-hero__art" aria-hidden="true"></canvas>
+  <div class="ml-hero__veil" aria-hidden="true"></div>
+
+  <div class="ml-hero__inner">
+    <div class="ml-hero__card">
+
+      <div class="ml-hero__brandrow">
+        <span class="ml-hero__lockup">
+          <svg class="ml-hero__mark" viewBox="4 0 112 98" aria-hidden="true">
+            <path d="M24,73 L46,8 L60,46 L74,8 L96,73" fill="none" stroke="#1B1A17" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="12" y="73" width="24" height="19" rx="2.5" fill="#C0392B" stroke="#1B1A17" stroke-width="3.5"/>
+            <rect x="48" y="46" width="24" height="19" rx="2.5" fill="#E6A817" stroke="#1B1A17" stroke-width="3.5"/>
+            <rect x="84" y="73" width="24" height="19" rx="2.5" fill="#2A6FB0" stroke="#1B1A17" stroke-width="3.5"/>
+          </svg>
+          <span class="ml-hero__word">attioli<b>Lab</b></span>
+        </span>
+        {{ with $cu }}<span class="ml-hero__bar"></span><img class="ml-hero__cu" src="{{ .RelPermalink }}" alt="University of Colorado Denver" />{{ end }}
+      </div>
+
+      {{ with $block.content.tagline }}<p class="ml-hero__tagline">{{ . }}</p>{{ end }}
+      {{ with $block.content.title }}<h1 class="ml-hero__headline">{{ . | markdownify }}</h1>{{ end }}
+      {{ with $block.content.text }}<div class="ml-hero__lede">{{ . | $page.RenderString | emojify }}</div>{{ end }}
+
+      {{ if or $block.content.cta $block.content.cta_alt }}
+      <div class="ml-hero__cta">
+        {{ with $block.content.cta }}<a class="btn btn-primary btn-lg" href="{{ .url | relLangURL }}">{{ .label }}</a>{{ end }}
+        {{ with $block.content.cta_alt }}<a class="btn btn-outline-primary btn-lg" href="{{ .url | relLangURL }}">{{ .label }}</a>{{ end }}
+      </div>
+      {{ end }}
+
+    </div>
+  </div>
+</div>
+<script defer src="{{ `js/hero-miro.js` | relLangURL }}"></script>

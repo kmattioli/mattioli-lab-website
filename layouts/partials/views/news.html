@@ -1,11 +1,13 @@
-{{/* Custom "news" collection view — a compact `date | headline` row, styled in
-     assets/scss/template.scss to match the news list from "lab-website 5".
-     Plain text (no link). Selected via `view: news` on a collection block or a
-     section's `_index.md`. */}}
+{{/* Custom "news" collection view — a "date | headline | tag" row, styled in
+     assets/scss/template.scss to match the lab-website news list. Plain text
+     (no link). Selected via `view: news`. */}}
 
 {{ $item := .item }}
 
 <div class="news-item">
   <div class="news-date">{{ $item.Date.Format (site.Params.locale.date_format | default "Jan 2, 2006") }}</div>
   <div class="news-text">{{ $item.Title | emojify }}</div>
+  {{ with index $item.Params.tags 0 }}
+    <div class="news-tag news-tag--{{ lower . }}">{{ . }}</div>
+  {{ end }}
 </div>

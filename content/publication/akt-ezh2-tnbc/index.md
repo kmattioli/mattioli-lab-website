@@ -38,7 +38,7 @@ summary: ""
 tags:
 - Breast cancer
 - Epigenetics
-featured: false
+featured: true
 doi: ""
 url_source: "https://pubmed.ncbi.nlm.nih.gov/39385030/"
 url_pdf: ""

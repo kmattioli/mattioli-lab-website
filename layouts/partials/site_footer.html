@@ -1,0 +1,53 @@
+{{/* Mattioli Lab footer — night field, exon strand, CU Denver mark, Miró credit.
+     Overrides the blox-bootstrap site_footer.html entirely. */}}
+{{ $cu := resources.Get "media/cu-denver-white-full.png" }}
+<footer class="site-footer ml-footer">
+
+  {{/* exon-strand top band */}}
+  <svg class="footer__strand" viewBox="0 0 1200 16" preserveAspectRatio="none" aria-hidden="true">
+    <rect width="1200" height="16" fill="#0C0E12"/>
+    <line x1="0" y1="8" x2="1200" y2="8" stroke="rgba(243,239,228,0.4)" stroke-width="1.5"/>
+    <rect x="80"   y="3" width="40" height="10" rx="1.5" fill="#C0392B" stroke="rgba(243,239,228,0.7)" stroke-width="1.2"/>
+    <rect x="360"  y="3" width="40" height="10" rx="1.5" fill="#E6A817" stroke="rgba(243,239,228,0.7)" stroke-width="1.2"/>
+    <rect x="600"  y="3" width="40" height="10" rx="1.5" fill="#2A6FB0" stroke="rgba(243,239,228,0.7)" stroke-width="1.2"/>
+    <rect x="900"  y="3" width="40" height="10" rx="1.5" fill="#C0392B" stroke="rgba(243,239,228,0.7)" stroke-width="1.2"/>
+    <rect x="1120" y="3" width="40" height="10" rx="1.5" fill="#2A6FB0" stroke="rgba(243,239,228,0.7)" stroke-width="1.2"/>
+  </svg>
+
+  <div class="footer__in">
+    <div class="footer__brandcol">
+      <span class="footer__word">
+        <svg class="footer__mark" viewBox="4 0 112 98" aria-hidden="true">
+          <path d="M24,73 L46,8 L60,46 L74,8 L96,73" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="12" y="73" width="24" height="19" rx="2.5" fill="#C0392B" stroke="#fff" stroke-width="3.5"/>
+          <rect x="48" y="46" width="24" height="19" rx="2.5" fill="#E6A817" stroke="#fff" stroke-width="3.5"/>
+          <rect x="84" y="73" width="24" height="19" rx="2.5" fill="#2A6FB0" stroke="#fff" stroke-width="3.5"/>
+        </svg>
+        <span class="footer__wordtext">attioli<b>Lab</b></span>
+      </span>
+      <p class="footer__blurb">Decoding alternative RNA isoforms in cancer with high-throughput, isoform-specific functional genomics.</p>
+      {{ with $cu }}<div class="footer__cu"><img src="{{ .RelPermalink }}" alt="University of Colorado Denver" loading="lazy"></div>{{ end }}
+    </div>
+
+    <div class="footer__col">
+      <h4>Explore</h4>
+      <a href="{{ `research/` | relLangURL }}">Research</a>
+      <a href="{{ `people/` | relLangURL }}">People</a>
+      <a href="{{ `publication/` | relLangURL }}">Publications</a>
+      <a href="{{ `post/` | relLangURL }}">News</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Connect</h4>
+      <a href="{{ `contact/` | relLangURL }}">Contact</a>
+      <a href="mailto:kaia.mattioli@ucdenver.edu">Email the lab</a>
+    </div>
+  </div>
+
+  <div class="footer__bar">
+    <div class="footer__bar-in">
+      <span>© {{ now.Year }} KAIA MATTIOLI, WITH HEAVY INSPIRATION FROM <a href="https://en.wikipedia.org/wiki/Joan_Mir%C3%B3" target="_blank" rel="noopener">JOAN MIRÓ</a></span>
+      <span>UNIVERSITY OF COLORADO DENVER · DENVER, CO</span>
+    </div>
+  </div>
+</footer>

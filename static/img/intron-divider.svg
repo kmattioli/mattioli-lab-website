@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 26" width="520" height="26" aria-hidden="true">
+  <line x1="8" y1="15" x2="512" y2="15" stroke="#1B1A17" stroke-width="2" opacity="0.85"/>
+  <path d="M23 11 L27 15 L23 19 M61 11 L65 15 L61 19 M99 11 L103 15 L99 19 M137 11 L141 15 L137 19 M175 11 L179 15 L175 19 M345 11 L349 15 L345 19 M383 11 L387 15 L383 19 M421 11 L425 15 L421 19 M459 11 L463 15 L459 19 M497 11 L501 15 L497 19"
+        stroke="#1B1A17" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
+  <path d="M206 15 Q228 0 250 15" fill="none" stroke="#1B1A17" stroke-width="1.6"/>
+  <circle cx="228" cy="3" r="2.8" fill="#1B1A17"/>
+  <path d="M276 15 Q298 0 320 15" fill="none" stroke="#1B1A17" stroke-width="1.6"/>
+  <circle cx="298" cy="3" r="2.8" fill="#1B1A17"/>
+  <rect x="180" y="9" width="26" height="12" rx="2" fill="#C0392B" stroke="#1B1A17" stroke-width="2"/>
+  <rect x="250" y="9" width="26" height="12" rx="2" fill="#E6A817" stroke="#1B1A17" stroke-width="2"/>
+  <rect x="320" y="9" width="26" height="12" rx="2" fill="#2A6FB0" stroke="#1B1A17" stroke-width="2"/>
+</svg>

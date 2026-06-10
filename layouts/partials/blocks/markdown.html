@@ -1,0 +1,19 @@
+{{/* Mattioli Lab markdown block — mirrors the theme block, but injects the
+     painterly splice-arc sweep behind the section when the block carries the
+     `ml-sweep-head` css_class (used by the People page header). */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $columns := $block.design.columns | default "1" }}
+{{ $text := $block.content.text | emojify | $page.RenderString }}
+{{ $sweep := in ($block.design.css_class | default "") "ml-sweep-head" }}
+
+{{ if $sweep }}{{ partial "ml-sweep.html" . }}{{ end }}
+{{ if ne $columns "1" }}
+  <div class="col-12 col-lg-8">
+    {{ $text }}
+  </div>
+{{ else }}
+  <div class="col-12">
+    {{ $text }}
+  </div>
+{{ end }}
