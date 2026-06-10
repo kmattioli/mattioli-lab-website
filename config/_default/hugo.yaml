@@ -2,7 +2,7 @@
 # Guide: https://docs.hugoblox.com/
 
 title: Mattioli Lab # Website name
-baseURL: 'https://example.com/' # <-- CHANGE to your URL (e.g. https://kaiamattioli.github.io/ or your lab domain)
+baseURL: 'https://mattioli-lab.org/' # custom domain (served via GitHub Pages; see static/CNAME)
 
 ############################
 ## LANGUAGE

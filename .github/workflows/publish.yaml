@@ -50,7 +50,9 @@ jobs:
           HUGO_ENVIRONMENT: production
         run: |
           echo "Hugo Cache Dir: $(hugo config | grep cachedir)"
-          hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+          # Build with the custom domain from config (baseURL: https://mattioli-lab.org/),
+          # not the github.io subpath, so absolute URLs resolve at the domain root.
+          hugo --minify
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
