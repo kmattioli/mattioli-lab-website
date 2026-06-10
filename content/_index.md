@@ -7,24 +7,15 @@ type: landing
 sections:
   - block: hero
     content:
-      tagline: Alternative splicing · Gene regulation
       title: Decoding alternative _isoforms_ in cancer.
-      image:
-        filename: hero-loop.gif
       text: |
         We use high-throughput functional genomics to understand how aberrant RNA
         processing and gene regulation drive oncogenic cell states.
-      cta:
-        url: ./research/
-        label: Explore our research
-      cta_alt:
-        url: ./contact/
-        label: Join us
 
   - block: feature
     content:
       title: What we study
-      subtitle: Welcome · 01
+      subtitle: Welcome
       figure: isoform
       caption: Fig. 1 — a cassette exon is kept (isoform A) or skipped (isoform B), yielding two proteins with different domains and DNA-binding specificity.
       text: |
@@ -44,7 +35,7 @@ sections:
   - block: feature
     content:
       title: Where we're located
-      subtitle: Location · 02
+      subtitle: Location
       image:
         filename: denver-campus.jpg
       caption: University of Colorado Denver · Auraria Campus in downtown Denver, CO
@@ -60,12 +51,15 @@ sections:
   - block: collection
     content:
       title: Latest news
-      subtitle: News · 03
+      subtitle: News
       count: 4
       filters:
         folders:
           - post
       order: desc
+      archive:
+        enable: true
+        text: All news →
     design:
       view: news
       columns: '1'
@@ -73,12 +67,15 @@ sections:
   - block: collection
     content:
       title: Selected publications
-      subtitle: Publications · 04
+      subtitle: Publications
       count: 3
       filters:
         folders:
           - publication
         featured_only: true
+      archive:
+        enable: true
+        text: All publications →
     design:
       view: citation
       columns: '1'

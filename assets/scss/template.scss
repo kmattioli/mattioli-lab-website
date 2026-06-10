@@ -141,13 +141,23 @@ a:hover { color: var(--lead-hi); }
   position: relative; overflow: hidden;
   border-bottom: var(--line-w) solid var(--ml-ink);
   background: var(--ml-cream);
-  min-height: clamp(440px, 64vh, 620px);
+  // Box kept a touch taller than the artwork's 2:1 ratio so `contain` fits to
+  // full width and the whole composition (blobs on top → 5 transcript rows) shows.
+  min-height: clamp(480px, 54vw, 860px);
   display: flex;
 }
+// Full-bleed hero: the theme wraps every block in a Bootstrap `.container`, and
+// its `{{ with $cfg.use_container }}` ignores a `false` value — so neutralise the
+// container here. The inner card stays centered via `.ml-hero__inner`.
+.wg-hero.home-section { padding-block: 0; }
+.wg-hero > .container { max-width: none; padding-left: 0; padding-right: 0; }
 .ml-hero__art {
   position: absolute; inset: 0; display: block;
   width: 100% !important; height: 100% !important;  // override the canvas's inline px size
-  object-fit: cover; object-position: center;
+  // `contain` (not cover) so the full 1600×800 artwork is visible — the top
+  // protein blobs and the bottom transcript row are no longer cropped. The
+  // canvas bakes its own cream ground, so any letterbox margin is seamless.
+  object-fit: contain; object-position: center;
 }
 .ml-hero__veil {
   position: absolute; inset: 0; pointer-events: none;
@@ -184,7 +194,7 @@ a:hover { color: var(--lead-hi); }
   font-size: clamp(26px,3.6vw,40px); line-height: 1.04; color: var(--ml-ink); max-width: 18ch; margin: 0;
   em { font-style: normal; color: var(--lead); }
 }
-.ml-hero__lede { font-size: 16px; line-height: 1.55; color: var(--ml-ink-soft); max-width: 52ch; margin: 0; }
+.ml-hero__lede { font-size: 15px; line-height: 1.5; color: var(--ml-ink-soft); max-width: 62ch; margin: 0; }
 .ml-hero__cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
 
 // Two-column feature block (alternating text / figure)
@@ -248,6 +258,8 @@ a:hover { color: var(--lead-hi); }
   background: rgba(246,244,239,0.86) !important;
   backdrop-filter: blur(3px);
   border-bottom: var(--line-w) solid var(--ml-ink);
+  // Let the bar breathe across wide screens, matching the full-bleed hero.
+  .container-xl { max-width: 1600px; }
 }
 #navbar-main {
   // brand lockup: splice-M glyph + Archivo wordmark
@@ -278,12 +290,15 @@ a:hover { color: var(--lead-hi); }
     &:hover::after, &.active::after { transform: scaleX(1); }
   }
 
-  // "Join us" CTA — last menu item rendered as a red button
+  // Sit the CTA evenly off the last text link
+  .ml-nav__cta { margin-left: 10px; }
+
+  // "Join us" CTA — last menu item rendered as a button, uppercased like the nav
   .nav-cta .nav-link, .nav-link.nav-cta {
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: none;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
     color: #fff;
     background: var(--lead);
     border: var(--line-w) solid var(--ml-ink);
@@ -332,6 +347,9 @@ a:hover { color: var(--lead-hi); }
   border-top: var(--line-w) solid var(--ml-ink); border-bottom: var(--line-w) solid var(--ml-ink);
   padding: clamp(56px, 8vw, 100px) 0;
 }
+// Full-bleed CTA night field (same theme container caveat as the hero).
+.wg-cta.home-section { padding-block: 0; }
+.wg-cta > .container { max-width: none; padding-left: 0; padding-right: 0; }
 .ml-cta__inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 28px; text-align: center; }
 .ml-cta__kicker {
   font-family: var(--font-mono); font-weight: 600; text-transform: uppercase; letter-spacing: 0.22em;
@@ -355,6 +373,11 @@ a:hover { color: var(--lead-hi); }
   pointer-events: none; z-index: 0; overflow: hidden;
   svg { width: 100%; height: 100%; display: block; }
 }
+// People header: sweep sits behind the heading + lede (section is position:relative)
+.ml-sweep-head { position: relative; overflow: hidden;
+  .section-heading, [class*="col-"] { position: relative; z-index: 1; }
+}
+
 .themes, .ml-join, .ml-people, .ml-feature, .ml-pagewrap { position: relative; }
 .themes > .theme,
 .ml-join > .ml-join__text, .ml-join > .ml-join__aside,
@@ -417,12 +440,6 @@ a:hover { color: var(--lead-hi); }
 @media (max-width: 560px) {
   .news-item { grid-template-columns: 1fr; gap: 4px; }
   .news-tag { justify-self: start; }
-}
-
-// Research "Techniques" caption line (mono)
-.ml-techniques {
-  font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em;
-  color: var(--ml-ink-mute); margin-top: 16px;
 }
 
 // =============================================================================
@@ -573,9 +590,62 @@ a:hover { color: var(--lead-hi); }
 }
 .article-style p { color: var(--ml-ink-soft); line-height: 1.55; }
 
+// List-page header (Publications, News) — phead: mono kicker chip → big title.
+// The theme's page_header emits `<div class="universal-wrapper pt-3"><h1>…</h1>
+// <p class="page-subtitle">…</p></div>` only on node/list pages, so this scopes
+// cleanly to the archive headers (single article headers use `.article-container`).
+.universal-wrapper.pt-3 {
+  display: flex; flex-direction: column; align-items: flex-start;
+  padding-top: clamp(40px, 6vw, 72px) !important;
+
+  h1 {
+    order: 0; margin: 0;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(38px, 6vw, 64px); line-height: 0.98; letter-spacing: -0.02em;
+    color: var(--ml-ink);
+  }
+  .page-subtitle {
+    order: -1; margin: 0 0 16px;
+    @extend %kicker; font-size: 13px;
+  }
+}
+
+// Roomy interior lede (the paragraph under the archive title)
+.ml-page-lede p {
+  margin: 18px 0 0; max-width: 62ch;
+  font-size: var(--type-body-size, 18px); font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.55; color: var(--ml-ink-soft);
+}
+.ml-page-lede strong { color: var(--ml-ink); font-weight: 700; }
+
+// "Read →" external link on Publications rows
+.pub-row__read {
+  display: inline-block; margin-top: 12px;
+  font-family: var(--font-mono); font-weight: 600; font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--support);
+  &:hover { color: var(--support-hi); text-decoration: none; }
+}
+
+// Home "All news →" / "All publications →" archive link (collection block)
+.see-all {
+  margin-top: 22px;
+  a {
+    font-family: var(--font-mono); font-weight: 600; font-size: 12.5px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--support);
+    &:hover { color: var(--support-hi); text-decoration: none; }
+  }
+  i { display: none; }   // the literal "→" in the label carries the arrow
+}
+
+// Campus photo on the contact page sits centered with a sensible max width
+.ml-figure--campus { max-width: 560px; margin-inline: auto; }
+
 // =============================================================================
 //  FOOTER — night field, exon strand, CU Denver mark, Miró credit
 // =============================================================================
+// The theme wraps the footer in a `.container`; let the night field reach the edges.
+.page-footer > .container { max-width: none; padding-left: 0; padding-right: 0; }
+
 .site-footer.ml-footer {
   background: var(--ml-night);
   color: rgba(243,239,228,0.85);
@@ -592,6 +662,7 @@ a:hover { color: var(--lead-hi); }
     max-width: 1200px; margin: 0 auto; padding: 48px 28px 40px;
     display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 36px;
   }
+  .footer__brandcol { text-align: left; }
   .footer__word { display: inline-flex; align-items: center; font-size: 28px; line-height: 0.9; }
   .footer__mark { height: 38px; width: auto; flex: none; }
   .footer__wordtext {

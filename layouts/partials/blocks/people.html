@@ -4,7 +4,6 @@
 {{ $labels := dict "x-twitter" "Twitter" "twitter" "Twitter" "bluesky" "Bluesky" "linkedin" "LinkedIn" "github" "GitHub" "google-scholar" "Scholar" "orcid" "ORCID" "globe" "Website" }}
 
 <div class="ml-people">
-  {{ partial "ml-sweep.html" . }}
   {{ partial "ml-scatter.html" . }}
   {{ range $group := $block.content.user_groups }}
     {{ $query := where (where site.Pages "Section" "authors") ".Params.user_groups" "intersect" (slice $group) }}
@@ -21,7 +20,11 @@
               {{ with $avatar }}{{ $img := .Fill "440x440 Center" }}<img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $.Title }}" loading="lazy">{{ end }}
             </div>
             <div class="pi__contact">
-              {{ with .Params.email }}<p class="pi__contactline">Email: <a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
+              {{ with .Params.email }}
+                {{ $parts := split . "@" }}
+                {{ $disp := printf "%s [at] %s" (index $parts 0) (replace (index $parts 1) "." " [dot] ") }}
+                <p class="pi__contactline">Email: <a href="mailto:{{ . }}">{{ $disp }}</a></p>
+              {{ end }}
               <p class="pi__social">
                 {{ range .Params.social }}
                   {{ if ne .icon "envelope" }}<a href="{{ .link }}" target="_blank" rel="noopener">{{ index $labels .icon | default (.icon | strings.Title) }}</a>{{ end }}
@@ -30,7 +33,7 @@
             </div>
           </div>
           <div class="pi__body">
-            <h2 class="pi__name">{{ .Title }}</h2>
+            <h2 class="pi__name">{{ .Title }}{{ with .Params.degree }}, {{ . }}{{ end }}</h2>
             {{ with .Params.role }}<p class="pi__role">{{ . }}</p>{{ end }}
             {{ range .Params.organizations }}<p class="pi__org">{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ if .url }}</a>{{ end }}</p>{{ end }}
             <div class="pi__bio">{{ .Content }}</div>

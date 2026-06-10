@@ -1,5 +1,6 @@
 ---
 title: Publications
+subtitle: Publications
 view: citation
 ---
 

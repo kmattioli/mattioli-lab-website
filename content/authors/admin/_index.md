@@ -1,6 +1,10 @@
 ---
 # Kaia Mattioli — PI / highlighted author.
 title: Kaia Mattioli
+# Abbreviated form used in publication author lists (Hugo's .LinkTitle); the People
+# heading shows `title` + `degree` ("Kaia Mattioli, Ph.D.").
+linktitle: Mattioli K
+degree: Ph.D.
 
 first_name: Kaia
 last_name: Mattioli
@@ -9,7 +13,7 @@ last_name: Mattioli
 superuser: true
 highlight_name: true
 
-role: Assistant Professor, Ph.D.
+role: Assistant Professor
 
 organizations:
   - name: Department of Integrative Biology, University of Colorado Denver

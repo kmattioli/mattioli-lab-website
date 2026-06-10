@@ -18,7 +18,7 @@ sections:
         of Kaia's have gone on to succeed in PhD and MD programs as hybrid
         experimental-computational biologists.
 
-        **Email:** [kaia.mattioli@ucdenver.edu](mailto:kaia.mattioli@ucdenver.edu)
+        **Email:** [kaia.mattioli [at] ucdenver [dot] edu](mailto:kaia.mattioli@ucdenver.edu)
       opening: |
         We are currently recruiting a **Professional Research Assistant** with experience
         in molecular biology. This is a unique opportunity to help start a lab from the
@@ -35,6 +35,18 @@ sections:
           <div class="ml-role"><h3>PhD &amp; rotation students</h3><p>We are recruiting both wet-lab and dry-lab graduate students at the Masters and PhD levels. Email Kaia to discuss fit, current projects, and how to apply.</p></div>
           <div class="ml-role"><h3>Postdoctoral fellows</h3><p>If you are interested in doing a postdoc in the lab, send a CV, a brief statement of research interests, and contact information for three references to Kaia.</p></div>
         </div>
+    design:
+      columns: '1'
+
+  - block: markdown
+    content:
+      title: Where to find us
+      subtitle: Location
+      text: |
+        <figure class="ml-figure ml-figure--campus">
+          <img src="/img/denver-campus.jpg" alt="University of Colorado Denver · Auraria Campus in downtown Denver, CO" loading="lazy">
+          <figcaption>University of Colorado Denver · Auraria Campus in downtown Denver, CO</figcaption>
+        </figure>
     design:
       columns: '1'
 
