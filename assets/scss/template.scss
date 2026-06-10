@@ -163,6 +163,16 @@ a:hover { color: var(--lead-hi); }
 // Mobile-only Miró flair anchored at the bottom of the hero (shown via the
 // phone media query below). Hidden on desktop.
 .ml-hero__fill { display: none; }
+// Flair pop-in, timed to the canvas hero loop (~18s): quick spring pop, hold,
+// then fade out over the final stretch before the loop repeats.
+@keyframes ml-flair-pop {
+  0%   { opacity: 0; transform: scale(0.3); }
+  2%   { opacity: 0; transform: scale(0.3); }
+  13%  { opacity: 1; transform: scale(1.08); }
+  18%  { opacity: 1; transform: scale(1); }
+  84%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.9); }
+}
 .ml-hero__veil {
   position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(ellipse 60% 72% at 50% 50%, rgba(241,234,215,0.72), rgba(241,234,215,0.18) 76%, transparent);
@@ -215,13 +225,31 @@ a:hover { color: var(--lead-hi); }
     object-fit: cover; object-position: center top;
   }
   // Card sits low so more of the top artwork shows, with a strip below it.
-  .ml-hero__inner { align-items: flex-end; padding-bottom: clamp(28px, 6vh, 56px); }
+  .ml-hero__inner { align-items: flex-end; padding-bottom: clamp(40px, 8vh, 68px); }
   // Softened blob/flair scatter across the bottom (no transcripts), behind the card.
   .ml-hero__fill {
     display: block; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.85;
   }
-  .ml-hero__fill span { position: absolute; }
   .ml-hero__fill svg { display: block; }
+  // Pop the flair in on the same ~18s loop as the canvas artwork (pop + hold +
+  // end-fade), lightly staggered left→right to echo the sweep.
+  .ml-hero__fill span { position: absolute; opacity: 0; animation: ml-flair-pop 18s ease-out infinite both; }
+  .ml-hero__fill span:nth-of-type(1)  { animation-delay: 0.25s; }
+  .ml-hero__fill span:nth-of-type(2)  { animation-delay: 1.50s; }
+  .ml-hero__fill span:nth-of-type(3)  { animation-delay: 1.00s; }
+  .ml-hero__fill span:nth-of-type(4)  { animation-delay: 0.70s; }
+  .ml-hero__fill span:nth-of-type(5)  { animation-delay: 1.20s; }
+  .ml-hero__fill span:nth-of-type(6)  { animation-delay: 0.45s; }
+  .ml-hero__fill span:nth-of-type(7)  { animation-delay: 1.35s; }
+  .ml-hero__fill span:nth-of-type(8)  { animation-delay: 0.10s; }
+  .ml-hero__fill span:nth-of-type(9)  { animation-delay: 1.60s; }
+  .ml-hero__fill span:nth-of-type(10) { animation-delay: 0.20s; }
+  .ml-hero__fill span:nth-of-type(11) { animation-delay: 1.55s; }
+  .ml-hero__fill span:nth-of-type(12) { animation-delay: 0.90s; }
+  .ml-hero__fill span:nth-of-type(13) { animation-delay: 1.10s; }
+  @media (prefers-reduced-motion: reduce) {
+    .ml-hero__fill span { animation: none; opacity: 1; }
+  }
 }
 
 // Two-column feature block (alternating text / figure)
