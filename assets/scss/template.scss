@@ -160,13 +160,9 @@ a:hover { color: var(--lead-hi); }
   // `top` pulls the blobs up close under the navbar (no big cream gap on top).
   object-fit: contain; object-position: center top;
 }
-// On phones the box is portrait, so `contain` would shrink the 2:1 artwork to a
-// thin strip. Use `cover` to fill the hero (a full-height slice of the splice art
-// behind the card) and trim the height a little. (After the base rule so it wins.)
-@media (max-width: 760px) {
-  .ml-hero { min-height: clamp(420px, 92vw, 560px); }
-  .ml-hero__art { object-fit: cover; object-position: center; }
-}
+// Mobile-only Miró flair anchored at the bottom of the hero (shown via the
+// phone media query below). Hidden on desktop.
+.ml-hero__flair { display: none; }
 .ml-hero__veil {
   position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(ellipse 60% 72% at 50% 50%, rgba(241,234,215,0.72), rgba(241,234,215,0.18) 76%, transparent);
@@ -204,6 +200,23 @@ a:hover { color: var(--lead-hi); }
 }
 .ml-hero__lede { font-size: 15px; line-height: 1.5; color: var(--ml-ink-soft); max-width: 62ch; margin: 0; }
 .ml-hero__cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+
+// ---- Phones: a full-height hero -------------------------------------------
+// The portrait box would shrink the 2:1 artwork to a thin strip with `contain`,
+// so fill it with `cover`. Make the hero fill the viewport below the 50px sticky
+// nav, drop the card toward the bottom (so the top blobs/asterisks/first
+// transcript read above it), and sprinkle flair across the bottom. Placed after
+// the base hero rules so these win on small screens.
+@media (max-width: 760px) {
+  .ml-hero { min-height: calc(100svh - 50px); }
+  .ml-hero__art { object-fit: cover; object-position: center top; }
+  .ml-hero__inner { align-items: flex-end; padding-bottom: clamp(64px, 15vh, 140px); }
+  .ml-hero__flair {
+    display: block; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    span { position: absolute; }
+    svg { display: block; }
+  }
+}
 
 // Two-column feature block (alternating text / figure)
 .ml-feature {
