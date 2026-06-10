@@ -43,7 +43,7 @@ sections:
       title: Where to find us
       subtitle: Location
       text: |
-        <figure class="ml-figure ml-figure--campus">
+        <figure class="ml-photo ml-photo--campus">
           <img src="/img/denver-campus.jpg" alt="University of Colorado Denver · Auraria Campus in downtown Denver, CO" loading="lazy">
           <figcaption>University of Colorado Denver · Auraria Campus in downtown Denver, CO</figcaption>
         </figure>

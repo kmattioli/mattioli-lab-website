@@ -17,7 +17,8 @@ sections:
       title: What we study
       subtitle: Welcome
       figure: isoform
-      caption: Fig. 1 — a cassette exon is kept (isoform A) or skipped (isoform B), yielding two proteins with different domains and DNA-binding specificity.
+      figure_label: Fig. 1 — Transcription factor isoforms
+      caption: A cassette exon is kept (isoform A) or skipped (isoform B), yielding two proteins (here, transcription factors) with different domains and DNA-binding specificity.
       text: |
         Over 90% of human genes produce multiple mRNA _isoforms_, many encoding
         distinct proteins. Their misregulation is pervasive in cancer, yet which

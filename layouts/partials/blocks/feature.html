@@ -8,6 +8,7 @@
 {{ with $block.content.image.filename }}{{ $img = resources.Get (path.Join "media" .) }}{{ end }}
 
 <div class="ml-feature{{ if $flip }} ml-feature--flip{{ end }}">
+  {{ partial "ml-scatter.html" . }}
   {{ if eq $block.content.figure "header-cells" }}{{ partial "ml-sweep.html" . }}{{ end }}
   <div class="ml-feature__text">
     <div class="ml-shead">
@@ -23,12 +24,15 @@
 
   <div class="ml-feature__media">
     {{ if eq $block.content.figure "isoform" }}
-      {{ partial "figures/isoform.html" . }}
-      {{ with $block.content.caption }}<p class="ml-feature__cap">{{ . }}</p>{{ end }}
+      <figure class="ml-figcard">
+        {{ with $block.content.figure_label }}<figcaption class="ml-figcard__label">{{ . }}</figcaption>{{ end }}
+        {{ partial "figures/isoform.html" . }}
+        {{ with $block.content.caption }}<figcaption class="ml-figcard__cap">{{ . }}</figcaption>{{ end }}
+      </figure>
     {{ else if eq $block.content.figure "header-cells" }}
       {{ partial "figures/header-cells.html" . }}
     {{ else if $img }}
-      <figure class="ml-figure">
+      <figure class="ml-photo">
         {{ if eq $img.MediaType.SubType "gif" }}
           <img src="{{ $img.RelPermalink }}" alt="{{ $block.content.caption }}" loading="lazy">
         {{ else }}

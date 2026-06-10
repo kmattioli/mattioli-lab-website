@@ -157,7 +157,8 @@ a:hover { color: var(--lead-hi); }
   // `contain` (not cover) so the full 1600×800 artwork is visible — the top
   // protein blobs and the bottom transcript row are no longer cropped. The
   // canvas bakes its own cream ground, so any letterbox margin is seamless.
-  object-fit: contain; object-position: center;
+  // `top` pulls the blobs up close under the navbar (no big cream gap on top).
+  object-fit: contain; object-position: center top;
 }
 .ml-hero__veil {
   position: absolute; inset: 0; pointer-events: none;
@@ -177,14 +178,14 @@ a:hover { color: var(--lead-hi); }
 }
 .ml-hero__brandrow { display: flex; align-items: center; justify-content: center; gap: clamp(14px,2.4vw,22px); flex-wrap: wrap; }
 .ml-hero__lockup { display: inline-flex; align-items: center; }
-.ml-hero__mark { height: 46px; width: auto; flex: none; }
+.ml-hero__mark { height: 56px; width: auto; flex: none; }
 .ml-hero__word {
-  font-family: var(--font-display); font-weight: 800; font-size: 34px; letter-spacing: -0.02em;
+  font-family: var(--font-display); font-weight: 800; font-size: 42px; letter-spacing: -0.02em;
   line-height: 0.9; color: var(--ml-ink); margin-left: -0.10em; transform: translateY(-0.04em);
   b { color: var(--lead); }
 }
-.ml-hero__bar { width: 1.5px; height: 44px; background: var(--stroke-hair); }
-.ml-hero__cu { display: block; height: 44px; width: auto; }
+.ml-hero__bar { width: 1.5px; height: 52px; background: var(--stroke-hair); }
+.ml-hero__cu { display: block; height: 54px; width: auto; }
 .ml-hero__tagline {
   font-family: var(--font-mono); font-weight: 600; font-size: 13px; letter-spacing: 0.3em;
   text-transform: uppercase; color: var(--ml-ink-soft); margin: 6px 0 0;
@@ -217,13 +218,41 @@ a:hover { color: var(--lead-hi); }
   margin-top: 18px; font-size: 18px; line-height: 1.55; color: var(--ml-ink-soft);
   p { margin: 0 0 16px; }
 }
-.ml-feature__cta { margin-top: 4px; }
+.ml-feature__cta { margin-top: 22px; }
 .ml-feature__cap {
   font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase;
   color: var(--ml-ink-mute); margin-top: 14px; text-align: center;
 }
 .ml-isofig { width: 100%; max-width: 480px; height: auto; display: block; margin: 0 auto; }
 .ml-headerfig { width: 100%; max-width: 400px; height: auto; display: block; margin: 0 auto; overflow: visible; }
+
+// Fig. 1 white card (the prototype's `.card--soft`): mono label → figure → caption
+.ml-figcard {
+  margin: 0; background: var(--ml-paper-2); border: 1px solid var(--stroke-hair);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: 28px 24px; max-width: 440px;
+  .ml-isofig { max-width: 320px; }
+}
+.ml-figcard__label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ml-ink-mute); margin-bottom: 18px;
+}
+.ml-figcard__cap {
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--ml-ink-mute);
+  margin: 16px 0 0; line-height: 1.6;
+}
+
+// Photo: ink-outlined image with the caption sitting plainly below (no separator
+// line, minimal whitespace) — matches the prototype's location/contact photos.
+.ml-photo {
+  margin: 0;
+  img { display: block; width: 100%; height: auto;
+    border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+  figcaption {
+    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em;
+    color: var(--ml-ink-mute); margin-top: 12px; line-height: 1.5;
+  }
+}
+.ml-photo--campus { max-width: 560px; margin-inline: auto; }
 
 // Research page-header variant: no exon rule, larger title, roomier lede
 .ml-feature--head .ml-shead__rule { display: none; }
@@ -264,9 +293,9 @@ a:hover { color: var(--lead-hi); }
 #navbar-main {
   // brand lockup: splice-M glyph + Archivo wordmark
   .ml-brand { display: flex; align-items: center; gap: 0; padding-block: 4px; }
-  .ml-brand__mark { height: 34px; width: auto; display: block; flex: none; }
+  .ml-brand__mark { height: 40px; width: auto; display: block; flex: none; }
   .ml-brand__word {
-    font-family: var(--font-display); font-weight: 800; font-size: 24px;
+    font-family: var(--font-display); font-weight: 800; font-size: 26px;
     letter-spacing: -0.02em; line-height: 0.9; color: var(--ml-ink);
     margin-left: -0.10em; transform: translateY(-0.04em); white-space: nowrap;
     b { color: var(--lead); font-weight: 800; margin-left: 0.16em; }
@@ -414,12 +443,16 @@ a:hover { color: var(--lead-hi); }
 //  NEWS — date | headline rows on hairlines (our custom `news` view)
 // =============================================================================
 .news-item {
+  display: grid;
   grid-template-columns: 150px 1fr auto;
   gap: clamp(12px, 3vw, 32px);
   align-items: baseline;
   padding: 20px 4px;
   border-bottom: 1px solid var(--stroke-hair);
+  // Not links, but keep the subtle hover lift on both home + News page
+  transition: background var(--dur-base) var(--ease-out), padding-left var(--dur-base) var(--ease-out);
   &:first-child { border-top: 1px solid var(--stroke-hair); }
+  &:hover { background: rgba(255,255,255,0.5); padding-left: 12px; }
 }
 .news-date {
   font-family: var(--font-mono); font-size: 12.5px; font-weight: 500;
@@ -637,8 +670,6 @@ a:hover { color: var(--lead-hi); }
   i { display: none; }   // the literal "→" in the label carries the arrow
 }
 
-// Campus photo on the contact page sits centered with a sensible max width
-.ml-figure--campus { max-width: 560px; margin-inline: auto; }
 
 // =============================================================================
 //  FOOTER — night field, exon strand, CU Denver mark, Miró credit
@@ -649,7 +680,8 @@ a:hover { color: var(--lead-hi); }
 .site-footer.ml-footer {
   background: var(--ml-night);
   color: rgba(243,239,228,0.85);
-  border-top: var(--line-w) solid var(--ml-ink);
+  // No ink border-top: the exon strand below is the separator (avoids a double
+  // line above the transcript model).
   padding-block: 0;
   margin-top: auto;
 
@@ -670,7 +702,8 @@ a:hover { color: var(--lead-hi); }
     color: #fff; margin-left: -0.10em; transform: translateY(-0.04em); white-space: nowrap;
     b { color: var(--ml-red-hi); }
   }
-  .footer__blurb { margin-top: 16px; color: rgba(243,239,228,0.7); font-size: 14px; max-width: 34ch; line-height: 1.6; }
+  // `!important` to decisively beat the theme's `footer p { text-align:center }`.
+  .footer__blurb { margin-top: 16px; color: rgba(243,239,228,0.7); font-size: 14px; max-width: 34ch; line-height: 1.6; text-align: left !important; }
   .footer__cu { margin-top: 22px; img { display: block; height: 34px; width: auto; } }
 
   .footer__col h4 {

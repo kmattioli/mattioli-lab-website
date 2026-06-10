@@ -109,16 +109,15 @@
       { t: 'aster', x: 70, y: 658, r: 11, n: 3, col: INK, rot: 0.6, w: 2.5 }
     ];
 
-    // painterly cream ground, baked once
+    // Transparent ground (only the faint column guides are baked). The cream is
+    // NOT painted into the canvas — the hero's flat --ml-cream background shows
+    // through uniformly, so the canvas area and the letterbox margins on wide
+    // screens are the exact same color (no vertical seam where the canvas ends).
     const off = document.createElement('canvas');
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     off.width = W * dpr; off.height = H * dpr;
     const o = off.getContext('2d'); o.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const g = mulberry32(77);
-    o.fillStyle = '#f1ead7'; o.fillRect(0, 0, W, H);
-    for (let i = 0; i < 60; i++) { o.fillStyle = rgba('#d9cfb2', 0.05 + g() * 0.06); o.beginPath(); o.arc(g() * W, g() * H, 60 + g() * 180, 0, 7); o.fill(); }
     cols.forEach(function (c) { o.fillStyle = rgba(INK, 0.045); o.fillRect(c.x + c.w / 2 - 0.5, 172, 1, 520); });
-    for (let i = 0; i < 9000; i++) { o.fillStyle = rgba(INK, 0.012 + g() * 0.03); o.fillRect(g() * W, g() * H, 1, 1); }
 
     const ease = function (u) { return u < 0 ? 0 : u > 1 ? 1 : 1 - Math.pow(1 - u, 3); };
     const eb = function (u) { if (u <= 0) return 0; if (u >= 1) return 1; return (1 - Math.pow(1 - u, 2)) * (1 + 0.16 * Math.sin(u * Math.PI)); };
