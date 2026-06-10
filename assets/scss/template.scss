@@ -207,7 +207,10 @@ a:hover { color: var(--lead-hi); }
 // (decoupling the zoom from the full height), with the card filling below it.
 // The canvas ground is transparent, so there's no band edge — splice motifs up
 // top, card below, cream throughout. (Flair overlay stays hidden.)
-@media (max-width: 760px) {
+// Portrait only — in landscape the viewport is short/wide, so this full-screen
+// band + bottom flair would overflow and the flair would overlap the artwork.
+// Landscape falls back to the base hero (full composition, flair hidden).
+@media (max-width: 760px) and (orientation: portrait) {
   .ml-hero { min-height: calc(100svh - 50px); }
   .ml-hero__art {
     inset: auto; top: 0; left: 0; right: 0;
