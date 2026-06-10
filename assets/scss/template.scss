@@ -215,7 +215,7 @@ a:hover { color: var(--lead-hi); }
     object-fit: cover; object-position: center top;
   }
   // Card sits low so more of the top artwork shows, with a strip below it.
-  .ml-hero__inner { align-items: flex-end; padding-bottom: clamp(60px, 12vh, 100px); }
+  .ml-hero__inner { align-items: flex-end; padding-bottom: clamp(28px, 6vh, 56px); }
   // Softened blob/flair scatter across the bottom (no transcripts), behind the card.
   .ml-hero__fill {
     display: block; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.85;
