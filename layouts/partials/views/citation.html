@@ -1,10 +1,17 @@
 {{/* Mattioli Lab custom citation view — DS "year | title + authors · venue" row.
      Reuses HugoBlox's author renderer (highlights the site author in bold). */}}
 {{ $item := .item }}
+{{/* On the Publications archive, the title links straight to the source (PubMed/
+     DOI); on the home selected-pubs list it links to the internal page. */}}
+{{ $titleHref := $item.RelPermalink }}
+{{ $titleExternal := false }}
+{{ with .page.Type }}{{ if eq . "publication" }}
+  {{ with $item.Params.url_source }}{{ $titleHref = . }}{{ $titleExternal = true }}{{ end }}
+{{ end }}{{ end }}
 <div class="pub-row">
   <div class="pub-row__year">{{ $item.Date.Format "2006" }}</div>
   <div class="pub-row__body">
-    <h3 class="pub-row__title"><a href="{{ $item.RelPermalink }}">{{ $item.Title }}</a></h3>
+    <h3 class="pub-row__title"><a href="{{ $titleHref }}"{{ if $titleExternal }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a></h3>
     <p class="pub-row__authors">
       {{ partial "page_metadata_authors" $item }}
       {{ with $item.Params.publication }} · <span class="pub-row__venue">{{ . | markdownify }}</span>{{ end }}

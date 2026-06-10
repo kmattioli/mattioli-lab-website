@@ -6,11 +6,14 @@
 {{ $item := .item }}
 {{ $onArchive := false }}
 {{ with .page.Type }}{{ if eq . "post" }}{{ $onArchive = true }}{{ end }}{{ end }}
+{{/* Render the headline inline so `*journal*` italics show; `display_title`
+     overrides the plain `title` (which stays clean for SEO / page titles). */}}
+{{ $title := $item.RenderString (dict "display" "inline") ($item.Params.display_title | default $item.Title) }}
 
 {{ if $onArchive }}
   <div class="news-item">
     <div class="news-date">{{ $item.Date.Format (site.Params.locale.date_format | default "Jan 2, 2006") }}</div>
-    <div class="news-text">{{ $item.Title | emojify }}</div>
+    <div class="news-text">{{ $title }}</div>
     {{ with index $item.Params.tags 0 }}
       <div class="news-tag news-tag--{{ lower . }}">{{ . }}</div>
     {{ end }}
@@ -18,6 +21,6 @@
 {{ else }}
   <div class="news-item">
     <div class="news-date">{{ $item.Date.Format "Jan 2006" }}</div>
-    <div class="news-text">{{ $item.Title | emojify }}</div>
+    <div class="news-text">{{ $title }}</div>
   </div>
 {{ end }}

@@ -373,12 +373,26 @@ a:hover { color: var(--lead-hi); }
 .ml-cta {
   position: relative; overflow: hidden;
   background: var(--ml-night); color: #F3EFE4;
-  border-top: var(--line-w) solid var(--ml-ink); border-bottom: var(--line-w) solid var(--ml-ink);
+  // Only a top border (separates it from the cream section above). No bottom
+  // border: it abuts the dark footer, where an ink line reads as a faint seam
+  // above the exon strand.
+  border-top: var(--line-w) solid var(--ml-ink);
   padding: clamp(56px, 8vw, 100px) 0;
 }
-// Full-bleed CTA night field (same theme container caveat as the hero).
-.wg-cta.home-section { padding-block: 0; }
+// On the night field, bold/italic must stay light (the global .home-section
+// strong/em rules are dark ink, which vanishes on black).
+.ml-cta strong { color: #fff; }
+.ml-cta em { color: var(--ml-gold-hi); font-style: italic; }
+// Full-bleed CTA night field (same theme container caveat as the hero). The
+// section itself is set dark (not just the inner .ml-cta) so the theme's cream
+// section banding can't peek through a sub-pixel seam where it meets the dark
+// footer — which read as a faint divider line above the exon strand.
+.wg-cta.home-section { padding-block: 0; background: var(--ml-night) !important; }
+.wg-cta.home-section .home-section-bg { background: var(--ml-night); }
 .wg-cta > .container { max-width: none; padding-left: 0; padding-right: 0; }
+
+// Footer wrapper dark too, so the top of the footer never shows cream behind it.
+.page-footer { background: var(--ml-night); }
 .ml-cta__inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 28px; text-align: center; }
 .ml-cta__kicker {
   font-family: var(--font-mono); font-weight: 600; text-transform: uppercase; letter-spacing: 0.22em;
@@ -478,7 +492,7 @@ a:hover { color: var(--lead-hi); }
 // =============================================================================
 //  CONTACT / JOIN US — prose + "Current openings" card
 // =============================================================================
-.ml-join { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(28px, 5vw, 56px); align-items: start; }
+.ml-join { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(28px, 5vw, 56px); align-items: center; }
 .ml-opening {
   border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md);
   background: var(--ml-paper-2); overflow: hidden; box-shadow: var(--shadow-sm);
@@ -502,11 +516,46 @@ a:hover { color: var(--lead-hi); }
 .ml-opening__cu { height: 28px; width: auto; display: block; }
 @media (max-width: 820px) { .ml-join { grid-template-columns: 1fr; } }
 
-// Recruiting roles
-.ml-roles { display: grid; gap: 18px; }
-.ml-role { border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md); background: var(--ml-paper-2); padding: 22px 24px; }
-.ml-role h3 { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ml-ink); margin: 0 0 8px; }
+// Recruiting roles — three accent-topped cards (red / gold / blue), per prototype
+.ml-roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.ml-role {
+  display: flex; flex-direction: column;
+  border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md);
+  background: var(--ml-paper-2); overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.ml-role__accent { display: block; height: 6px; }
+.ml-role--red  .ml-role__accent { background: var(--ml-red); }
+.ml-role--gold .ml-role__accent { background: var(--ml-gold); }
+.ml-role--blue .ml-role__accent { background: var(--ml-blue); }
+.ml-role__body { padding: 18px 22px 22px; }
+.ml-role__label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ml-ink-mute); margin: 0 0 8px;
+}
+.ml-role h3 { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ml-ink); margin: 0 0 10px; }
 .ml-role p { font-size: 15px; line-height: 1.55; color: var(--ml-ink-soft); margin: 0; }
+@media (max-width: 860px) { .ml-roles { grid-template-columns: 1fr; } }
+
+// "Where to find us" — campus photo (left); right column is a compact map on
+// top with the address details below.
+.ml-find { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 40px); align-items: start; }
+.ml-find__photo { margin: 0; }
+.ml-find__info { display: flex; flex-direction: column; gap: 18px; }
+.ml-find__map { width: 100%; max-width: 380px; }
+.ml-find__map iframe {
+  display: block; width: 100%; height: 300px;
+  border: var(--line-w) solid var(--ml-ink); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+}
+.ml-find__addr {
+  font-style: normal; font-size: 15px; line-height: 1.65; color: var(--ml-ink-soft);
+  strong { color: var(--ml-ink); font-weight: 700; }
+  a { font-family: var(--font-mono); font-size: 13px; }
+}
+@media (max-width: 760px) {
+  .ml-find { grid-template-columns: 1fr; }
+  .ml-find__map { max-width: none; }
+  .ml-find__map iframe { height: 260px; }
+}
 
 // =============================================================================
 //  RESEARCH — numbered colored theme plates

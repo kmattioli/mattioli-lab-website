@@ -1,5 +1,6 @@
 ---
 title: Transcription factor isoform study published in Molecular Cell
+display_title: Transcription factor isoform study published in *Molecular Cell*
 date: 2025-04-01
 tags:
   - Paper
