@@ -9,15 +9,37 @@
   <canvas id="ml-hero-canvas" class="ml-hero__art" aria-hidden="true"></canvas>
   <div class="ml-hero__veil" aria-hidden="true"></div>
 
-  {{/* Phone-only Miró flair across the bottom of the full-height hero (CSS hides
-       it on desktop). Sits above the canvas, behind the lockup card. */}}
-  <div class="ml-hero__flair" aria-hidden="true">
-    <span style="left:6%;bottom:7%"><svg width="50" height="50" viewBox="0 0 64 64"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2.4"/><circle cx="40" cy="26" r="9" fill="var(--ml-red)" stroke="var(--ml-ink)" stroke-width="2"/><circle cx="24" cy="38" r="3" fill="var(--ml-ink)"/></svg></span>
-    <span style="right:8%;bottom:13%"><svg width="42" height="42" viewBox="0 0 64 64"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2.4"/><circle cx="40" cy="26" r="9" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2"/></svg></span>
-    <span style="right:26%;bottom:4%"><svg width="26" height="26" viewBox="-13 -13 26 26"><g stroke="var(--ml-red)" stroke-width="2.4" stroke-linecap="round"><line x1="0" y1="-11" x2="0" y2="11"/><line x1="-9.5" y1="5.5" x2="9.5" y2="-5.5"/><line x1="-9.5" y1="-5.5" x2="9.5" y2="5.5"/></g><circle r="2.2" fill="var(--ml-red)"/></svg></span>
-    <span style="left:34%;bottom:16%"><svg width="22" height="22" viewBox="-13 -13 26 26"><g stroke="var(--ml-gold)" stroke-width="2.4" stroke-linecap="round"><line x1="-11" y1="0" x2="11" y2="0"/><line x1="-7.8" y1="-7.8" x2="7.8" y2="7.8"/><line x1="0" y1="-11" x2="0" y2="11"/><line x1="7.8" y1="-7.8" x2="-7.8" y2="7.8"/></g></svg></span>
-    <span style="left:20%;bottom:3%"><svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="3.4" fill="var(--ml-blue)"/></svg></span>
-    <span style="right:14%;bottom:22%"><svg width="11" height="11" viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="3" fill="var(--ml-ink)"/></svg></span>
+  {{/* Phone-only fill band: more transcript models + protein blobs across the
+       bottom of the full-height hero, at the same scale as the canvas artwork,
+       so the lower area below the card doesn't read empty. Hidden on desktop. */}}
+  <div class="ml-hero__fill" aria-hidden="true">
+    <svg viewBox="0 0 390 230" preserveAspectRatio="xMidYMax slice">
+      {{/* transcript strand 1 */}}
+      <g>
+        <line x1="28" y1="120" x2="362" y2="120" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
+        <path d="M48 116 L52 120 L48 124 M88 116 L92 120 L88 124 M128 116 L132 120 L128 124 M168 116 L172 120 L168 124 M208 116 L212 120 L208 124 M248 116 L252 120 L248 124 M288 116 L292 120 L288 124 M328 116 L332 120 L328 124" stroke="var(--ml-ink)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.32"/>
+        <path d="M90 120 Q120 98 150 120" fill="none" stroke="var(--ml-blue)" stroke-width="1.8"/>
+        <path d="M210 120 Q240 100 270 120" fill="none" stroke="var(--ml-gold)" stroke-width="1.8"/>
+        <rect x="60"  y="113" width="26" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
+        <rect x="150" y="113" width="18" height="14" rx="3" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2"/>
+        <rect x="270" y="113" width="26" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+      </g>
+      {{/* transcript strand 2 */}}
+      <g>
+        <line x1="70" y1="190" x2="320" y2="190" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
+        <path d="M90 186 L94 190 L90 194 M130 186 L134 190 L130 194 M170 186 L174 190 L170 194 M210 186 L214 190 L210 194 M250 186 L254 190 L250 194 M290 186 L294 190 L290 194" stroke="var(--ml-ink)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.3"/>
+        <path d="M120 190 Q150 170 180 190" fill="none" stroke="var(--ml-red)" stroke-width="1.6"/>
+        <rect x="100" y="183" width="24" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
+        <rect x="248" y="183" width="24" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+      </g>
+      {{/* protein blobs */}}
+      <g transform="translate(40,34) scale(0.62)"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="3.4"/><circle cx="40" cy="26" r="9" fill="var(--ml-red)" stroke="var(--ml-ink)" stroke-width="3"/><circle cx="24" cy="38" r="3.4" fill="var(--ml-ink)"/></g>
+      <g transform="translate(300,28) scale(0.72)"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="3"/><circle cx="40" cy="26" r="9" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2.6"/></g>
+      {{/* scattered marks */}}
+      <g transform="translate(196,46)" stroke="var(--ml-red)" stroke-width="2.4" stroke-linecap="round"><line x1="-10" y1="0" x2="10" y2="0"/><line x1="0" y1="-10" x2="0" y2="10"/><line x1="-7" y1="-7" x2="7" y2="7"/><line x1="-7" y1="7" x2="7" y2="-7"/></g>
+      <circle cx="150" cy="56" r="3.4" fill="var(--ml-gold)"/>
+      <circle cx="356" cy="150" r="3.2" fill="var(--ml-red)"/>
+    </svg>
   </div>
 
   <div class="ml-hero__inner">
