@@ -124,14 +124,14 @@
 
     function paintFrame(t) {
       let fg = 1;
-      if (window.__heroLoop) { const CYCLE = 12, FADE = 2.2; t = t % CYCLE; if (t > CYCLE - FADE) fg = Math.max(0, (CYCLE - t) / FADE); }
+      if (window.__heroLoop) { const CYCLE = 18, FADE = 2.8; t = t % CYCLE; if (t > CYCLE - FADE) fg = Math.max(0, (CYCLE - t) / FADE); }
       ctx.clearRect(0, 0, W, H);
       ctx.drawImage(off, 0, 0, W, H);
       ctx.globalAlpha = fg;
       ctx.lineCap = 'round'; ctx.lineJoin = 'round';
 
-      const SWEEP = 1.9;
-      const frontX = minX + (maxX - minX) * ease(Math.min(1, Math.max(0, (t - 0.15) / SWEEP)));
+      const SWEEP = 3.8;  // slower left-to-right draw-in of the introns/exons
+      const frontX = minX + (maxX - minX) * ease(Math.min(1, Math.max(0, (t - 0.25) / SWEEP)));
 
       models.forEach(function (m) {
         const inc = m.inc.map(function (c) { return cols[c]; });
@@ -156,9 +156,9 @@
         });
       });
 
-      const arcBase = 0.15 + SWEEP + 0.25;
+      const arcBase = 0.25 + SWEEP + 0.3;
       allArcs.forEach(function (ar, idx) {
-        const ap = ease(Math.min(1, Math.max(0, (t - (arcBase + idx * 0.08)) / 0.5)));
+        const ap = ease(Math.min(1, Math.max(0, (t - (arcBase + idx * 0.12)) / 0.7)));
         if (ap <= 0) return;
         const a = cols[ar.a], b = cols[ar.b];
         const ax = a.x + a.w, bx = b.x, ay = ar.y - 12, lift = Math.min(56, 18 + (bx - ax) * 0.12);
@@ -171,7 +171,7 @@
       });
 
       motifs.forEach(function (m, i) {
-        const mp = ease(Math.min(1, Math.max(0, (t - 0.15) / SWEEP)));
+        const mp = ease(Math.min(1, Math.max(0, (t - 0.25) / SWEEP)));
         const front2 = minX + (maxX - minX + 220) * mp;
         const ap = eb(Math.min(1, Math.max(0, (front2 - m.x) / 80)));
         if (ap <= 0) return;
