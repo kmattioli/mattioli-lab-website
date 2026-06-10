@@ -5,7 +5,7 @@
 {{ partial "page_header.html" . }}
 <div class="universal-wrapper">
   {{ with .Content }}<div class="article-style ml-page-lede">{{ . }}</div>{{ end }}
-  <div class="ml-divider"><img src="/img/intron-divider.svg" alt="" /></div>
+  <div class="ml-divider"><img src="{{ `img/intron-divider.svg` | relURL }}" alt="" /></div>
   <div class="pub-list">
     {{ range $index, $item := .Pages.ByDate.Reverse }}
       {{ partial "functions/render_view" (dict "page" $ "item" . "view" ($.Params.view | default "citation") "index" $index) }}

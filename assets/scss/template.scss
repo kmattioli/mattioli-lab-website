@@ -111,7 +111,7 @@ a:hover { color: var(--lead-hi); }
     width: 220px;
     height: 17px;
     margin-bottom: 14px;
-    background: url("/img/exon-rule.svg") left center / contain no-repeat;
+    background: url("../img/exon-rule.svg") left center / contain no-repeat;
   }
   &.text-center { align-items: flex-start; text-align: left; }
 
@@ -207,7 +207,7 @@ a:hover { color: var(--lead-hi); }
 .ml-feature__text, .ml-feature__media { min-width: 0; }
 .ml-shead__rule {
   display: block; width: 220px; max-width: 100%; height: 17px; margin-bottom: 14px;
-  background: url("/img/exon-rule.svg") left center / contain no-repeat;
+  background: url("../img/exon-rule.svg") left center / contain no-repeat;
 }
 .ml-shead__kicker { @extend %kicker; font-size: 13px; margin: 0 0 14px; }
 .ml-shead__title {
