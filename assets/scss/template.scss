@@ -201,21 +201,15 @@ a:hover { color: var(--lead-hi); }
 .ml-hero__lede { font-size: 15px; line-height: 1.5; color: var(--ml-ink-soft); max-width: 62ch; margin: 0; }
 .ml-hero__cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
 
-// ---- Phones: a full-height hero -------------------------------------------
-// The portrait box would shrink the 2:1 artwork to a thin strip with `contain`,
-// so fill it with `cover`. Make the hero fill the viewport below the 50px sticky
-// nav, drop the card toward the bottom (so the top blobs/asterisks/first
-// transcript read above it), and sprinkle flair across the bottom. Placed after
-// the base hero rules so these win on small screens.
+// ---- Phones --------------------------------------------------------------
+// Happy medium: `cover` (so the artwork always fills — no dead space) at a
+// MODERATE height. On a portrait box a shorter hero makes `cover` zoom out,
+// showing more of the composition width at a smaller model scale than a tall
+// cover would; the centered card overlays it with blobs/transcripts around.
+// (Flair overlay stays hidden — it was colliding with the artwork/card.)
 @media (max-width: 760px) {
-  .ml-hero { min-height: calc(100svh - 50px); }
-  .ml-hero__art { object-fit: cover; object-position: center top; }
-  .ml-hero__inner { align-items: flex-end; padding-bottom: clamp(64px, 15vh, 140px); }
-  .ml-hero__flair {
-    display: block; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    span { position: absolute; }
-    svg { display: block; }
-  }
+  .ml-hero { min-height: clamp(430px, 112vw, 540px); }
+  .ml-hero__art { object-fit: cover; object-position: center; }
 }
 
 // Two-column feature block (alternating text / figure)

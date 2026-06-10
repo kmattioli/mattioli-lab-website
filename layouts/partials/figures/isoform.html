@@ -2,7 +2,8 @@
      design-reference/site/isoform-fig.jsx (IsoFigFork). One gene forks into
      isoform A (cassette exon kept) and B (skipped), each yielding a protein with
      different domains and DNA-binding motif → Δ molecular property → Δ cellular
-     function? Inlined so it inherits the page's IBM Plex Mono + DS color vars. */}}
+     function? Reveals top-to-bottom (pre-mRNA → fork → mRNAs → proteins → Δ's)
+     when it scrolls into view; honours prefers-reduced-motion. */}}
 <svg class="ml-isofig" viewBox="0 0 360 300" role="img"
      aria-label="One pre-mRNA forking into two isoforms with different protein outputs and a different cellular function">
   <style>
@@ -12,12 +13,24 @@
     .ml-isofig .seq { font-size: 13px; letter-spacing: 2.5px; font-weight: 600; fill: var(--ml-ink); }
     .ml-isofig .cap { font-size: 12.5px; letter-spacing: 0.5px; font-weight: 600; fill: var(--ml-ink); }
     .ml-isofig .qn  { font-size: 12.5px; letter-spacing: 0.5px; font-weight: 700; fill: var(--lead); }
+
+    /* Sequential vertical reveal (top → bottom), triggered by .is-visible */
+    .ml-isofig .iso-stage { opacity: 0; transform: translateY(-8px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .ml-isofig.is-visible .iso-stage { opacity: 1; transform: translateY(0); }
+    .ml-isofig.is-visible .iso-s1 { transition-delay: 0.20s; }
+    .ml-isofig.is-visible .iso-s2 { transition-delay: 1.10s; }
+    .ml-isofig.is-visible .iso-s3 { transition-delay: 2.10s; }
+    .ml-isofig.is-visible .iso-s4 { transition-delay: 3.20s; }
+    .ml-isofig.is-visible .iso-s5 { transition-delay: 4.30s; }
+    .ml-isofig.is-visible .iso-s6 { transition-delay: 5.20s; }
+    @media (prefers-reduced-motion: reduce) {
+      .ml-isofig .iso-stage { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
   </style>
 
-  <text class="tag" x="180" y="14" text-anchor="middle">pre-mRNA · one gene</text>
-
-  <!-- ===== pre-mRNA transcript (blue splice arcs above, red skip arc below) ===== -->
-  <g>
+  <!-- Stage 1 · pre-mRNA (blue splice arcs above, red skip arc below) -->
+  <g class="iso-stage iso-s1">
+    <text class="tag" x="180" y="14" text-anchor="middle">pre-mRNA · one gene</text>
     <line x1="104" y1="40" x2="256" y2="40" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
     <path d="M112 36.6 L115.4 40 L112 43.4 M131 36.6 L134.4 40 L131 43.4 M150 36.6 L153.4 40 L150 43.4 M169 36.6 L172.4 40 L169 43.4 M188 36.6 L191.4 40 L188 43.4 M207 36.6 L210.4 40 L207 43.4 M226 36.6 L229.4 40 L226 43.4 M245 36.6 L248.4 40 L245 43.4"
           stroke="var(--ml-ink)" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.32"/>
@@ -29,51 +42,81 @@
     <rect x="220" y="33" width="32" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
   </g>
 
-  <!-- fork -->
-  <g stroke="var(--ml-ink)" stroke-width="1.8" fill="var(--ml-ink)">
+  <!-- Stage 2 · fork -->
+  <g class="iso-stage iso-s2" stroke="var(--ml-ink)" stroke-width="1.8" fill="var(--ml-ink)">
     <path d="M 180 76 V 83 H 92 V 91" fill="none"/>
     <path d="M 180 76 V 83 H 268 V 91" fill="none"/>
     <path d="M 92 94 l -3.5 -5.5 h 7 z"/>
     <path d="M 268 94 l -3.5 -5.5 h 7 z"/>
   </g>
 
-  <!-- ===== branch A — cassette exon kept ===== -->
-  <g>
-    <line x1="53" y1="110" x2="131" y2="110" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
-    <rect x="62"  y="103" width="22" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
-    <rect x="84"  y="103" width="16" height="14" rx="3" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2"/>
-    <rect x="100" y="103" width="22" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+  <!-- Stage 3 · the two spliced mRNAs (A keeps the cassette exon, B skips it) -->
+  <g class="iso-stage iso-s3">
+    <g>
+      <line x1="53" y1="110" x2="131" y2="110" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
+      <rect x="62"  y="103" width="22" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
+      <rect x="84"  y="103" width="16" height="14" rx="3" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2"/>
+      <rect x="100" y="103" width="22" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+    </g>
+    <g stroke="var(--ml-ink)" stroke-width="1.8" fill="var(--ml-ink)"><line x1="92" y1="124" x2="92" y2="138"/><path d="M92 141 l-3.5 -5.5 h7 z"/></g>
+    <text class="lbl" x="92" y="152" text-anchor="middle">isoform A</text>
+    <g>
+      <line x1="231" y1="110" x2="305" y2="110" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
+      <rect x="240" y="103" width="28" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
+      <rect x="268" y="103" width="28" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+    </g>
+    <g stroke="var(--ml-ink)" stroke-width="1.8" fill="var(--ml-ink)"><line x1="268" y1="124" x2="268" y2="138"/><path d="M268 141 l-3.5 -5.5 h7 z"/></g>
+    <text class="lbl" x="268" y="152" text-anchor="middle">isoform B</text>
   </g>
-  <g stroke="var(--ml-ink)" stroke-width="1.8" fill="var(--ml-ink)"><line x1="92" y1="124" x2="92" y2="138"/><path d="M92 141 l-3.5 -5.5 h7 z"/></g>
-  <text class="lbl" x="92" y="152" text-anchor="middle">isoform A</text>
-  <g stroke="var(--ml-ink)" stroke-width="1.6" fill="none" opacity="0.38">
-    <path d="M 58 211 q 8.5 -7 17 0 t 17 0 t 17 0 t 17 0"/>
-    <path d="M 58 211 q 8.5 7 17 0 t 17 0 t 17 0 t 17 0"/>
-  </g>
-  <ellipse cx="92"  cy="186" rx="27" ry="18" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2.2"/>
-  <ellipse cx="111" cy="174" rx="13" ry="12" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
-  <ellipse cx="73"  cy="175" rx="12.5" ry="12" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2"/>
-  <text class="seq" x="92" y="226" text-anchor="middle">TG<tspan fill="var(--ml-blue)">A</tspan>CGT</text>
 
-  <!-- ===== branch B — cassette exon skipped ===== -->
-  <g>
-    <line x1="231" y1="110" x2="305" y2="110" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
-    <rect x="240" y="103" width="28" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
-    <rect x="268" y="103" width="28" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+  <!-- Stage 4 · the two proteins on DNA + their binding motifs -->
+  <g class="iso-stage iso-s4">
+    <g stroke="var(--ml-ink)" stroke-width="1.6" fill="none" opacity="0.38">
+      <path d="M 58 211 q 8.5 -7 17 0 t 17 0 t 17 0 t 17 0"/>
+      <path d="M 58 211 q 8.5 7 17 0 t 17 0 t 17 0 t 17 0"/>
+    </g>
+    <ellipse cx="92"  cy="186" rx="27" ry="18" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2.2"/>
+    <ellipse cx="111" cy="174" rx="13" ry="12" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+    <ellipse cx="73"  cy="175" rx="12.5" ry="12" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2"/>
+    <text class="seq" x="92" y="226" text-anchor="middle">TG<tspan fill="var(--ml-blue)">A</tspan>CGT</text>
+    <g stroke="var(--ml-ink)" stroke-width="1.6" fill="none" opacity="0.38">
+      <path d="M 234 211 q 8.5 -7 17 0 t 17 0 t 17 0 t 17 0"/>
+      <path d="M 234 211 q 8.5 7 17 0 t 17 0 t 17 0 t 17 0"/>
+    </g>
+    <ellipse cx="268" cy="186" rx="27" ry="18" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2.2"/>
+    <ellipse cx="287" cy="174" rx="13" ry="12" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+    <ellipse cx="249" cy="175" rx="12.5" ry="12" fill="none" stroke="var(--ml-ink)" stroke-width="1.3" stroke-dasharray="3 3" opacity="0.4"/>
+    <text class="seq" x="268" y="226" text-anchor="middle">TG<tspan fill="var(--ml-red)">C</tspan>CGT</text>
   </g>
-  <g stroke="var(--ml-ink)" stroke-width="1.8" fill="var(--ml-ink)"><line x1="268" y1="124" x2="268" y2="138"/><path d="M268 141 l-3.5 -5.5 h7 z"/></g>
-  <text class="lbl" x="268" y="152" text-anchor="middle">isoform B</text>
-  <g stroke="var(--ml-ink)" stroke-width="1.6" fill="none" opacity="0.38">
-    <path d="M 234 211 q 8.5 -7 17 0 t 17 0 t 17 0 t 17 0"/>
-    <path d="M 234 211 q 8.5 7 17 0 t 17 0 t 17 0 t 17 0"/>
-  </g>
-  <ellipse cx="268" cy="186" rx="27" ry="18" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2.2"/>
-  <ellipse cx="287" cy="174" rx="13" ry="12" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
-  <ellipse cx="249" cy="175" rx="12.5" ry="12" fill="none" stroke="var(--ml-ink)" stroke-width="1.3" stroke-dasharray="3 3" opacity="0.4"/>
-  <text class="seq" x="268" y="226" text-anchor="middle">TG<tspan fill="var(--ml-red)">C</tspan>CGT</text>
 
-  <!-- ===== outcome ===== -->
-  <text class="cap" x="180" y="250" text-anchor="middle">&#916; molecular property</text>
-  <g stroke="var(--ml-ink)" stroke-width="1.8" fill="var(--ml-ink)"><line x1="180" y1="258" x2="180" y2="272"/><path d="M180 275 l-3.5 -5.5 h7 z"/></g>
-  <text class="qn" x="180" y="290" text-anchor="middle">&#916; cellular function?</text>
+  <!-- Stage 5 · Δ molecular property -->
+  <g class="iso-stage iso-s5">
+    <text class="cap" x="180" y="250" text-anchor="middle">&#916; molecular property</text>
+    <g stroke="var(--ml-ink)" stroke-width="1.8" fill="var(--ml-ink)"><line x1="180" y1="258" x2="180" y2="272"/><path d="M180 275 l-3.5 -5.5 h7 z"/></g>
+  </g>
+
+  <!-- Stage 6 · Δ cellular function? -->
+  <g class="iso-stage iso-s6">
+    <text class="qn" x="180" y="290" text-anchor="middle">&#916; cellular function?</text>
+  </g>
 </svg>
+<script>
+(function () {
+  if (window.__mlIsoReveal) return; window.__mlIsoReveal = true;
+  function go() {
+    var figs = document.querySelectorAll('.ml-isofig');
+    if (!figs.length) return;
+    if (!('IntersectionObserver' in window)) {
+      figs.forEach(function (f) { f.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.4 });
+    figs.forEach(function (f) { io.observe(f); });
+  }
+  if (document.readyState !== 'loading') go(); else document.addEventListener('DOMContentLoaded', go);
+})();
+</script>
