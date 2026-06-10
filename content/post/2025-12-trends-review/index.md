@@ -1,5 +1,6 @@
 ---
 title: Invited review out in Trends in Genetics
+display_title: Invited review out in *Trends in Genetics*
 date: 2025-12-01
 tags:
   - Paper

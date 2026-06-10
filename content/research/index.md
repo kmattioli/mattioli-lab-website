@@ -7,7 +7,7 @@ sections:
   - block: feature
     content:
       title: How isoforms shape cancer.
-      subtitle: Research · Splicing · Gene regulation · Cancer
+      subtitle: 'Research: Splicing · Gene regulation · Cancer'
       figure: header-cells
       text: |
         Genes are often described as the functional units of the genome, but this is a
