@@ -45,7 +45,7 @@ sections:
       text: |
         <div class="ml-find">
           <figure class="ml-photo ml-find__photo">
-            <img src="/img/denver-campus.jpg" alt="University of Colorado Denver · Auraria Campus in downtown Denver, CO" loading="lazy">
+            <img src="../img/denver-campus.jpg" alt="University of Colorado Denver · Auraria Campus in downtown Denver, CO" loading="lazy">
             <figcaption>University of Colorado Denver · Auraria Campus in downtown Denver, CO</figcaption>
           </figure>
           <div class="ml-find__info">

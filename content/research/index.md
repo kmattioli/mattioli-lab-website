@@ -65,7 +65,7 @@ sections:
   - block: markdown
     content:
       text: |
-        <div class="ml-divider ml-divider--center"><img src="/img/intron-divider.svg" alt="" /></div>
+        <div class="ml-divider ml-divider--center"><img src="../img/intron-divider.svg" alt="" /></div>
 
         {{% cta cta_link="../publication/" cta_text="See our publications →" %}}
     design:
