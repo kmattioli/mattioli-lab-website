@@ -170,8 +170,8 @@
         if (ap > 0.95) { ctx.fillStyle = INK; ctx.beginPath(); ctx.arc(cx, cy, 3.6, 0, 7); ctx.fill(); }
       });
 
+      const mp = ease(Math.min(1, Math.max(0, (t - 0.25) / SWEEP)));
       motifs.forEach(function (m, i) {
-        const mp = ease(Math.min(1, Math.max(0, (t - 0.25) / SWEEP)));
         const front2 = minX + (maxX - minX + 220) * mp;
         const ap = eb(Math.min(1, Math.max(0, (front2 - m.x) / 80)));
         if (ap <= 0) return;
@@ -189,7 +189,36 @@
       });
 
       ctx.globalAlpha = 1;
+      updateFlair(mp, fg);
     }
+
+    // ---- DOM flair (phone): popped in lockstep with the canvas sweep ----------
+    // The mobile fill blobs/asterisks are real DOM spans; drive their scale/opacity
+    // from the same sweep progress (mp) and loop fade (fg) so they're frame-locked
+    // to the artwork above. Each span pops as the sweep crosses its x position.
+    const heroEl = canvas.closest('.ml-hero');
+    let flairEls = [], flairFx = [];
+    function measureFlair() {
+      if (!heroEl) return;
+      flairEls = Array.prototype.slice.call(heroEl.querySelectorAll('.ml-hero__fill span'));
+      const hr = heroEl.getBoundingClientRect();
+      flairFx = flairEls.map(function (el) {
+        el.style.transformOrigin = 'center';
+        const r = el.getBoundingClientRect();
+        return hr.width ? (r.left + r.width / 2 - hr.left) / hr.width : 0;
+      });
+    }
+    function updateFlair(mp, fg) {
+      for (let i = 0; i < flairEls.length; i++) {
+        const ap = eb(Math.min(1, Math.max(0, (mp - flairFx[i] * 0.78) / 0.2)));
+        const el = flairEls[i];
+        el.style.opacity = (fg * Math.min(1, ap * 1.6)).toFixed(3);
+        el.style.transform = 'scale(' + ap.toFixed(3) + ')';
+      }
+    }
+    measureFlair();
+    window.addEventListener('resize', measureFlair);
+    window.addEventListener('load', measureFlair);
 
     window.__heroLoop = true;
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
