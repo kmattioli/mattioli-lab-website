@@ -202,14 +202,19 @@ a:hover { color: var(--lead-hi); }
 .ml-hero__cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
 
 // ---- Phones --------------------------------------------------------------
-// Happy medium: `cover` (so the artwork always fills — no dead space) at a
-// MODERATE height. On a portrait box a shorter hero makes `cover` zoom out,
-// showing more of the composition width at a smaller model scale than a tall
-// cover would; the centered card overlays it with blobs/transcripts around.
-// (Flair overlay stays hidden — it was colliding with the artwork/card.)
+// Full-screen hero (artwork as tall as the viewport, so nothing below peeks),
+// but the artwork is a tall band in the UPPER portion at a moderate cover scale
+// (decoupling the zoom from the full height), with the card filling below it.
+// The canvas ground is transparent, so there's no band edge — splice motifs up
+// top, card below, cream throughout. (Flair overlay stays hidden.)
 @media (max-width: 760px) {
-  .ml-hero { min-height: clamp(430px, 112vw, 540px); }
-  .ml-hero__art { object-fit: cover; object-position: center; }
+  .ml-hero { min-height: calc(100svh - 50px); }
+  .ml-hero__art {
+    inset: auto; top: 0; left: 0; right: 0;
+    height: clamp(400px, 64svh, 580px) !important;   // override the base height:100%
+    object-fit: cover; object-position: center top;
+  }
+  .ml-hero__inner { align-items: flex-end; padding-bottom: clamp(16px, 4vh, 40px); }
 }
 
 // Two-column feature block (alternating text / figure)
