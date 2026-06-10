@@ -217,10 +217,11 @@ a:hover { color: var(--lead-hi); }
   // Lift the card off the bottom so the fill band has room below it.
   .ml-hero__inner { align-items: flex-end; padding-bottom: clamp(150px, 30svh, 250px); }
   .ml-hero__card { background: rgba(255,255,255,0.92); }
-  // Bottom fill band (more transcripts + blobs) behind the card.
+  // Bottom fill band (more transcripts + blobs) behind the card. Softened to
+  // match the (veil-dimmed) canvas artwork rather than reading fully opaque.
   .ml-hero__fill {
     display: block; position: absolute; left: 0; right: 0; bottom: 0;
-    height: clamp(180px, 32svh, 270px); z-index: 1; pointer-events: none;
+    height: clamp(180px, 32svh, 270px); z-index: 1; pointer-events: none; opacity: 0.85;
   }
   .ml-hero__fill svg { width: 100%; height: 100%; display: block; }
 }

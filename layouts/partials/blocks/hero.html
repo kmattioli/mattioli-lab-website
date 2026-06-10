@@ -9,36 +9,38 @@
   <canvas id="ml-hero-canvas" class="ml-hero__art" aria-hidden="true"></canvas>
   <div class="ml-hero__veil" aria-hidden="true"></div>
 
-  {{/* Phone-only fill band: more transcript models + protein blobs across the
-       bottom of the full-height hero, at the same scale as the canvas artwork,
-       so the lower area below the card doesn't read empty. Hidden on desktop. */}}
+  {{/* Phone-only fill band: continues the hero's transcript models, then the
+       protein blobs after them. Drawn in the canvas's coordinate scale (viewBox
+       slice ≈ the hero's display scale) so stroke weights/box sizes match; ink
+       splice arcs end in a dot and always hop a gap (a skipped exon). Softened
+       opacity to sit with the (veiled) canvas artwork. Hidden on desktop. */}}
   <div class="ml-hero__fill" aria-hidden="true">
-    <svg viewBox="0 0 390 230" preserveAspectRatio="xMidYMax slice">
-      {{/* transcript strand 1 */}}
+    <svg viewBox="0 0 560 320" preserveAspectRatio="xMidYMax slice">
+      {{/* transcript strand 1 — two skip arcs over gapped exons */}}
       <g>
-        <line x1="28" y1="120" x2="362" y2="120" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
-        <path d="M48 116 L52 120 L48 124 M88 116 L92 120 L88 124 M128 116 L132 120 L128 124 M168 116 L172 120 L168 124 M208 116 L212 120 L208 124 M248 116 L252 120 L248 124 M288 116 L292 120 L288 124 M328 116 L332 120 L328 124" stroke="var(--ml-ink)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.32"/>
-        <path d="M90 120 Q120 98 150 120" fill="none" stroke="var(--ml-blue)" stroke-width="1.8"/>
-        <path d="M210 120 Q240 100 270 120" fill="none" stroke="var(--ml-gold)" stroke-width="1.8"/>
-        <rect x="60"  y="113" width="26" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
-        <rect x="150" y="113" width="18" height="14" rx="3" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2"/>
-        <rect x="270" y="113" width="26" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+        <line x1="40" y1="92" x2="540" y2="92" stroke="var(--ml-ink)" stroke-width="1.8" opacity="0.82"/>
+        <path d="M61 89 L64 92 L61 95 M105 89 L108 92 L105 95 M149 89 L152 92 L149 95 M193 89 L196 92 L193 95 M237 89 L240 92 L237 95 M325 89 L328 92 L325 95 M369 89 L372 92 L369 95 M413 89 L416 92 L413 95 M501 89 L504 92 L501 95" stroke="var(--ml-ink)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.3"/>
+        <path d="M114 80 Q182 46 250 80" fill="none" stroke="var(--ml-ink)" stroke-width="1.6"/>
+        <circle cx="182" cy="46" r="3.4" fill="var(--ml-ink)"/>
+        <path d="M280 80 Q375 39 470 80" fill="none" stroke="var(--ml-ink)" stroke-width="1.6"/>
+        <circle cx="375" cy="39" r="3.4" fill="var(--ml-ink)"/>
+        <rect x="70"  y="85"   width="44" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="1.8"/>
+        <rect x="250" y="79.5" width="30" height="25" rx="3" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="1.8"/>
+        <rect x="470" y="85"   width="44" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="1.8"/>
       </g>
-      {{/* transcript strand 2 */}}
+      {{/* transcript strand 2 — one long skip arc between the terminal exons */}}
       <g>
-        <line x1="70" y1="190" x2="320" y2="190" stroke="var(--ml-ink)" stroke-width="2" opacity="0.8"/>
-        <path d="M90 186 L94 190 L90 194 M130 186 L134 190 L130 194 M170 186 L174 190 L170 194 M210 186 L214 190 L210 194 M250 186 L254 190 L250 194 M290 186 L294 190 L290 194" stroke="var(--ml-ink)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.3"/>
-        <path d="M120 190 Q150 170 180 190" fill="none" stroke="var(--ml-red)" stroke-width="1.6"/>
-        <rect x="100" y="183" width="24" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="2"/>
-        <rect x="248" y="183" width="24" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="2"/>
+        <line x1="96" y1="170" x2="484" y2="170" stroke="var(--ml-ink)" stroke-width="1.8" opacity="0.82"/>
+        <path d="M117 167 L120 170 L117 173 M161 167 L164 170 L161 173 M205 167 L208 170 L205 173 M249 167 L252 170 L249 173 M293 167 L296 170 L293 173 M337 167 L340 170 L337 173 M381 167 L384 170 L381 173 M425 167 L428 170 L425 173 M469 167 L472 170 L469 173" stroke="var(--ml-ink)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.3"/>
+        <path d="M150 158 Q290 106 430 158" fill="none" stroke="var(--ml-ink)" stroke-width="1.6"/>
+        <circle cx="290" cy="106" r="3.4" fill="var(--ml-ink)"/>
+        <rect x="110" y="163" width="40" height="14" rx="3" fill="var(--ml-red)"  stroke="var(--ml-ink)" stroke-width="1.8"/>
+        <rect x="430" y="163" width="40" height="14" rx="3" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="1.8"/>
       </g>
-      {{/* protein blobs */}}
-      <g transform="translate(40,34) scale(0.62)"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="3.4"/><circle cx="40" cy="26" r="9" fill="var(--ml-red)" stroke="var(--ml-ink)" stroke-width="3"/><circle cx="24" cy="38" r="3.4" fill="var(--ml-ink)"/></g>
-      <g transform="translate(300,28) scale(0.72)"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="3"/><circle cx="40" cy="26" r="9" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="2.6"/></g>
-      {{/* scattered marks */}}
-      <g transform="translate(196,46)" stroke="var(--ml-red)" stroke-width="2.4" stroke-linecap="round"><line x1="-10" y1="0" x2="10" y2="0"/><line x1="0" y1="-10" x2="0" y2="10"/><line x1="-7" y1="-7" x2="7" y2="7"/><line x1="-7" y1="7" x2="7" y2="-7"/></g>
-      <circle cx="150" cy="56" r="3.4" fill="var(--ml-gold)"/>
-      <circle cx="356" cy="150" r="3.2" fill="var(--ml-red)"/>
+      {{/* protein blobs — after the transcripts */}}
+      <g transform="translate(96,232) scale(0.78)"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="1.6" vector-effect="non-scaling-stroke"/><circle cx="40" cy="26" r="9" fill="var(--ml-red)" stroke="var(--ml-ink)" stroke-width="1.3" vector-effect="non-scaling-stroke"/><circle cx="24" cy="38" r="3" fill="var(--ml-ink)"/></g>
+      <g transform="translate(252,240) scale(0.92)"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="1.6" vector-effect="non-scaling-stroke"/><circle cx="40" cy="26" r="9" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="1.3" vector-effect="non-scaling-stroke"/></g>
+      <g transform="translate(440,230) scale(0.74)"><path d="M32 7 C44 6 57 14 56 28 C55 41 47 52 33 54 C18 56 7 47 8 32 C9 18 20 8 32 7 Z" fill="var(--ml-red)" stroke="var(--ml-ink)" stroke-width="1.6" vector-effect="non-scaling-stroke"/><circle cx="40" cy="26" r="9" fill="var(--ml-blue)" stroke="var(--ml-ink)" stroke-width="1.3" vector-effect="non-scaling-stroke"/><circle cx="22" cy="38" r="7" fill="var(--ml-gold)" stroke="var(--ml-ink)" stroke-width="1.3" vector-effect="non-scaling-stroke"/></g>
     </svg>
   </div>
 
