@@ -1,6 +1,6 @@
 ---
-title: The Mattioli Lab is opening at the University of Colorado
-date: 2026-01-15
+title: The Mattioli Lab is officially opening at the University of Colorado Denver!
+date: 2026-10-01
 tags:
   - Lab
 summary: Launching in 2026 and recruiting at all levels.
