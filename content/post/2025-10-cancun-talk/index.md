@@ -1,5 +1,5 @@
 ---
-title: Talk at the Rules of Protein–DNA Recognition meeting
+title: Kaia presented at the Rules of Protein–DNA Recognition meeting in Cancún
 date: 2025-10-15
 tags:
   - Talk
