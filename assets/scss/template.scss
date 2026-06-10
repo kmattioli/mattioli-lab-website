@@ -160,6 +160,13 @@ a:hover { color: var(--lead-hi); }
   // `top` pulls the blobs up close under the navbar (no big cream gap on top).
   object-fit: contain; object-position: center top;
 }
+// On phones the box is portrait, so `contain` would shrink the 2:1 artwork to a
+// thin strip. Use `cover` to fill the hero (a full-height slice of the splice art
+// behind the card) and trim the height a little. (After the base rule so it wins.)
+@media (max-width: 760px) {
+  .ml-hero { min-height: clamp(420px, 92vw, 560px); }
+  .ml-hero__art { object-fit: cover; object-position: center; }
+}
 .ml-hero__veil {
   position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(ellipse 60% 72% at 50% 50%, rgba(241,234,215,0.72), rgba(241,234,215,0.18) 76%, transparent);
