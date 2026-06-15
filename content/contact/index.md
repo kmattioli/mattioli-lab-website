@@ -20,9 +20,9 @@ sections:
 
         **Email:** [kaia.mattioli [at] ucdenver [dot] edu](mailto:kaia.mattioli@ucdenver.edu)
       opening: |
-        We are currently recruiting a **Professional Research Assistant** with experience
+        We are currently recruiting a **Professional Research Assistant** (technician) with experience
         in molecular biology. This is a unique opportunity to help start a lab from the
-        ground up! Junior and senior candidates are both welcome to apply. Reach out to
+        ground up! Junior and senior candidates are both welcome to apply; we hope to find someone who is interested in a 2-year+ position. Reach out to
         Kaia with your resume.
 
   - block: markdown
@@ -31,8 +31,8 @@ sections:
       subtitle: Join us
       text: |
         <div class="ml-roles">
-          <div class="ml-role ml-role--red"><span class="ml-role__accent"></span><div class="ml-role__body"><p class="ml-role__label">Undergraduates</p><h3>Undergraduate researchers</h3><p>We welcome curious undergraduates looking for hands-on experience in genomics and molecular biology. Positions are available for course credit, work-study, or summer research. Email Kaia a short note about your interests and availability.</p></div></div>
-          <div class="ml-role ml-role--gold"><span class="ml-role__accent"></span><div class="ml-role__body"><p class="ml-role__label">Graduate students</p><h3>PhD &amp; rotation students</h3><p>We are recruiting both wet-lab and dry-lab graduate students at the Masters and PhD levels. Email Kaia to discuss fit, current projects, and how to apply.</p></div></div>
+          <div class="ml-role ml-role--red"><span class="ml-role__accent"></span><div class="ml-role__body"><p class="ml-role__label">Undergraduates</p><h3>Undergraduate researchers</h3><p>We welcome curious undergraduates looking for hands-on experience in genomics and molecular biology. No direct research experience required! Email Kaia a short note about your interests, courses taken, and availability.</p></div></div>
+          <div class="ml-role ml-role--gold"><span class="ml-role__accent"></span><div class="ml-role__body"><p class="ml-role__label">Graduate students</p><h3>PhD &amp; rotation students</h3><p>We are recruiting both wet-lab and dry-lab graduate students at the Masters and PhD levels. Email Kaia a short cover letter and CV to discuss fit and current projects.</p></div></div>
           <div class="ml-role ml-role--blue"><span class="ml-role__accent"></span><div class="ml-role__body"><p class="ml-role__label">Postdocs</p><h3>Postdoctoral fellows</h3><p>If you are interested in doing a postdoc in the lab, send a CV, a brief statement of research interests, and contact information for three references to Kaia.</p></div></div>
         </div>
     design:
