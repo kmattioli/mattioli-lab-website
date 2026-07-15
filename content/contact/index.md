@@ -20,9 +20,9 @@ sections:
 
         **Email:** [kaia.mattioli [at] ucdenver [dot] edu](mailto:kaia.mattioli@ucdenver.edu)
       opening: |
-        We will soon be recruiting a **Professional Research Assistant** (technician) with experience
+        We are recruiting a **Professional Research Assistant** (technician) with experience
         in molecular biology. This is a unique opportunity to help start a lab from the
-        ground up! Junior and senior candidates are both welcome to apply; we hope to find someone who is interested in a 2-year+ position. More information and job posting coming soon.
+        ground up! Junior and senior candidates are both welcome to apply; we hope to find someone who is interested in a 2-year+ position. Apply [here](https://cu.taleo.net/careersection/2/jobdetail.ftl?job=40363&lang=en).
 
   - block: markdown
     content:
